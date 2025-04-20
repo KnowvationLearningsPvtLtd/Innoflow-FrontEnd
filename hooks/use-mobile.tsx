@@ -10,13 +10,10 @@ export function useIsMobile() {
       setIsMobile(window.innerWidth < 768)
     }
 
-    // Initial check
     checkMobile()
 
-    // Add event listener
     window.addEventListener("resize", checkMobile)
 
-    // Clean up
     return () => window.removeEventListener("resize", checkMobile)
   }, [])
 

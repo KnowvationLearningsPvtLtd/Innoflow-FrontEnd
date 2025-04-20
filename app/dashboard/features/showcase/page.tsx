@@ -18,7 +18,6 @@ export default function FeatureShowcasePage() {
       <h1 className="text-4xl font-bold mb-8 text-white text-center">Ditch the Black Boxes</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {/* Control the complexity */}
         <div className="space-y-4">
           <Card className="bg-[#121212] border-[#2a2a2a] text-white">
             <CardHeader className="pb-2">
@@ -76,7 +75,6 @@ export default function FeatureShowcasePage() {
           <p className="text-gray-400">Fine-tune model parameters and customize your AI workflows with precision.</p>
         </div>
 
-        {/* Swap and compare */}
         <div className="space-y-4">
           <Card className="bg-[#121212] border-[#2a2a2a] text-white">
             <CardHeader className="pb-2">
@@ -128,7 +126,6 @@ export default function FeatureShowcasePage() {
           </p>
         </div>
 
-        {/* Python under the hood */}
         <div className="space-y-4">
           <Card className="bg-[#121212] border-[#2a2a2a] text-white">
             <CardHeader className="pb-2">

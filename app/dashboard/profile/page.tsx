@@ -1,4 +1,3 @@
-// app/dashboard/profile/page.tsx
 import { DashboardHeader } from "@/components/dashboard/dashboard-header"
 import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"

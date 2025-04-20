@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Zap } from "lucide-react"
 import dynamic from "next/dynamic"
 
-// Dynamically import ReactFlow with SSR disabled and proper loading state
+
 const ReactFlowCanvas = dynamic(() => import("@/components/flow/react-flow-canvas"), {
   ssr: false,
   loading: () => (
@@ -31,7 +31,7 @@ export function FlowEditorWrapper({ flowId }: { flowId: string }) {
   const [activeTab, setActiveTab] = useState("canvas")
 
   useEffect(() => {
-    // Simulate loading flow data
+    
     const timer = setTimeout(() => {
       setIsLoading(false)
       toast({

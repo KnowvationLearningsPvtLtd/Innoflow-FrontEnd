@@ -8,7 +8,6 @@ import { FlowSidebar } from "@/components/flow/flow-sidebar"
 import { PlaygroundPanel } from "@/components/flow/playground-panel"
 import { ApiCodespacePanel } from "@/components/flow/api-codespace-panel"
 
-// Dynamically import the FlowEditor component with no SSR
 const FlowEditor = dynamic(() => import("@/components/flow/flow-editor").then((mod) => mod.FlowEditor), {
   ssr: false,
   loading: () => (
@@ -24,7 +23,6 @@ const FlowEditor = dynamic(() => import("@/components/flow/flow-editor").then((m
 export default function FlowPage() {
   const params = useParams()
   const flowId = params.id as string
-  // Handle both formats: "flow-1" and just "1"
   const normalizedFlowId = flowId.startsWith("flow-") ? flowId : `flow-${flowId}`
   const [activePanel, setActivePanel] = useState<"editor" | "playground" | "api">("editor")
 

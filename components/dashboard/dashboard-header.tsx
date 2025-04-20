@@ -23,7 +23,6 @@ import {
 import { useRouter } from "next/navigation"
 import { useIsMobile } from "@/hooks/use-mobile"
 
-// Mock projects data for search functionality
 const mockProjects = [
   {
     id: 1,
@@ -56,7 +55,7 @@ export function DashboardHeader({ showAutoSave = false }: { showAutoSave?: boole
   const [searchResults, setSearchResults] = useState<typeof mockProjects>([])
   const [showSearchResults, setShowSearchResults] = useState(false)
 
-  // Handle search functionality
+  
   useEffect(() => {
     if (searchQuery.trim() === "") {
       setSearchResults([])
@@ -77,15 +76,12 @@ export function DashboardHeader({ showAutoSave = false }: { showAutoSave?: boole
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
     console.log("Searching for:", searchQuery)
-    // Keep search results open after form submission
     setShowSearchResults(searchQuery.trim() !== "")
   }
 
   const handleProjectClick = (projectId: number) => {
     console.log("Navigating to project:", projectId)
-    // Navigate to the project
     router.push(`/dashboard/flow/${projectId}`)
-    // Clear search
     setSearchQuery("")
     setShowSearchResults(false)
   }

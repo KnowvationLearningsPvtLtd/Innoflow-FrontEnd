@@ -100,8 +100,8 @@ export function ProjectsView() {
   };
 
   return (
-    <div className="flex flex-col h-screen max-w-full overflow-hidden">
-      <div className="flex items-center justify-between mb-4">
+    <div className="flex flex-col h-screen max-w-full overflow-hidden mt-0 mb-32 py-12">
+      <div className="flex items-center justify-between "> {/* Adjusted margin-bottom to prevent overlap */}
         <div>
           <h1 className="text-2xl font-bold text-white">My Projects</h1>
           <p className="text-white/70">Create and manage your AI workflows</p>

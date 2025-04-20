@@ -3,14 +3,13 @@
 import type React from "react"
 
 import { useCallback, useRef, useState, useEffect } from "react"
-// At the top of the file, replace the ReactFlow import with a dynamic import
+
 import dynamic from "next/dynamic"
 import type { Node, Edge, Connection, NodeTypes } from "reactflow"
 
-// Dynamically import ReactFlow with no SSR
+
 const ReactFlow = dynamic(() => import("reactflow").then((mod) => mod.default), { ssr: false })
 
-// Dynamically import other ReactFlow components
 const { Background, Controls, MiniMap, Panel, MarkerType } = dynamic(
   () =>
     import("reactflow").then((mod) => ({
@@ -23,7 +22,6 @@ const { Background, Controls, MiniMap, Panel, MarkerType } = dynamic(
   { ssr: false },
 )
 
-// Dynamically import ReactFlow hooks
 const { useNodesState, useEdgesState, addEdge } = dynamic(
   () =>
     import("reactflow").then((mod) => ({
@@ -33,9 +31,6 @@ const { useNodesState, useEdgesState, addEdge } = dynamic(
     })),
   { ssr: false },
 )
-// Import the CSS directly
-// Make sure to import the CSS properly
-// Replace the direct CSS import with:
 
 import { ModelNode } from "@/components/flow/nodes/model-node"
 import { InputNode } from "@/components/flow/nodes/input-node"
@@ -54,9 +49,7 @@ const nodeTypes: NodeTypes = {
   "prompt-template": PromptNode,
 }
 
-// Define initial nodes based on flowId
 const getInitialNodes = (flowId: string): Node[] => {
-  // Basic Prompting flow
   if (flowId === "1") {
     return [
       {
@@ -85,7 +78,6 @@ const getInitialNodes = (flowId: string): Node[] => {
     ]
   }
 
-  // Vector Store RAG flow
   if (flowId === "2") {
     return [
       {
@@ -132,7 +124,7 @@ const getInitialNodes = (flowId: string): Node[] => {
     ]
   }
 
-  // Simple Agent flow
+  
   if (flowId === "3") {
     return [
       {
@@ -159,13 +151,12 @@ const getInitialNodes = (flowId: string): Node[] => {
     ]
   }
 
-  // Default empty flow
+  
   return []
 }
 
-// Define initial edges based on flowId
 const getInitialEdges = (flowId: string): Edge[] => {
-  // Basic Prompting flow
+  
   if (flowId === "1") {
     return [
       {
@@ -193,7 +184,7 @@ const getInitialEdges = (flowId: string): Edge[] => {
     ]
   }
 
-  // Vector Store RAG flow
+ 
   if (flowId === "2") {
     return [
       {
@@ -254,7 +245,6 @@ const getInitialEdges = (flowId: string): Edge[] => {
     ]
   }
 
-  // Simple Agent flow
   if (flowId === "3") {
     return [
       {
@@ -282,7 +272,7 @@ const getInitialEdges = (flowId: string): Edge[] => {
     ]
   }
 
-  // Default empty flow
+  
   return []
 }
 
@@ -292,7 +282,6 @@ interface ReactFlowCanvasProps {
   onOpenPlayground: () => void
 }
 
-// Export as default function to work with dynamic import
 export default function ReactFlowCanvas({ flowId, onSelectNode, onOpenPlayground }: ReactFlowCanvasProps) {
   const reactFlowWrapper = useRef<HTMLDivElement>(null)
   const [nodes, setNodes, onNodesChange] = useNodesState(getInitialNodes(flowId))
@@ -301,12 +290,12 @@ export default function ReactFlowCanvas({ flowId, onSelectNode, onOpenPlayground
   const { toast } = useToast()
 
   useEffect(() => {
-    // Import ReactFlow styles on the client side
+   
     import("reactflow/dist/style.css")
   }, [])
 
   useEffect(() => {
-    // Update nodes and edges when flowId changes
+
     setNodes(getInitialNodes(flowId))
     setEdges(getInitialEdges(flowId))
   }, [flowId, setNodes, setEdges])
@@ -356,7 +345,7 @@ export default function ReactFlowCanvas({ flowId, onSelectNode, onOpenPlayground
 
         let initialData = { label: name }
 
-        // Add default data based on node type
+       
         if (type === "openai") {
           initialData = {
             ...initialData,

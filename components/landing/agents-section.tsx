@@ -62,9 +62,9 @@ export function AgentsSection() {
             className="order-1 lg:order-2"
           >
             <div className="relative w-full h-96 bg-purple-950/90 rounded-lg overflow-hidden">
-              {/* Connection lines with glowing nodes */}
+              
               <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-                {/* User to Agent connection */}
+                
                 <path
                   d="M180,80 C220,80 240,100 280,100"
                   stroke="rgba(219, 39, 119, 0.8)"
@@ -74,7 +74,7 @@ export function AgentsSection() {
                 <circle cx="180" cy="80" r="5" fill="#d946ef" filter="drop-shadow(0 0 6px #d946ef)" />
                 <circle cx="280" cy="100" r="5" fill="#d946ef" filter="drop-shadow(0 0 6px #d946ef)" />
 
-                {/* Agent to Response connection */}
+             
                 <path
                   d="M280,100 C320,100 340,140 380,140"
                   stroke="rgba(59, 130, 246, 0.8)"

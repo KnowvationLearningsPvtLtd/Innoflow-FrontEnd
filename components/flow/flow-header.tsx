@@ -21,7 +21,6 @@ export function FlowHeader({ flowId }: { flowId: string }) {
   const [isSaving, setIsSaving] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
 
-  // Get flow name based on ID
   useEffect(() => {
     const flowNames: Record<string, string> = {
       "1": "Basic Prompting",
@@ -35,7 +34,6 @@ export function FlowHeader({ flowId }: { flowId: string }) {
   const handleSave = () => {
     setIsSaving(true)
 
-    // Simulate saving
     setTimeout(() => {
       setIsSaving(false)
       toast({
@@ -48,7 +46,6 @@ export function FlowHeader({ flowId }: { flowId: string }) {
   const handlePlayground = () => {
     setIsPlaying(true)
 
-    // Simulate playground loading
     setTimeout(() => {
       setIsPlaying(false)
       toast({

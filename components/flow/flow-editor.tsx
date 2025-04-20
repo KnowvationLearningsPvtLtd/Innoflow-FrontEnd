@@ -30,37 +30,30 @@ import { DocumentLoaderNode } from "@/components/flow/nodes/document-loader-node
 import { TextSplitterNode } from "@/components/flow/nodes/text-splitter-node"
 import APIInputNode from "@/components/flow/nodes/API-input-node"
 
-// Import types from reactflow
 import type { Node, Edge, Connection, NodeTypes, NodeChange, EdgeChange } from "reactflow"
 
-// Import ReactFlow styles
 import "reactflow/dist/style.css"
 
-// Define MarkerType enum since we can't import it directly
 const MarkerType = {
   Arrow: "arrow",
-  ArrowClosed: "arrowClosed", // Corrected casing
+  ArrowClosed: "arrowClosed", 
 } as const
 
-// Define ConnectionLineType enum
 const ConnectionLineTypes = {
   Bezier: "bezier",
   Straight: "straight",
   Step: "step",
-  SmoothStep: "smoothstep", // Corrected casing
+  SmoothStep: "smoothstep", 
 } as const
 
-// Define BackgroundVariant enum
 const BackgroundVariant = {
-  Dots: "dots", // Corrected casing
+  Dots: "dots", 
   Lines: "lines",
   None: "none",
 } as const
 
-// Dynamically import ReactFlow with no SSR
 const ReactFlow = dynamic(() => import("reactflow").then((mod) => mod.ReactFlow), { ssr: false })
 
-// Dynamically import other ReactFlow components
 const Background = dynamic(() => import("reactflow").then((mod) => mod.Background), { ssr: false })
 const Controls = dynamic(() => import("reactflow").then((mod) => mod.Controls), { ssr: false })
 const MiniMap = dynamic(() => import("reactflow").then((mod) => mod.MiniMap), { ssr: false })
@@ -72,7 +65,6 @@ interface FlowEditorProps {
   onOpenApiCodespace: () => void
 }
 
-// Define node types
 const nodeTypes: NodeTypes = {
   openai: ModelNode,
   anthropic: AnthropicNode,
@@ -98,9 +90,9 @@ const nodeTypes: NodeTypes = {
   "API-input": APIInputNode
 }
 
-// Define initial nodes based on flowId
+
 const getInitialNodes = (flowId: string): Node[] => {
-  // Basic Prompting flow
+
   if (flowId === "flow-1") {
     return [
       {
@@ -129,7 +121,7 @@ const getInitialNodes = (flowId: string): Node[] => {
     ]
   }
 
-  // Vector Store RAG flow
+  
   if (flowId === "flow-2") {
     return [
       {
@@ -176,7 +168,7 @@ const getInitialNodes = (flowId: string): Node[] => {
     ]
   }
 
-  // Simple Agent flow
+
   if (flowId === "flow-3") {
     return [
       {
@@ -203,13 +195,13 @@ const getInitialNodes = (flowId: string): Node[] => {
     ]
   }
 
-  // Default empty flow
+  
   return []
 }
 
-// Define initial edges based on flowId
+
 const getInitialEdges = (flowId: string): Edge[] => {
-  // Basic Prompting flow
+  
   if (flowId === "flow-1") {
     return [
       {
@@ -219,7 +211,7 @@ const getInitialEdges = (flowId: string): Edge[] => {
         animated: true,
         style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
         markerEnd: {
-          type: MarkerType.ArrowClosed, // Corrected to use the enum value
+          type: MarkerType.ArrowClosed, 
           color: "rgba(149, 76, 233, 0.6)",
         },
       },
@@ -230,14 +222,14 @@ const getInitialEdges = (flowId: string): Edge[] => {
         animated: true,
         style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
         markerEnd: {
-          type: MarkerType.ArrowClosed, // Corrected to use the enum value
+          type: MarkerType.ArrowClosed, 
           color: "rgba(149, 76, 233, 0.6)",
         },
       },
     ]
   }
 
-  // Vector Store RAG flow
+
   if (flowId === "flow-2") {
     return [
       {
@@ -247,7 +239,7 @@ const getInitialEdges = (flowId: string): Edge[] => {
         animated: true,
         style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
         markerEnd: {
-          type: MarkerType.ArrowClosed, // Corrected to use the enum value
+          type: MarkerType.ArrowClosed,
           color: "rgba(149, 76, 233, 0.6)",
         },
       },
@@ -258,7 +250,7 @@ const getInitialEdges = (flowId: string): Edge[] => {
         animated: true,
         style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
         markerEnd: {
-          type: MarkerType.ArrowClosed, // Corrected to use the enum value
+          type: MarkerType.ArrowClosed, 
           color: "rgba(149, 76, 233, 0.6)",
         },
       },
@@ -269,7 +261,7 @@ const getInitialEdges = (flowId: string): Edge[] => {
         animated: true,
         style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
         markerEnd: {
-          type: MarkerType.ArrowClosed, // Corrected to use the enum value
+          type: MarkerType.ArrowClosed, 
           color: "rgba(149, 76, 233, 0.6)",
         },
       },
@@ -280,7 +272,7 @@ const getInitialEdges = (flowId: string): Edge[] => {
         animated: true,
         style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
         markerEnd: {
-          type: MarkerType.ArrowClosed, // Corrected to use the enum value
+          type: MarkerType.ArrowClosed, 
           color: "rgba(149, 76, 233, 0.6)",
         },
       },
@@ -291,14 +283,13 @@ const getInitialEdges = (flowId: string): Edge[] => {
         animated: true,
         style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
         markerEnd: {
-          type: MarkerType.ArrowClosed, // Corrected to use the enum value
+          type: MarkerType.ArrowClosed, 
           color: "rgba(149, 76, 233, 0.6)",
         },
       },
     ]
   }
 
-  // Simple Agent flow
   if (flowId === "flow-3") {
     return [
       {
@@ -308,7 +299,7 @@ const getInitialEdges = (flowId: string): Edge[] => {
         animated: true,
         style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
         markerEnd: {
-          type: MarkerType.ArrowClosed, // Corrected to use the enum value
+          type: MarkerType.ArrowClosed, 
           color: "rgba(149, 76, 233, 0.6)",
         },
       },
@@ -319,14 +310,13 @@ const getInitialEdges = (flowId: string): Edge[] => {
         animated: true,
         style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
         markerEnd: {
-          type: MarkerType.ArrowClosed, // Corrected to use the enum value
+          type: MarkerType.ArrowClosed, 
           color: "rgba(149, 76, 233, 0.6)",
         },
       },
     ]
   }
 
-  // Default empty flow
   return []
 }
 
@@ -340,18 +330,17 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
   const [isReactFlowLoaded, setIsReactFlowLoaded] = useState(false)
   const { toast } = useToast()
 
-  // State for ReactFlow functions
+ 
   const [reactFlowUtils, setReactFlowUtils] = useState<{
     onNodesChange?: any
     onEdgesChange?: any
     addEdge?: any
   }>({})
 
-  // Load ReactFlow and its dependencies
+
   useEffect(() => {
     let isMounted = true
 
-    // Import ReactFlow utilities
     import("reactflow").then((reactflow) => {
       if (!isMounted) return
 
@@ -361,7 +350,7 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
         addEdge: reactflow.addEdge,
       })
 
-      // Initialize with the correct flow data
+     
       setNodes(getInitialNodes(flowId))
       setEdges(getInitialEdges(flowId))
       setIsReactFlowLoaded(true)
@@ -372,7 +361,7 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
     }
   }, [flowId])
 
-  // Update nodes and edges when flowId changes
+
   useEffect(() => {
     if (isReactFlowLoaded) {
       setNodes(getInitialNodes(flowId))
@@ -384,10 +373,10 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
     (params: Connection) => {
       if (!reactFlowUtils.addEdge) return
 
-      // Create a unique edge ID
+
       const edgeId = `e${params.source}-${params.target}`
 
-      // Check if this edge already exists
+
       const edgeExists = edges.some((edge) => edge.id === edgeId)
       if (edgeExists) {
         toast({
@@ -398,15 +387,15 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
         return
       }
 
-      // Validate connection types
+    
       const sourceNode = nodes.find((node) => node.id === params.source)
       const targetNode = nodes.find((node) => node.id === params.target)
 
       if (sourceNode && targetNode) {
-        // Add logging for debugging
+        
         console.log(`Connecting: ${sourceNode.type} -> ${targetNode.type}`)
 
-        // Validate connections based on node types
+       
         if (sourceNode.type?.includes("output") && targetNode.type?.includes("input")) {
           toast({
             title: "Invalid connection",
@@ -416,7 +405,7 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
           return
         }
 
-        // Prevent self-connections
+        
         if (params.source === params.target) {
           toast({
             title: "Invalid connection",
@@ -426,12 +415,11 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
           return
         }
 
-        // Prevent circular connections in certain node types
         if (
           (sourceNode.type === "sequential-chain" && targetNode.type === "sequential-chain") ||
           (sourceNode.type === "router-chain" && targetNode.type === "router-chain")
         ) {
-          // Check if this would create a cycle
+         
           const tempEdges = [...edges, { id: edgeId, source: params.source || "", target: params.target || "" }]
           const tempNodes = [...nodes]
           const circularPaths = findCircularPaths(tempNodes, tempEdges)
@@ -447,30 +435,30 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
         }
       }
 
-      // Create a color based on the source node type
-      let edgeColor = "rgba(149, 76, 233, 0.6)" // Default purple
+     
+      let edgeColor = "rgba(149, 76, 233, 0.6)" 
 
       if (sourceNode) {
         switch (sourceNode.type) {
           case "openai":
-            edgeColor = "rgba(16, 185, 129, 0.8)" // Green
+            edgeColor = "rgba(16, 185, 129, 0.8)" 
             break
           case "anthropic":
-            edgeColor = "rgba(99, 102, 241, 0.8)" // Indigo
+            edgeColor = "rgba(99, 102, 241, 0.8)" 
             break
           case "huggingface":
-            edgeColor = "rgba(6, 182, 212, 0.8)" // Cyan
+            edgeColor = "rgba(6, 182, 212, 0.8)" 
             break
           case "agent":
           case "multi-agent":
-            edgeColor = "rgba(239, 68, 68, 0.8)" // Red
+            edgeColor = "rgba(239, 68, 68, 0.8)" 
             break
           case "few-shot":
-            edgeColor = "rgba(132, 204, 22, 0.8)" // Lime
+            edgeColor = "rgba(132, 204, 22, 0.8)" 
             break
           case "conversation-memory":
           case "buffer-memory":
-            edgeColor = "rgba(124, 58, 237, 0.8)" // Violet
+            edgeColor = "rgba(124, 58, 237, 0.8)" 
             break
         }
       }
@@ -483,7 +471,7 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
             animated: true,
             style: { stroke: edgeColor, strokeWidth: 2 },
             markerEnd: {
-              type: MarkerType.ArrowClosed, // Corrected to use the enum value
+              type: MarkerType.ArrowClosed, 
               color: edgeColor,
             },
           },
@@ -503,7 +491,7 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
     (changes: NodeChange[]) => {
       if (!reactFlowUtils.onNodesChange) return
 
-      // Handle node selection
+      
       const selectChange = changes.find((change) => change.type === "select" && change.selected === true)
       if (selectChange && "id" in selectChange) {
         const nodeId = selectChange.id as string
@@ -523,7 +511,6 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
     (changes: EdgeChange[]) => {
       if (!reactFlowUtils.onEdgesChange) return
 
-      // Handle edge removal
       const removeChange = changes.find((change) => change.type === "remove")
       if (removeChange) {
         toast({
@@ -596,7 +583,7 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
     setNodes((nodes) => nodes.filter((node) => !node.selected))
     setEdges((edges) => edges.filter((edge) => !edge.selected))
 
-    // Clear selected node if it was deleted
+   
     setSelectedNode(null)
     setSelectedNodeData(null)
 
@@ -629,7 +616,7 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
       }),
     )
 
-    // Update selected node data if it's the one being edited
+    
     if (nodeId === selectedNode) {
       setSelectedNodeData({
         ...selectedNodeData,
@@ -643,25 +630,25 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
     })
   }
 
-  // Add debugging function to log node and edge information
+ 
   const debugFlow = useCallback(() => {
     console.log("Current Nodes:", nodes)
     console.log("Current Edges:", edges)
 
-    // Validate flow integrity
+   
     const orphanedNodes = nodes.filter(
       (node) => !edges.some((edge) => edge.source === node.id || edge.target === node.id),
     )
 
-    // Check for dangling connections (edges with missing source or target nodes)
+    
     const danglingEdges = edges.filter(
       (edge) => !nodes.some((node) => node.id === edge.source) || !nodes.some((node) => node.id === edge.target),
     )
 
-    // Check for circular dependencies
+ 
     const circularPaths = findCircularPaths(nodes, edges)
 
-    // Log all issues
+
     if (orphanedNodes.length > 0) {
       console.warn("Orphaned nodes detected:", orphanedNodes)
     }
@@ -683,11 +670,11 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
     })
   }, [nodes, edges, toast])
 
-  // Add this helper function for finding circular paths
+
   const findCircularPaths = (nodes: Node[], edges: Edge[]) => {
     const adjacencyList: Record<string, string[]> = {}
 
-    // Build adjacency list
+
     nodes.forEach((node) => {
       adjacencyList[node.id] = []
     })
@@ -712,7 +699,7 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
           if (!visited[neighbor] && dfs(neighbor, [...path])) {
             return true
           } else if (recStack[neighbor]) {
-            // Found a cycle
+            
             const cycleStart = path.indexOf(neighbor)
             circularPaths.push(path.slice(cycleStart))
             return true
@@ -724,7 +711,7 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
       return false
     }
 
-    // Run DFS from each node
+   
     for (const node of nodes) {
       if (!visited[node.id]) {
         dfs(node.id)
@@ -763,11 +750,11 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
           style: { stroke: "rgba(149, 76, 233, 0.8)", strokeWidth: 3 },
           animated: true,
           markerEnd: {
-            type: MarkerType.ArrowClosed, // Corrected to use the enum value
+            type: MarkerType.ArrowClosed, 
             color: "rgba(149, 76, 233, 0.8)",
           },
         }}
-        connectionLineType={ConnectionLineTypes.SmoothStep} // Corrected to use the enum value
+        connectionLineType={ConnectionLineTypes.SmoothStep} 
         connectionLineStyle={{
           stroke: "rgba(149, 76, 233, 0.8)",
           strokeWidth: 3,
@@ -781,7 +768,7 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
           color="rgba(255, 255, 255, 0.1)"
           gap={20}
           size={1.5}
-          variant={BackgroundVariant.Dots} // Corrected to use the enum value
+          variant={BackgroundVariant.Dots} 
           style={{ backgroundColor: "#030303" }}
         />
         <Controls className="bg-black/50 border border-white/10 rounded-md p-1 shadow-lg" showInteractive={false} />

@@ -7,10 +7,10 @@ import { Play, Save, Trash, ZoomIn, ZoomOut } from "lucide-react"
 import { useToast } from "@/components/ui/use-toast"
 import type { Node, Edge, Connection } from "reactflow"
 
-// Dynamically import ReactFlow with no SSR
+
 const ReactFlow = dynamic(() => import("reactflow").then((mod) => mod.default), { ssr: false })
 
-// Dynamically import other ReactFlow components
+
 const Background = dynamic(() => import("reactflow").then((mod) => mod.Background), { ssr: false })
 
 const Controls = dynamic(() => import("reactflow").then((mod) => mod.Controls), { ssr: false })
@@ -19,7 +19,7 @@ const MiniMap = dynamic(() => import("reactflow").then((mod) => mod.MiniMap), { 
 
 const Panel = dynamic(() => import("reactflow").then((mod) => mod.Panel), { ssr: false })
 
-// Dynamically import node components
+
 const ModelNode = dynamic(() => import("@/components/flow/nodes/model-node"), { ssr: false })
 const InputNode = dynamic(() => import("@/components/flow/nodes/input-node"), { ssr: false })
 const OutputNode = dynamic(() => import("@/components/flow/nodes/output-node"), { ssr: false })
@@ -41,15 +41,14 @@ export default function SimplifiedReactFlow({ flowId, onSelectNode, onOpenPlaygr
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
-    // Import ReactFlow styles on the client side
+  
     import("reactflow/dist/style.css")
       .then(() => setIsLoaded(true))
       .catch((err) => console.error("Failed to load ReactFlow styles:", err))
   }, [])
 
   useEffect(() => {
-    // Set up initial nodes and edges based on flowId
-    // This is a simplified version - you can expand it later
+  
     if (flowId === "1") {
       setNodes([
         {
@@ -98,7 +97,7 @@ export default function SimplifiedReactFlow({ flowId, onSelectNode, onOpenPlaygr
 
   const onNodesChange = useCallback((changes: any) => {
     setNodes((nds) => {
-      // Apply changes to nodes
+      
       const newNodes = [...nds]
       changes.forEach((change: any) => {
         if (change.type === "position" && change.id) {
@@ -116,7 +115,7 @@ export default function SimplifiedReactFlow({ flowId, onSelectNode, onOpenPlaygr
   }, [])
 
   const onEdgesChange = useCallback((changes: any) => {
-    // Simplified edge changes
+
     setEdges((eds) => [...eds])
   }, [])
 

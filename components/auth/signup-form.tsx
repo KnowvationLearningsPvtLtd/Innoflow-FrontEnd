@@ -55,7 +55,6 @@ export function SignupForm() {
     setIsLoading(true)
 
     try {
-      // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
       toast({
@@ -63,7 +62,6 @@ export function SignupForm() {
         description: "Your account has been created successfully!",
       })
 
-      // Redirect after a short delay
       setTimeout(() => {
         router.push("/dashboard")
       }, 1000)
@@ -81,7 +79,6 @@ export function SignupForm() {
     setIsLoading(true)
 
     try {
-      // Simulate OAuth flow
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
       toast({
@@ -89,7 +86,6 @@ export function SignupForm() {
         description: `Successfully signed in with ${provider}!`,
       })
 
-      // Redirect after a short delay
       setTimeout(() => {
         router.push("/dashboard")
       }, 1000)

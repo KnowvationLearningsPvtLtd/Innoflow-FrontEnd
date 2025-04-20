@@ -37,7 +37,7 @@ export function PlaygroundPanel({ onClose }: PlaygroundPanelProps) {
     setInput("")
     setIsLoading(true)
 
-    // Simulate API call
+  
     setTimeout(() => {
       const assistantMessage = {
         role: "assistant" as const,

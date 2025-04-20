@@ -163,7 +163,7 @@ export function DocsSidebar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({})
 
-  // Initialize expanded sections based on current path
+ 
   useEffect(() => {
     if (pathname) {
       const newExpandedSections: Record<string, boolean> = {}

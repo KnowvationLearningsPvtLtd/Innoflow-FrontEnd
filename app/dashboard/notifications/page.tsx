@@ -1,4 +1,3 @@
-// app/dashboard/notifications/page.tsx
 import { DashboardHeader } from "@/components/dashboard/dashboard-header"
 import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar"
 import { Button } from "@/components/ui/button"

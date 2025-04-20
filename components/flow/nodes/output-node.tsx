@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import dynamic from "next/dynamic"
 
-// Dynamically import Handle and Position from reactflow
+
 const Handle = dynamic(() => import("reactflow").then((mod) => mod.Handle), { ssr: false })
 const Position = dynamic(() => import("reactflow").then((mod) => mod.Position), { ssr: false })
 

@@ -10,7 +10,7 @@ export function PromptNode({ data, isConnectable }: { data: any; isConnectable?:
     setTemplate(data.template || "Write a {{style}} about {{topic}}...")
   }, [data])
 
-  // Extract variables from template
+ 
   const variables = template.match(/\{\{([^}]+)\}\}/g)?.map((v) => v.replace(/\{\{|\}\}/g, "")) || []
 
   return (

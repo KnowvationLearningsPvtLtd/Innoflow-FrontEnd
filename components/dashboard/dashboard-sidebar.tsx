@@ -95,10 +95,11 @@ export function DashboardSidebar() {
 
   return (
     <SidebarProvider defaultOpen>
-      <Sidebar className="fixed inset-y-0 left-0 z-20 w-60 bg-black border-r border-white/10 overflow-hidden">
+      
+      <Sidebar className="fixed inset-y-0 left-0 z-20 w-60 bg-black border-r border-white/10 ">
         <SidebarHeader className="flex items-center p-4">
           <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-            <div className="h-6 w-6 rounded-md bg-green-600 flex items-center justify-center">
+            <div className="h-6 w-6 rounded-md bg-green-600 flex items-center justify-center ">
               <Layers className="h-4 w-4 text-white" />
             </div>
             <span className="text-base font-semibold text-white">Innoflow</span>

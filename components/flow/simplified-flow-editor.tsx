@@ -8,9 +8,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Zap, Play, Save, Trash, ZoomIn, ZoomOut, Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-// Sample node data for visualization
+
 const getNodesForFlow = (flowId: string) => {
-  // Basic Prompting flow
+ 
   if (flowId === "1") {
     return [
       {
@@ -34,7 +34,6 @@ const getNodesForFlow = (flowId: string) => {
     ]
   }
 
-  // Vector Store RAG flow
   if (flowId === "2") {
     return [
       {
@@ -70,7 +69,6 @@ const getNodesForFlow = (flowId: string) => {
     ]
   }
 
-  // Simple Agent flow
   if (flowId === "3") {
     return [
       {
@@ -97,7 +95,7 @@ const getNodesForFlow = (flowId: string) => {
   return []
 }
 
-// Get node color based on type
+
 const getNodeColor = (type: string) => {
   switch (type) {
     case "text-input":
@@ -115,7 +113,7 @@ const getNodeColor = (type: string) => {
   }
 }
 
-// Get node icon based on type
+
 const getNodeIcon = (type: string) => {
   switch (type) {
     case "text-input":
@@ -142,7 +140,7 @@ export function SimplifiedFlowEditor({ flowId }: { flowId: string }) {
   const [selectedNode, setSelectedNode] = useState<string | null>(null)
 
   useEffect(() => {
-    // Simulate loading flow data
+   
     const timer = setTimeout(() => {
       setIsLoading(false)
       setNodes(getNodesForFlow(flowId))

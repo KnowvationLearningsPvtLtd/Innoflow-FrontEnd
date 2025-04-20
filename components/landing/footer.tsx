@@ -67,7 +67,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="https://v0-fork-of-x-share-design-brief-ebxlyh.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white">
+                <a href="#" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white">
                   Community
                 </a>
               </li>

@@ -13,7 +13,7 @@ export function DocsHeader() {
   const { theme, setTheme } = useTheme()
   const [searchQuery, setSearchQuery] = useState("")
 
-  // Avoid hydration mismatch
+  
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -21,7 +21,7 @@ export function DocsHeader() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
     console.log("Searching for:", searchQuery)
-    // Implement search functionality
+   
   }
 
   return (
