@@ -8,7 +8,6 @@ export default function AccountSettingsPage() {
         Manage your account details, update your profile, and change your password here.
       </p>
       <div className="w-full max-w-4xl space-y-6">
-        {/* Profile Information */}
         <div className="bg-white/10 p-6 rounded-lg">
           <h2 className="text-xl font-semibold text-white mb-4">Profile Information</h2>
           <div className="space-y-4">
@@ -31,7 +30,6 @@ export default function AccountSettingsPage() {
           </div>
         </div>
 
-        {/* Password Management */}
         <div className="bg-white/10 p-6 rounded-lg">
           <h2 className="text-xl font-semibold text-white mb-4">Password Management</h2>
           <div className="space-y-4">
@@ -61,8 +59,6 @@ export default function AccountSettingsPage() {
             </div>
           </div>
         </div>
-
-        {/* Notification Preferences */}
         <div className="bg-white/10 p-6 rounded-lg">
           <h2 className="text-xl font-semibold text-white mb-4">Notification Preferences</h2>
           <div className="space-y-4">
