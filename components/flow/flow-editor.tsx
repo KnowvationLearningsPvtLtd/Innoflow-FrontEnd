@@ -31,26 +31,9 @@ import { TextSplitterNode } from "@/components/flow/nodes/text-splitter-node"
 import APIInputNode from "@/components/flow/nodes/API-input-node"
 
 import type { Node, Edge, Connection, NodeTypes, NodeChange, EdgeChange } from "reactflow"
+import { MarkerType, ConnectionLineType, BackgroundVariant } from "reactflow"
 
 import "reactflow/dist/style.css"
-
-const MarkerType = {
-  Arrow: "arrow",
-  ArrowClosed: "arrowClosed", 
-} as const
-
-const ConnectionLineTypes = {
-  Bezier: "bezier",
-  Straight: "straight",
-  Step: "step",
-  SmoothStep: "smoothstep", 
-} as const
-
-const BackgroundVariant = {
-  Dots: "dots", 
-  Lines: "lines",
-  None: "none",
-} as const
 
 const ReactFlow = dynamic(() => import("reactflow").then((mod) => mod.ReactFlow), { ssr: false })
 
@@ -87,9 +70,8 @@ const nodeTypes: NodeTypes = {
   "vector-store": VectorStoreNode,
   "document-loader": DocumentLoaderNode,
   "text-splitter": TextSplitterNode,
-  "API-input": APIInputNode
+  "api-input": APIInputNode
 }
-
 
 const getInitialNodes = (flowId: string): Node[] => {
 
@@ -118,10 +100,11 @@ const getInitialNodes = (flowId: string): Node[] => {
         position: { x: 250, y: 400 },
         data: { label: "Chat Output" },
       },
+     
+      
     ]
   }
 
-  
   if (flowId === "flow-2") {
     return [
       {
@@ -168,7 +151,6 @@ const getInitialNodes = (flowId: string): Node[] => {
     ]
   }
 
-
   if (flowId === "flow-3") {
     return [
       {
@@ -195,13 +177,10 @@ const getInitialNodes = (flowId: string): Node[] => {
     ]
   }
 
-  
   return []
 }
 
-
 const getInitialEdges = (flowId: string): Edge[] => {
-  
   if (flowId === "flow-1") {
     return [
       {
@@ -211,7 +190,7 @@ const getInitialEdges = (flowId: string): Edge[] => {
         animated: true,
         style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
         markerEnd: {
-          type: MarkerType.ArrowClosed, 
+          type: MarkerType.ArrowClosed,
           color: "rgba(149, 76, 233, 0.6)",
         },
       },
@@ -222,13 +201,12 @@ const getInitialEdges = (flowId: string): Edge[] => {
         animated: true,
         style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
         markerEnd: {
-          type: MarkerType.ArrowClosed, 
+          type: MarkerType.ArrowClosed,
           color: "rgba(149, 76, 233, 0.6)",
         },
       },
     ]
   }
-
 
   if (flowId === "flow-2") {
     return [
@@ -250,7 +228,7 @@ const getInitialEdges = (flowId: string): Edge[] => {
         animated: true,
         style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
         markerEnd: {
-          type: MarkerType.ArrowClosed, 
+          type: MarkerType.ArrowClosed,
           color: "rgba(149, 76, 233, 0.6)",
         },
       },
@@ -261,7 +239,7 @@ const getInitialEdges = (flowId: string): Edge[] => {
         animated: true,
         style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
         markerEnd: {
-          type: MarkerType.ArrowClosed, 
+          type: MarkerType.ArrowClosed,
           color: "rgba(149, 76, 233, 0.6)",
         },
       },
@@ -272,7 +250,7 @@ const getInitialEdges = (flowId: string): Edge[] => {
         animated: true,
         style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
         markerEnd: {
-          type: MarkerType.ArrowClosed, 
+          type: MarkerType.ArrowClosed,
           color: "rgba(149, 76, 233, 0.6)",
         },
       },
@@ -283,7 +261,7 @@ const getInitialEdges = (flowId: string): Edge[] => {
         animated: true,
         style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
         markerEnd: {
-          type: MarkerType.ArrowClosed, 
+          type: MarkerType.ArrowClosed,
           color: "rgba(149, 76, 233, 0.6)",
         },
       },
@@ -299,7 +277,7 @@ const getInitialEdges = (flowId: string): Edge[] => {
         animated: true,
         style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
         markerEnd: {
-          type: MarkerType.ArrowClosed, 
+          type: MarkerType.ArrowClosed,
           color: "rgba(149, 76, 233, 0.6)",
         },
       },
@@ -310,7 +288,7 @@ const getInitialEdges = (flowId: string): Edge[] => {
         animated: true,
         style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
         markerEnd: {
-          type: MarkerType.ArrowClosed, 
+          type: MarkerType.ArrowClosed,
           color: "rgba(149, 76, 233, 0.6)",
         },
       },
@@ -330,13 +308,11 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
   const [isReactFlowLoaded, setIsReactFlowLoaded] = useState(false)
   const { toast } = useToast()
 
- 
   const [reactFlowUtils, setReactFlowUtils] = useState<{
     onNodesChange?: any
     onEdgesChange?: any
     addEdge?: any
   }>({})
-
 
   useEffect(() => {
     let isMounted = true
@@ -350,7 +326,6 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
         addEdge: reactflow.addEdge,
       })
 
-     
       setNodes(getInitialNodes(flowId))
       setEdges(getInitialEdges(flowId))
       setIsReactFlowLoaded(true)
@@ -360,7 +335,6 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
       isMounted = false
     }
   }, [flowId])
-
 
   useEffect(() => {
     if (isReactFlowLoaded) {
@@ -373,9 +347,7 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
     (params: Connection) => {
       if (!reactFlowUtils.addEdge) return
 
-
       const edgeId = `e${params.source}-${params.target}`
-
 
       const edgeExists = edges.some((edge) => edge.id === edgeId)
       if (edgeExists) {
@@ -387,15 +359,12 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
         return
       }
 
-    
       const sourceNode = nodes.find((node) => node.id === params.source)
       const targetNode = nodes.find((node) => node.id === params.target)
 
       if (sourceNode && targetNode) {
-        
-        console.log(`Connecting: ${sourceNode.type} -> ${targetNode.type}`)
+        console.log(`Connecting: ${sourceNode?.type} -> ${targetNode?.type}`)
 
-       
         if (sourceNode.type?.includes("output") && targetNode.type?.includes("input")) {
           toast({
             title: "Invalid connection",
@@ -405,7 +374,6 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
           return
         }
 
-        
         if (params.source === params.target) {
           toast({
             title: "Invalid connection",
@@ -419,7 +387,6 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
           (sourceNode.type === "sequential-chain" && targetNode.type === "sequential-chain") ||
           (sourceNode.type === "router-chain" && targetNode.type === "router-chain")
         ) {
-         
           const tempEdges = [...edges, { id: edgeId, source: params.source || "", target: params.target || "" }]
           const tempNodes = [...nodes]
           const circularPaths = findCircularPaths(tempNodes, tempEdges)
@@ -435,7 +402,6 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
         }
       }
 
-     
       let edgeColor = "rgba(149, 76, 233, 0.6)" 
 
       if (sourceNode) {
@@ -471,7 +437,7 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
             animated: true,
             style: { stroke: edgeColor, strokeWidth: 2 },
             markerEnd: {
-              type: MarkerType.ArrowClosed, 
+              type: MarkerType.ArrowClosed,
               color: edgeColor,
             },
           },
@@ -491,7 +457,6 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
     (changes: NodeChange[]) => {
       if (!reactFlowUtils.onNodesChange) return
 
-      
       const selectChange = changes.find((change) => change.type === "select" && change.selected === true)
       if (selectChange && "id" in selectChange) {
         const nodeId = selectChange.id as string
@@ -557,7 +522,7 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
             ...(type === "text-input" && { inputs: { text: "" } }),
             ...(type === "prompt-template" && { template: "Write a response about {{topic}}" }),
             ...(type === "agent" && { instructions: "You are a helpful assistant." }),
-            ...(type === "API-input" && { apiUrl: "", method: "GET", headers: "", body: "" }),
+            ...(type === "api-input" && { apiUrl: "", method: "GET", headers: "", body: "", autoFetch: false, pollingInterval: 0 }),
           },
         }
 
@@ -583,7 +548,6 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
     setNodes((nodes) => nodes.filter((node) => !node.selected))
     setEdges((edges) => edges.filter((edge) => !edge.selected))
 
-   
     setSelectedNode(null)
     setSelectedNodeData(null)
 
@@ -616,7 +580,6 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
       }),
     )
 
-    
     if (nodeId === selectedNode) {
       setSelectedNodeData({
         ...selectedNodeData,
@@ -630,24 +593,19 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
     })
   }
 
- 
   const debugFlow = useCallback(() => {
     console.log("Current Nodes:", nodes)
     console.log("Current Edges:", edges)
 
-   
     const orphanedNodes = nodes.filter(
       (node) => !edges.some((edge) => edge.source === node.id || edge.target === node.id),
     )
 
-    
     const danglingEdges = edges.filter(
       (edge) => !nodes.some((node) => node.id === edge.source) || !nodes.some((node) => node.id === edge.target),
     )
 
- 
     const circularPaths = findCircularPaths(nodes, edges)
-
 
     if (orphanedNodes.length > 0) {
       console.warn("Orphaned nodes detected:", orphanedNodes)
@@ -664,16 +622,14 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
     toast({
       title: "Flow Debugged",
       description: `${nodes.length} nodes, ${edges.length} edges
-    ${orphanedNodes.length > 0 ? `⚠️ ${orphanedNodes.length} orphaned nodes` : "✅ No orphaned nodes"}
-    ${danglingEdges.length > 0 ? `⚠️ ${danglingEdges.length} dangling edges` : "✅ No dangling edges"}
-    ${circularPaths.length > 0 ? `⚠️ ${circularPaths.length} circular paths` : "✅ No circular paths"}`,
+    ${orphanedNodes.length > 0 ? `⚠ ${orphanedNodes.length} orphaned nodes` : "✅ No orphaned nodes"}
+    ${danglingEdges.length > 0 ? `⚠ ${danglingEdges.length} dangling edges` : "✅ No dangling edges"}
+    ${circularPaths.length > 0 ? `⚠ ${circularPaths.length} circular paths` : "✅ No circular paths"}`,
     })
   }, [nodes, edges, toast])
 
-
   const findCircularPaths = (nodes: Node[], edges: Edge[]) => {
     const adjacencyList: Record<string, string[]> = {}
-
 
     nodes.forEach((node) => {
       adjacencyList[node.id] = []
@@ -699,7 +655,6 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
           if (!visited[neighbor] && dfs(neighbor, [...path])) {
             return true
           } else if (recStack[neighbor]) {
-            
             const cycleStart = path.indexOf(neighbor)
             circularPaths.push(path.slice(cycleStart))
             return true
@@ -711,7 +666,6 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
       return false
     }
 
-   
     for (const node of nodes) {
       if (!visited[node.id]) {
         dfs(node.id)
@@ -750,11 +704,11 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
           style: { stroke: "rgba(149, 76, 233, 0.8)", strokeWidth: 3 },
           animated: true,
           markerEnd: {
-            type: MarkerType.ArrowClosed, 
+            type: MarkerType.ArrowClosed,
             color: "rgba(149, 76, 233, 0.8)",
           },
         }}
-        connectionLineType={ConnectionLineTypes.SmoothStep} 
+        connectionLineType={ConnectionLineType.SmoothStep}
         connectionLineStyle={{
           stroke: "rgba(149, 76, 233, 0.8)",
           strokeWidth: 3,
@@ -768,7 +722,7 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
           color="rgba(255, 255, 255, 0.1)"
           gap={20}
           size={1.5}
-          variant={BackgroundVariant.Dots} 
+          variant={BackgroundVariant.Dots}
           style={{ backgroundColor: "#030303" }}
         />
         <Controls className="bg-black/50 border border-white/10 rounded-md p-1 shadow-lg" showInteractive={false} />

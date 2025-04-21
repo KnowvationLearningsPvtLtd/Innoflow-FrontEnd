@@ -1,26 +1,112 @@
 "use client"
 
+import { useState } from "react"
 import { Handle, Position } from "reactflow"
+import { Slider } from "@/components/ui/slider"
 
 export function VectorStoreNode({ data, isConnectable }: { data: any; isConnectable?: boolean }) {
+  const [dimensions, setDimensions] = useState(data.dimensions || 1536)
+  const [similarity, setSimilarity] = useState(data.similarity || "cosine")
+  
+  const handleChange = (updates: Record<string, any>) => {
+    if (data.onChange) {
+      data.onChange({...updates})
+    }
+  }
+  
   return (
-    <div className="min-w-[240px] rounded-md border border-green-500/40 bg-black/80 shadow-lg backdrop-blur-sm glow glow-green">
-      <div className="border-b border-green-500/30 bg-green-500/10 px-4 py-2 text-sm font-medium text-green-500 flex items-center gap-2">
-        <div className="flex h-5 w-5 items-center justify-center rounded bg-green-500/20 text-xs text-green-500">
+    <div className="w-64 rounded-md border border-green-500/40 bg-black/80 shadow-lg backdrop-blur-sm">
+      <div className="border-b border-green-500/30 bg-green-500/10 px-3 py-1 text-sm font-medium text-green-500 flex items-center gap-2">
+        <div className="flex h-4 w-4 items-center justify-center rounded bg-green-500/20 text-xs text-green-500">
           V
         </div>
-        <span>{data.label || "Vector Store"}</span>
+        <span>Vector Store</span>
       </div>
 
-      <div className="space-y-3 p-4">
+      <div className="space-y-2 p-3">
         <div className="space-y-1">
           <label className="text-xs text-white/70">Store Name</label>
           <input
             type="text"
             value={data.storeName || ""}
-            onChange={(e) => data.onChange({ storeName: e.target.value })}
+            placeholder="my-vector-store"
+            onChange={(e) => handleChange({ storeName: e.target.value })}
             className="w-full rounded-md bg-black/30 border border-white/10 text-white text-xs px-2 py-1"
           />
+        </div>
+        
+        <div className="space-y-1">
+          <label className="text-xs text-white/70">Model</label>
+          <select
+            value={data.model || "text-embedding-ada-002"}
+            onChange={(e) => handleChange({ model: e.target.value })}
+            className="w-full rounded border border-white/20 bg-black/40 px-2 py-1 text-xs text-white/90"
+          >
+            <option value="text-embedding-ada-002">Ada-002</option>
+            <option value="text-embedding-3-small">Embedding 3 Small</option>
+            <option value="text-embedding-3-large">Embedding 3 Large</option>
+            <option value="custom">Custom</option>
+          </select>
+        </div>
+        
+        <div className="flex space-x-2">
+          <div className="space-y-1 w-1/2">
+            <div className="flex justify-between">
+              <label className="text-xs text-white/70">Dimensions</label>
+              <span className="text-xs text-white/70">{dimensions}</span>
+            </div>
+            <Slider
+              min={128}
+              max={4096}
+              step={128}
+              value={[dimensions]}
+              onValueChange={(value) => {
+                setDimensions(value[0])
+                handleChange({ dimensions: value[0] })
+              }}
+              className="[&>span]:bg-green-500"
+            />
+          </div>
+          
+          <div className="space-y-1 w-1/2">
+            <label className="text-xs text-white/70">Similarity</label>
+            <select
+              value={similarity}
+              onChange={(e) => {
+                setSimilarity(e.target.value)
+                handleChange({ similarity: e.target.value })
+              }}
+              className="w-full rounded border border-white/20 bg-black/40 px-2 py-1 text-xs text-white/90"
+            >
+              <option value="cosine">Cosine</option>
+              <option value="euclidean">Euclidean</option>
+              <option value="dot">Dot Product</option>
+            </select>
+          </div>
+        </div>
+        
+        <div className="space-y-1">
+          <label className="text-xs text-white/70">Chunk Size</label>
+          <div className="flex space-x-2">
+            <input
+              type="number" 
+              min={100}
+              max={4000}
+              value={data.chunkSize || 512}
+              onChange={(e) => handleChange({ chunkSize: parseInt(e.target.value) })}
+              className="w-1/2 rounded-md bg-black/30 border border-white/10 text-white text-xs px-2 py-1"
+            />
+            <select
+              value={data.chunkOverlap || 0}
+              onChange={(e) => handleChange({ chunkOverlap: parseInt(e.target.value) })}
+              className="w-1/2 rounded border border-white/20 bg-black/40 px-2 py-1 text-xs text-white/90"
+            >
+              <option value="0">No Overlap</option>
+              <option value="50">50 tokens</option>
+              <option value="100">100 tokens</option>
+              <option value="200">200 tokens</option>
+            </select>
+          </div>
         </div>
       </div>
 
@@ -29,14 +115,14 @@ export function VectorStoreNode({ data, isConnectable }: { data: any; isConnecta
         position={Position.Top}
         id="in"
         isConnectable={isConnectable}
-        className="w-3 h-3 bg-green-500 border-2 border-black node-handle"
+        className="w-2 h-2 bg-green-500 border-2 border-black"
       />
       <Handle
         type="source"
         position={Position.Bottom}
         id="out"
         isConnectable={isConnectable}
-        className="w-3 h-3 bg-green-500 border-2 border-black node-handle"
+        className="w-2 h-2 bg-green-500 border-2 border-black"
       />
     </div>
   )

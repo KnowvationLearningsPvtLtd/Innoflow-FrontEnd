@@ -1,27 +1,162 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { Handle, Position } from "reactflow"
+import { Slider } from "@/components/ui/slider"
 
 export function TextSplitterNode({ data, isConnectable }: { data: any; isConnectable?: boolean }) {
+  const [splitterType, setSplitterType] = useState(data.splitterType || "chunk")
+  const [chunkSize, setChunkSize] = useState(data.chunkSize || 512)
+  const [overlap, setOverlap] = useState(data.overlap || 50)
+  const [keepSeparator, setKeepSeparator] = useState(data.keepSeparator || false)
+  const [stripWhitespace, setStripWhitespace] = useState(data.stripWhitespace || true)
+  
+  // Sync local state with data prop on initial render
+  useEffect(() => {
+    setChunkSize(data.chunkSize || 512)
+    setOverlap(data.overlap || 50)
+    setKeepSeparator(data.keepSeparator || false)
+    setStripWhitespace(data.stripWhitespace || true)
+    setSplitterType(data.splitterType || "chunk")
+  }, [])
+  
+  const handleChange = (updates: Record<string, any>) => {
+    if (data.onChange) {
+      data.onChange({...updates})
+    }
+  }
+  
   return (
-    <div className="min-w-[240px] rounded-md border border-purple-500/40 bg-black/80 shadow-lg backdrop-blur-sm glow glow-purple">
-      <div className="border-b border-purple-500/30 bg-purple-500/10 px-4 py-2 text-sm font-medium text-purple-500 flex items-center gap-2">
-        <div className="flex h-5 w-5 items-center justify-center rounded bg-purple-500/20 text-xs text-purple-500">
+    <div className="w-64 rounded-md border border-purple-500/40 bg-black/80 shadow-lg backdrop-blur-sm">
+      <div className="border-b border-purple-500/30 bg-purple-500/10 px-3 py-1 text-sm font-medium text-purple-500 flex items-center gap-2">
+        <div className="flex h-4 w-4 items-center justify-center rounded bg-purple-500/20 text-xs text-purple-500">
           T
         </div>
-        <span>{data.label || "Text Splitter"}</span>
+        <span>Text Splitter</span>
       </div>
 
-      <div className="space-y-3 p-4">
+      <div className="space-y-2 p-3">
         <div className="space-y-1">
-          <label className="text-xs text-white/70">Split Character</label>
-          <input
-            type="text"
-            value={data.splitChar || ""}
-            onChange={(e) => data.onChange({ splitChar: e.target.value })}
-            className="w-full rounded-md bg-black/30 border border-white/10 text-white text-xs px-2 py-1"
-          />
+          <label className="text-xs text-white/70">Splitter Type</label>
+          <select
+            value={splitterType}
+            onChange={(e) => {
+              const newType = e.target.value
+              setSplitterType(newType)
+              handleChange({ splitterType: newType })
+            }}
+            className="w-full rounded border border-white/20 bg-black/40 px-2 py-1 text-xs text-white/90"
+          >
+            <option value="chunk">Chunk</option>
+            <option value="character">Character</option>
+            <option value="token">Token</option>
+            <option value="markdown">Markdown</option>
+            <option value="html">HTML</option>
+            <option value="code">Code</option>
+          </select>
         </div>
+
+        {splitterType === "character" && (
+          <div className="space-y-1">
+            <label className="text-xs text-white/70">Separator</label>
+            <input
+              type="text"
+              value={data.separator || "\n\n"}
+              placeholder="\n\n"
+              onChange={(e) => handleChange({ separator: e.target.value })}
+              className="w-full rounded-md bg-black/30 border border-white/10 text-white text-xs px-2 py-1"
+            />
+          </div>
+        )}
+        
+        <div className="grid grid-cols-2 gap-2">
+          <div className="space-y-1">
+            <div className="flex justify-between">
+              <label className="text-xs text-white/70">Chunk Size</label>
+              <span className="text-xs text-white/70">{chunkSize}</span>
+            </div>
+            <Slider
+              min={100}
+              max={2000}
+              step={50}
+              value={[chunkSize]}
+              onValueChange={(value) => {
+                const newSize = value[0]
+                setChunkSize(newSize)
+                handleChange({ chunkSize: newSize })
+              }}
+              className="[&>span]:bg-purple-500"
+            />
+          </div>
+          
+          <div className="space-y-1">
+            <div className="flex justify-between">
+              <label className="text-xs text-white/70">Overlap</label>
+              <span className="text-xs text-white/70">{overlap}</span>
+            </div>
+            <Slider
+              min={0}
+              max={200}
+              step={10}
+              value={[overlap]}
+              onValueChange={(value) => {
+                const newOverlap = value[0]
+                setOverlap(newOverlap)
+                handleChange({ overlap: newOverlap })
+              }}
+              className="[&>span]:bg-purple-500"
+            />
+          </div>
+        </div>
+        
+        <div className="grid grid-cols-2 gap-2">
+          <div className="space-y-1">
+            <label className="text-xs text-white/70">Keep Separator</label>
+            <select
+              value={keepSeparator ? "true" : "false"}
+              onChange={(e) => {
+                const newValue = e.target.value === "true"
+                setKeepSeparator(newValue)
+                handleChange({ keepSeparator: newValue })
+              }}
+              className="w-full rounded border border-white/20 bg-black/40 px-2 py-1 text-xs text-white/90"
+            >
+              <option value="false">No</option>
+              <option value="true">Yes</option>
+            </select>
+          </div>
+          
+          <div className="space-y-1">
+            <label className="text-xs text-white/70">Strip Whitespace</label>
+            <select
+              value={stripWhitespace ? "true" : "false"}
+              onChange={(e) => {
+                const newValue = e.target.value === "true"
+                setStripWhitespace(newValue)
+                handleChange({ stripWhitespace: newValue })
+              }}
+              className="w-full rounded border border-white/20 bg-black/40 px-2 py-1 text-xs text-white/90"
+            >
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+        </div>
+        
+        {splitterType === "token" && (
+          <div className="space-y-1">
+            <label className="text-xs text-white/70">Encoding Model</label>
+            <select
+              value={data.encodingModel || "cl100k_base"}
+              onChange={(e) => handleChange({ encodingModel: e.target.value })}
+              className="w-full rounded border border-white/20 bg-black/40 px-2 py-1 text-xs text-white/90"
+            >
+              <option value="cl100k_base">cl100k_base (GPT-4)</option>
+              <option value="p50k_base">p50k_base (GPT-3)</option>
+              <option value="r50k_base">r50k_base (Davinci)</option>
+            </select>
+          </div>
+        )}
       </div>
 
       <Handle
@@ -29,14 +164,14 @@ export function TextSplitterNode({ data, isConnectable }: { data: any; isConnect
         position={Position.Top}
         id="in"
         isConnectable={isConnectable}
-        className="w-3 h-3 bg-purple-500 border-2 border-black node-handle"
+        className="w-2 h-2 bg-purple-500 border-2 border-black"
       />
       <Handle
         type="source"
         position={Position.Bottom}
         id="out"
         isConnectable={isConnectable}
-        className="w-3 h-3 bg-purple-500 border-2 border-black node-handle"
+        className="w-2 h-2 bg-purple-500 border-2 border-black"
       />
     </div>
   )
