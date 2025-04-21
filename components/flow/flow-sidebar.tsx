@@ -230,7 +230,7 @@ export function FlowSidebar() {
       case "outputs":
         return "bg-purple-500/20 text-purple-500 border-purple-500/30"
       case "prompts":
-        return "bg-yellow-500/20 text-yellow-500 border-yellow-500/30"
+        return "bg-emerald-500/20 text-emerald-500 border-emerald-500/30"
       case "models":
         return "bg-teal-500/20 text-teal-500 border-teal-500/30"
       case "data":
@@ -238,9 +238,9 @@ export function FlowSidebar() {
       case "agents":
         return "bg-rose-500/20 text-rose-500 border-rose-500/30"
       case "memory":
-        return "bg-amber-500/20 text-amber-500 border-amber-500/30"
+        return "bg-sky-500/20 text-sky-500 border-sky-500/30"
       case "chains":
-        return "bg-emerald-500/20 text-emerald-500 border-emerald-500/30"
+        return "bg-pink-500/20 text-pink-500 border-pink-500/30"
       default:
         return "bg-gray-500/20 text-gray-500 border-gray-500/30"
     }

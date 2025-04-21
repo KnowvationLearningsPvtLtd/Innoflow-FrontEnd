@@ -15,10 +15,10 @@ export function VectorStoreNode({ data, isConnectable }: { data: any; isConnecta
   }
   
   return (
-    <div className="w-64 rounded-md border border-green-500/40 bg-black/80 shadow-lg backdrop-blur-sm">
-      <div className="border-b border-green-500/30 bg-green-500/10 px-3 py-1 text-sm font-medium text-green-500 flex items-center gap-2">
-        <div className="flex h-4 w-4 items-center justify-center rounded bg-green-500/20 text-xs text-green-500">
-          V
+    <div className="w-64 rounded-md border border-indigo-500/40 bg-black/80 shadow-lg backdrop-blur-sm">
+      <div className="border-b border-indigo-500/30 bg-indigo-500/10 px-3 py-1 text-sm font-medium text-indigo-500 flex items-center gap-2">
+        <div className="flex h-4 w-4 items-center justify-center rounded bg-indigo-500/20 text-xs text-indigo-500">
+        📚
         </div>
         <span>Vector Store</span>
       </div>
@@ -64,7 +64,7 @@ export function VectorStoreNode({ data, isConnectable }: { data: any; isConnecta
                 setDimensions(value[0])
                 handleChange({ dimensions: value[0] })
               }}
-              className="[&>span]:bg-green-500"
+              className="[&>span]:bg-indigo-500"
             />
           </div>
           
@@ -115,14 +115,14 @@ export function VectorStoreNode({ data, isConnectable }: { data: any; isConnecta
         position={Position.Top}
         id="in"
         isConnectable={isConnectable}
-        className="w-2 h-2 bg-green-500 border-2 border-black"
+        className="w-2 h-2 bg-indigo-500 border-2 border-black"
       />
       <Handle
         type="source"
         position={Position.Bottom}
         id="out"
         isConnectable={isConnectable}
-        className="w-2 h-2 bg-green-500 border-2 border-black"
+        className="w-2 h-2 bg-indigo-500 border-2 border-black"
       />
     </div>
   )

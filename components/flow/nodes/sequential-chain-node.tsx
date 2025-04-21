@@ -73,21 +73,21 @@ export function SequentialChainNode({ data, isConnectable }: { data: any; isConn
   }
 
   return (
-    <div className="min-w-[240px] rounded-md border border-blue-500/30 bg-black/80 shadow-lg backdrop-blur-sm glow glow-blue">
-      <div className="border-b border-blue-500/30 bg-blue-500/10 px-4 py-2 text-sm font-medium text-blue-500 flex items-center gap-2">
-        <div className="flex h-5 w-5 items-center justify-center rounded bg-blue-500/20 text-xs text-blue-500">S</div>
+    <div className="w-[240px] rounded-md border border-pink-500/40 bg-black/80 shadow-lg backdrop-blur-sm">
+      <div className="border-b border-pink-500/30 bg-pink-500/10 px-4 py-2 text-sm font-medium text-pink-400 flex items-center gap-2">
+        <div className="flex h-5 w-5 items-center justify-center rounded bg-pink-500/20 text-xs text-pink-400">🔄</div>
         <span>{data.label || "Sequential Chain"}</span>
       </div>
 
-      <div className="space-y-3 p-4">
+      <div className="space-y-3 p-3">
         <div className="space-y-1">
           <div className="flex items-center justify-between">
-            <label className="text-xs text-white/70">Steps ({steps.length})</label>
+            <label className="text-xs text-pink-400">Steps ({steps.length})</label>
             {!newStepEditing && (
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-6 w-6 p-0 text-white/70 hover:bg-white/10 hover:text-white"
+                className="h-6 w-6 p-0 text-pink-400/70 hover:bg-pink-500/10 hover:text-pink-400 transition-colors"
                 onClick={addStep}
               >
                 <Plus className="h-4 w-4" />
@@ -99,11 +99,11 @@ export function SequentialChainNode({ data, isConnectable }: { data: any; isConn
             {steps.map((step, index) => (
               <div
                 key={index}
-                className="rounded border border-white/10 bg-white/5 p-2 text-xs flex items-center justify-between"
+                className="rounded border border-white/10 bg-white/5 p-2 text-xs flex items-center justify-between transition-colors"
               >
                 {editingIndex === index ? (
                   <div className="flex items-center gap-2 flex-1">
-                    <div className="flex h-4 w-4 items-center justify-center rounded-full bg-blue-500/20 text-xs text-blue-500">
+                    <div className="flex h-4 w-4 items-center justify-center rounded-full bg-pink-500/20 text-xs text-pink-400">
                       {index + 1}
                     </div>
                     <input
@@ -111,14 +111,14 @@ export function SequentialChainNode({ data, isConnectable }: { data: any; isConn
                       value={editValue}
                       onChange={(e) => setEditValue(e.target.value)}
                       onKeyDown={(e) => handleKeyPress(e, 'edit')}
-                      className="flex-1 bg-black/40 border border-blue-500/30 rounded px-2 py-1 text-white/90 focus:outline-none focus:border-blue-500/50"
+                      className="flex-1 bg-black/40 border border-pink-500/30 rounded px-2 py-1 text-white focus:outline-none focus:ring-1 focus:ring-pink-500/50"
                       autoFocus
                     />
                     <div className="flex items-center">
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="h-5 w-5 p-0 text-green-500/70 hover:bg-green-500/10 hover:text-green-500"
+                        className="h-5 w-5 p-0 text-green-500/70 hover:bg-green-500/10 hover:text-green-500 transition-colors"
                         onClick={saveEdit}
                       >
                         <Check className="h-3 w-3" />
@@ -126,7 +126,7 @@ export function SequentialChainNode({ data, isConnectable }: { data: any; isConn
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="h-5 w-5 p-0 text-white/50 hover:bg-white/10 hover:text-white"
+                        className="h-5 w-5 p-0 text-white/50 hover:bg-white/10 hover:text-white transition-colors"
                         onClick={cancelEdit}
                       >
                         <X className="h-3 w-3" />
@@ -136,16 +136,16 @@ export function SequentialChainNode({ data, isConnectable }: { data: any; isConn
                 ) : (
                   <div className="flex items-center justify-between flex-1">
                     <div className="flex items-center gap-2">
-                      <div className="flex h-4 w-4 items-center justify-center rounded-full bg-blue-500/20 text-xs text-blue-500">
+                      <div className="flex h-4 w-4 items-center justify-center rounded-full bg-pink-500/20 text-xs text-pink-400">
                         {index + 1}
                       </div>
-                      <span className="text-white/90">{step}</span>
+                      <span className="text-white">{step}</span>
                     </div>
                     <div className="flex items-center">
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="h-5 w-5 p-0 text-white/50 hover:bg-white/10 hover:text-white"
+                        className="h-5 w-5 p-0 text-white/50 hover:bg-pink-500/10 hover:text-white transition-colors"
                         onClick={() => startEditing(index)}
                       >
                         <Edit2 className="h-3 w-3" />
@@ -153,7 +153,7 @@ export function SequentialChainNode({ data, isConnectable }: { data: any; isConn
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="h-5 w-5 p-0 text-white/50 hover:bg-white/10 hover:text-white"
+                        className="h-5 w-5 p-0 text-white/50 hover:bg-pink-500/10 hover:text-white transition-colors"
                         onClick={() => removeStep(index)}
                       >
                         <Trash className="h-3 w-3" />
@@ -167,7 +167,7 @@ export function SequentialChainNode({ data, isConnectable }: { data: any; isConn
             {newStepEditing && (
               <div className="rounded border border-white/10 bg-white/5 p-2 text-xs flex items-center justify-between">
                 <div className="flex items-center gap-2 flex-1">
-                  <div className="flex h-4 w-4 items-center justify-center rounded-full bg-blue-500/20 text-xs text-blue-500">
+                  <div className="flex h-4 w-4 items-center justify-center rounded-full bg-pink-500/20 text-xs text-pink-400">
                     {steps.length + 1}
                   </div>
                   <input
@@ -175,14 +175,14 @@ export function SequentialChainNode({ data, isConnectable }: { data: any; isConn
                     value={newStepValue}
                     onChange={(e) => setNewStepValue(e.target.value)}
                     onKeyDown={(e) => handleKeyPress(e, 'add')}
-                    className="flex-1 bg-black/40 border border-blue-500/30 rounded px-2 py-1 text-white/90 focus:outline-none focus:border-blue-500/50"
+                    className="flex-1 bg-black/40 border border-pink-500/30 rounded px-2 py-1 text-white focus:outline-none focus:ring-1 focus:ring-pink-500/50"
                     autoFocus
                   />
                   <div className="flex items-center">
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="h-5 w-5 p-0 text-green-500/70 hover:bg-green-500/10 hover:text-green-500"
+                      className="h-5 w-5 p-0 text-green-500/70 hover:bg-green-500/10 hover:text-green-500 transition-colors"
                       onClick={confirmAddStep}
                     >
                       <Check className="h-3 w-3" />
@@ -190,7 +190,7 @@ export function SequentialChainNode({ data, isConnectable }: { data: any; isConn
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="h-5 w-5 p-0 text-white/50 hover:bg-white/10 hover:text-white"
+                      className="h-5 w-5 p-0 text-white/50 hover:bg-white/10 hover:text-white transition-colors"
                       onClick={cancelAddStep}
                     >
                       <X className="h-3 w-3" />
@@ -208,14 +208,14 @@ export function SequentialChainNode({ data, isConnectable }: { data: any; isConn
         position={Position.Top}
         id="in"
         isConnectable={isConnectable}
-        className="w-3 h-3 bg-blue-500 border-2 border-black node-handle"
+        className="w-3 h-3 bg-pink-500 border-2 border-black"
       />
       <Handle
         type="source"
         position={Position.Bottom}
         id="out"
         isConnectable={isConnectable}
-        className="w-3 h-3 bg-blue-500 border-2 border-black node-handle"
+        className="w-3 h-3 bg-pink-500 border-2 border-black"
       />
     </div>
   )

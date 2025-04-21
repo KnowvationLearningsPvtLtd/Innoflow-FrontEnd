@@ -97,7 +97,8 @@ export function AgentNode({ data, isConnectable }: { data: any; isConnectable?: 
   return (
     <div className="min-w-[240px] rounded-md border border-red-500/40 bg-black/80 shadow-lg backdrop-blur-sm">
       <div className="border-b border-rose-500/30 bg-rose-500/10 px-4 py-2 text-sm font-medium text-rose-500 flex items-center gap-2">
-        <div className="flex h-5 w-5 items-center justify-center rounded bg-rose-500/20 text-xs text-rose-500">A</div>
+        <div className="flex h-5 w-5 items-center justify-center rounded bg-rose-500/20 text-xs text-rose-500">🤖</div>
+        
         <span>{data.label || "Agent"}</span>
       </div>
       <div className="p-4">

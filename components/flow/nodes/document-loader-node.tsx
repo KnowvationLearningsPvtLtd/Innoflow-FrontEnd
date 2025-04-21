@@ -13,10 +13,10 @@ export function DocumentLoaderNode({ data, isConnectable }: { data: any; isConne
   }
   
   return (
-    <div className="w-64 rounded-md border border-blue-500/40 bg-black/80 shadow-lg backdrop-blur-sm">
-      <div className="border-b border-blue-500/30 bg-blue-500/10 px-3 py-1 text-sm font-medium text-blue-500 flex items-center gap-2">
-        <div className="flex h-4 w-4 items-center justify-center rounded bg-blue-500/20 text-xs text-blue-500">
-          D
+    <div className="w-64 rounded-md border border-indigo-500/40 bg-black/80 shadow-lg backdrop-blur-sm">
+      <div className="border-b border-indigo-500/30 bg-indigo-500/10 px-3 py-1 text-sm font-medium text-indigo-500 flex items-center gap-2">
+        <div className="flex h-4 w-4 items-center justify-center rounded bg-indigo-500/20 text-xs text-indigo-500">
+        📥
         </div>
         <span>Document Loader</span>
       </div>
@@ -115,7 +115,7 @@ export function DocumentLoaderNode({ data, isConnectable }: { data: any; isConne
         position={Position.Bottom}
         id="out"
         isConnectable={isConnectable}
-        className="w-2 h-2 bg-blue-500 border-2 border-black"
+        className="w-2 h-2 bg-indigo-500 border-2 border-black"
       />
     </div>
   )
