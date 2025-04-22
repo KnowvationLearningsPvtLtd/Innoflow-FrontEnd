@@ -1,5 +1,6 @@
 import { SignupForm } from "@/components/auth/signup-form"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function SignupPage() {
   return (
@@ -8,23 +9,17 @@ export default function SignupPage() {
         <div className="grid w-full max-w-6xl grid-cols-1 gap-8 lg:grid-cols-2">
           <div className="rounded-lg border border-white/10 bg-black/50 p-8 backdrop-blur-sm">
             <div className="mb-6 flex items-center gap-2">
-              <Link href="/" className="flex items-center gap-2">
-                <svg
-                  width="32"
-                  height="32"
-                  viewBox="0 0 32 32"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="text-primary"
-                >
-                  <path d="M8 4L4 8L8 12L12 8L8 4Z" fill="currentColor" fillOpacity="0.8" />
-                  <path d="M20 4L16 8L20 12L24 8L20 4Z" fill="currentColor" fillOpacity="0.9" />
-                  <path d="M8 16L4 20L8 24L12 20L8 16Z" fill="currentColor" fillOpacity="0.9" />
-                  <path d="M20 16L16 20L20 24L24 20L20 16Z" fill="currentColor" fillOpacity="0.8" />
-                  <path d="M14 10L10 14L14 18L18 14L14 10Z" fill="currentColor" fillOpacity="1" />
-                </svg>
-                <span className="text-xl font-bold text-white">Innoflow</span>
-              </Link>
+            <Link href="/" className="flex items-center gap-1">
+            <Image
+              src="/images/logo.jpg"
+              alt="Innoflow Logo"
+              width={50}
+              height={50}
+              className="text-primary"
+            />
+            <span className="text-2xl font-bold text-white">Innoflow</span>
+          </Link>
+               
             </div>
             <h1 className="mb-6 text-3xl font-bold text-white">Sign Up for Free</h1>
             <SignupForm />

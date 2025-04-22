@@ -10,7 +10,7 @@ export function ConversationMemoryNode({ data, isConnectable }: { data: any; isC
   const [memoryPreview, setMemoryPreview] = useState<string[]>([])
 
   useEffect(() => {
-    // Generate shorter memory preview based on type
+  
     let preview: string[] = []
     
     switch (memoryType) {

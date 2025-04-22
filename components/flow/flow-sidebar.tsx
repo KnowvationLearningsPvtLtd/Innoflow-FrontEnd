@@ -3,10 +3,11 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Search } from "lucide-react"
+import { Search, Home } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { useToast } from "@/components/ui/use-toast"
+import Link from "next/link"
 
 interface ComponentCategory {
   id: string
@@ -248,9 +249,18 @@ export function FlowSidebar() {
 
   return (
     <div className="w-64 border-r border-white/10 bg-black/90 flex flex-col">
-      <div className="p-3 flex items-center justify-between border-b border-white/10">
-        <h3 className="font-medium text-white">Components</h3>
+      {/* Dashboard Header with Logo */}
+      <div className="p-3 flex items-center justify-between border-b border-white/10 bg-black/95">
+      
+        <Link 
+          href="/dashboard" 
+          className="flex items-center w-96 h-11 gap-7 text-white/70 hover:text-white transition-colors text-lg bg-white/5 px-5 py-4 rounded-md "
+        >
+          <Home size={25} />
+          <span>Dashboard</span>
+        </Link>
       </div>
+      
       <div className="p-3 border-b border-white/10">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/50" />

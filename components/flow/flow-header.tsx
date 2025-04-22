@@ -14,6 +14,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Image } from "next/image"
 
 export function FlowHeader({ flowId }: { flowId: string }) {
   const { toast } = useToast()
@@ -57,6 +58,16 @@ export function FlowHeader({ flowId }: { flowId: string }) {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-10 h-16 border-b border-white/10 bg-black/90 backdrop-blur-md">
+       <Link href="/" className="flex items-center gap-2">
+            <Image
+              src="/images/logo.jpg"
+              alt="Innoflow Logo"
+              width={50}
+              height={50}
+              className="text-primary"
+            />
+            <span className="text-xl font-bold text-white">Innoflow</span>
+          </Link>
       <div className="flex h-full items-center justify-between px-6">
         <div className="flex items-center gap-4">
           <Link href="/dashboard">
