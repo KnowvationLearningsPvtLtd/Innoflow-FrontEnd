@@ -55,7 +55,7 @@ export function NotebookSection() {
           >
             <div className="mb-6 aspect-video rounded-md border border-white/10 bg-black/50 p-4 hover:shadow-[0_0_20px_rgba(255,255,255,0.5)] transition-shadow">
               <Image
-                src="/images/deploy-yourself.jpg"
+                src="/images/one.jpg"
                 alt="Deploy yourself or sign up"
                 width={320}
                 height={200}
@@ -83,7 +83,7 @@ export function NotebookSection() {
           >
             <div className="mb-6 aspect-video rounded-md border border-white/10 bg-black/50 p-4 hover:shadow-[0_0_20px_rgba(255,255,255,0.5)] transition-shadow">
               <Image
-                src="/images/deploy-scale.jpg"
+                src="/images/two.jpg"
                 alt="Deploy and scale"
                 width={320}
                 height={200}
@@ -106,7 +106,7 @@ export function NotebookSection() {
           >
             <div className="mb-6 aspect-video rounded-md border border-white/10 bg-black/50 p-4 hover:shadow-[0_0_20px_rgba(255,255,255,0.5)] transition-shadow">
               <Image
-                src="/images/iterate-evaluate.jpg"
+                src="/images/three.jpg"
                 alt="Iterate and evaluate"
                 width={320}
                 height={200}

@@ -73,7 +73,7 @@ export function FeatureSection() {
                       Save
                     </button>
                     <button
-                      className="px-4 py-1 bg-transparent border border-white/20 text-white/70 rounded text-sm hover:bg-white/5 transition-colors"
+                      className="px-4 py-1 bg-transparent border border-white/20 text-white/70 rounded text-sm hover:bg-white/5 "
                       onClick={() => setTemperature(0.5)}
                     >
                       Reset
@@ -82,6 +82,7 @@ export function FeatureSection() {
                 </div>
               </div>
             </div>
+
             <h3 className="mb-2 text-xl font-semibold text-white">Control the complexity</h3>
             <p className="text-white/70">Fine-tune model parameters and customize your AI workflows with precision.</p>
           </motion.div>
@@ -90,7 +91,7 @@ export function FeatureSection() {
             className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm card-hover"
             variants={item}
           >
-            <div className="mb-4 h-40 overflow-hidden rounded-md border border-purple-500/20 bg-black/50">
+            <div className="mb-4 h-40 overflow-hidden rounded-md border border-emerald-500/20 bg-black/50">
               <div className="p-4 h-full flex flex-col">
                 <div className="text-white mb-2 flex items-center">
                   <div className="h-4 w-4 rounded-full bg-purple-500 mr-2"></div>
@@ -114,7 +115,7 @@ export function FeatureSection() {
             className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm card-hover"
             variants={item}
           >
-            <div className="mb-4 h-40 overflow-hidden rounded-md border border-blue-500/20 bg-black/50">
+            <div className="mb-4 h-40 overflow-hidden rounded-md border border-emerald-500/20 bg-black/50">
               <div className="p-4 h-full flex flex-col">
                 {showOutput ? (
                   <div className="relative w-full h-full bg-black/50 rounded-md flex items-center justify-center">

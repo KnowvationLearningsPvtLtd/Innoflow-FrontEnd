@@ -29,7 +29,7 @@ export function FlowApiSection() {
           >
             <div className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm">
               <Image
-                src="/images/python-api-example.png"
+                src="/images/flow.jpg"
                 alt="Python API Example"
                 width={800}
                 height={400}

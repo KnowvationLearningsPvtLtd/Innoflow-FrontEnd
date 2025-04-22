@@ -23,36 +23,21 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="mb-6 text-5xl font-bold leading-tight text-white md:text-6xl">Stop fighting your tools</h1>
+            <h1 className="mb-6 text-4xl font-bold leading-tight text-white md:text-6xl">Supercharge your ideas with low code AI automation.</h1>
             <p className="mb-8 text-xl text-white/80">
-              Innoflow is a low-code tool for developers that makes it easier to build powerful AI agents and workflows
-              that can use any API, model, or database.
+            Low-code platform for developers to create AI agents using any API, model, or database.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/signup">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white hover:from-emerald-600 hover:to-teal-600"
-                >
-                  Get Started for Free
-                </Button>
-              </Link>
-              <Link href="https://github.com/KnowvationLearningsPvtLtd/InnoFlow" target="_blank">
-                <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10">
-                  <Github className="mr-2 h-5 w-5" />
-                  Star on GitHub
-                </Button>
-              </Link>
-            </div>
+            
           </motion.div>
           <motion.div
+          
             className="relative"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="rounded-lg border border-white/10 bg-black/50 p-4 shadow-xl backdrop-blur-sm">
-              <div className="space-y-4">
+            <div className="rounded-lg border b
+order-white/10 bg-black/50 p-4 shadow-xl backdrop-blur-sm ring-1 ring-transparent hover:ring-emerald-500 transition">            <div className="space-y-4">
                 <div className="space-y-2">
                   <div className="text-sm text-white/70">Input</div>
                   <div className="rounded-md border border-white/10 bg-black/30 p-3">
@@ -146,10 +131,11 @@ export function HeroSection() {
             </div>
             <div className="absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-purple-500/20 blur-3xl"></div>
             <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-blue-500/20 blur-3xl"></div>
+            
           </motion.div>
         </div>
       </div>
-      <div className="absolute -bottom-48 left-0 right-0 h-64 bg-gradient-to-b from-transparent to-black/50"></div>
+      <div className="absolute -bottom-48 left-0 right-0 h-64 bg-gradient-to-b from-transparent to-black/0"></div>
     </section>
   )
 }
