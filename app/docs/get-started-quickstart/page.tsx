@@ -66,9 +66,9 @@ export default function QuickstartPage() {
           </p>
         </div>
         <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6 bg-gray-50 dark:bg-gray-900 my-6">
-          <img
-            src="/placeholder.svg?height=300&width=600"
-            alt="Innoflow New Project Screen"
+        <img
+            src="/images/new-flow.jpg"
+            alt="Innoflow Visual Flow Builder"
             className="w-full rounded-md mb-4"
           />
           <p className="text-sm text-gray-600 dark:text-gray-400">Creating a new project in the Innoflow interface</p>
@@ -117,7 +117,7 @@ export default function QuickstartPage() {
 
         <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6 bg-gray-50 dark:bg-gray-900 my-6">
           <img
-            src="/placeholder.svg?height=300&width=600"
+            src="/images/connect.jpg"
             alt="Innoflow Simple Chatbot Flow"
             className="w-full rounded-md mb-4"
           />
@@ -173,7 +173,7 @@ export default function QuickstartPage() {
 
         <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6 bg-gray-50 dark:bg-gray-900 my-6">
           <img
-            src="/placeholder.svg?height=300&width=600"
+            src="/images/testing.jpg"
             alt="Innoflow Playground"
             className="w-full rounded-md mb-4"
           />

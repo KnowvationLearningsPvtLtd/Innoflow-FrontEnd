@@ -97,7 +97,7 @@ export default function ConceptsOverviewPage() {
         </ol>
         <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6 bg-gray-50 dark:bg-gray-900 my-6">
           <img
-            src="/placeholder.svg?height=200&width=600"
+            src="/images/data-visualization.jpg"
             alt="Innoflow Data Flow Diagram"
             className="w-full rounded-md mb-4"
           />

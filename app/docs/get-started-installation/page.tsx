@@ -75,9 +75,9 @@ export default function InstallationPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4 text-black dark:text-white">DataStax Innoflow</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-black dark:text-white">Flowstax Innoflow</h2>
         <p className="text-gray-700 dark:text-gray-300 mb-4">
-          For a fully managed cloud experience, you can use DataStax Innoflow. This provides:
+          For a fully managed cloud experience, you can use Flowstax Innoflow. This provides:
         </p>
         <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300 mb-4">
           <li>No installation required</li>
@@ -86,12 +86,12 @@ export default function InstallationPage() {
           <li>Enterprise support</li>
         </ul>
         <a
-          href="https://www.datastax.com/innoflow"
+          href="/signup"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-primary hover:underline"
         >
-          Sign up for DataStax Innoflow
+          Sign up for Flowstax Innoflow
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"

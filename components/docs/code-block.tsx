@@ -33,7 +33,7 @@ export function CodeBlock({ language, code, filename }: CodeBlockProps) {
         onClick={handleCopy}
         className="absolute top-3 right-3 p-2 rounded-md bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700"
       >
-        {copied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
+        {copied ? <Check className="h-4 w-4 text-grey-500" /> : <Copy className="h-4 w-4" />}
         <span className="sr-only">Copy code</span>
       </button>
     </div>

@@ -155,7 +155,7 @@ HUGGINGFACEHUB_API_TOKEN=your_huggingface_token_here`}
 
               <div className="rounded-lg border border-gray-800 p-6 bg-gray-900">
                 <img
-                  src="/placeholder.svg?height=300&width=600"
+                  src="/images/convo.jpg"
                   alt="Conversational Agent Flow"
                   className="w-full rounded-md mb-4"
                 />
@@ -197,7 +197,7 @@ flow.run()`}
 
               <div className="rounded-lg border border-gray-800 p-6 bg-gray-900">
                 <img
-                  src="/placeholder.svg?height=300&width=600"
+                  src="/images/doc.jpg"
                   alt="Document QA Flow"
                   className="w-full rounded-md mb-4"
                 />

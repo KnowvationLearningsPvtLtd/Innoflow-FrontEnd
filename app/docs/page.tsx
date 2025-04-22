@@ -39,8 +39,8 @@ export default function DocsPage() {
         </p>
         <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6 bg-gray-50 dark:bg-gray-900 mb-6">
           <img
-            src="/placeholder.svg?height=300&width=600"
-            alt="Innoflow Visual Flow Builder Interface"
+            src="/images/flow-builder.jpg"
+            alt="Innoflow Visual Flow Builder"
             className="w-full rounded-md mb-4"
           />
           <p className="text-sm text-gray-600 dark:text-gray-400">

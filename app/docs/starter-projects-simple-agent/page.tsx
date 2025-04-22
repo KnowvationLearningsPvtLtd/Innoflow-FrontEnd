@@ -37,7 +37,7 @@ export default function SimpleAgentPage() {
         </ul>
 
         <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6 bg-gray-50 dark:bg-gray-900 my-6">
-          <img src="/placeholder.svg?height=300&width=600" alt="Simple Agent Flow" className="w-full rounded-md mb-4" />
+          <img src="/images/agent.jpg" alt="Simple Agent Flow" className="w-full rounded-md mb-4" />
           <p className="text-sm text-gray-600 dark:text-gray-400">
             Simple Agent flow with Agent, Tools, and LLM components
           </p>
