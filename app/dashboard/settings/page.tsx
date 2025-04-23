@@ -224,7 +224,7 @@ const SettingsPage = () => {
                           <div className="flex items-center gap-2">
                             <select className="text-sm rounded border border-white/10 bg-black/50 px-2 py-1 text-white">
                               <option value="admin">Admin</option>
-                              <option value="editor" selected>
+                              <option value="editor">
                                 Editor
                               </option>
                               <option value="viewer">Viewer</option>
