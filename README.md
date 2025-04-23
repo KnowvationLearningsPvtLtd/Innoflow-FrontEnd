@@ -195,7 +195,7 @@ CI/CD pipeline is configured via GitHub Actions.
 
 ## 🤝 Contributing
 
-Please refer to the main [CONTRIBUTING.md](../CONTRIBUTING.md) file in the project root for contribution guidelines.
+Please refer to the main [CONTRIBUTING.md](/CONTRIBUTING.md) file in the project root for contribution guidelines.
 
 ---
 
