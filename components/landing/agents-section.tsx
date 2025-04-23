@@ -31,27 +31,45 @@ export function AgentsSection() {
             transition={{ duration: 0.5 }}
             className="order-2 lg:order-1 space-y-6"
           >
-            <div className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm">
-              <h3 className="text-xl font-semibold text-white mb-3">Autonomous Agents</h3>
-              <p className="text-white/70">
-                Create AI agents that can reason, plan, and execute tasks autonomously using your custom tools and
-                components.
-              </p>
-            </div>
+            <motion.div 
+              whileHover={{ scale: 1.02 }}
+              className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm relative group overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600/30 via-fuchsia-500/30 to-purple-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-1500 animate-slow-gradient" />
+              <div className="relative z-10">
+                <h3 className="text-xl font-semibold text-white mb-3">Autonomous Agents</h3>
+                <p className="text-white/70">
+                  Create AI agents that can reason, plan, and execute tasks autonomously using your custom tools and
+                  components.
+                </p>
+              </div>
+            </motion.div>
 
-            <div className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm">
-              <h3 className="text-xl font-semibold text-white mb-3">Tool Integration</h3>
-              <p className="text-white/70">
-                Connect your agents to any API, database, or service with our extensive library of pre-built connectors.
-              </p>
-            </div>
+            <motion.div 
+              whileHover={{ scale: 1.02 }}
+              className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm relative group overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600/30 via-fuchsia-500/30 to-purple-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-1500 animate-slow-gradient" />
+              <div className="relative z-10">
+                <h3 className="text-xl font-semibold text-white mb-3">Tool Integration</h3>
+                <p className="text-white/70">
+                  Connect your agents to any API, database, or service with our extensive library of pre-built connectors.
+                </p>
+              </div>
+            </motion.div>
 
-            <div className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm">
-              <h3 className="text-xl font-semibold text-white mb-3">Multi-Agent Orchestration</h3>
-              <p className="text-white/70">
-                Coordinate multiple agents working together to solve complex problems through collaboration.
-              </p>
-            </div>
+            <motion.div 
+              whileHover={{ scale: 1.02 }}
+              className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm relative group overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600/30 via-fuchsia-500/30 to-purple-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-1500 animate-slow-gradient" />
+              <div className="relative z-10">
+                <h3 className="text-xl font-semibold text-white mb-3">Multi-Agent Orchestration</h3>
+                <p className="text-white/70">
+                  Coordinate multiple agents working together to solve complex problems through collaboration.
+                </p>
+              </div>
+            </motion.div>
           </motion.div>
 
           <motion.div

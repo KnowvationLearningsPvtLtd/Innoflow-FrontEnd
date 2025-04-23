@@ -4,13 +4,13 @@ import { motion } from "framer-motion"
 
 export function DragDropSection() {
   return (
-    <section className="py-20">
+    <section className="py-20 w-full h-full flex items-center">
       <div className="container mx-auto px-4">
         <motion.div
           className="mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-4xl font-bold text-white text-center mb-4">Drag. Drop. Deploy.</h2>
@@ -24,7 +24,7 @@ export function DragDropSection() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.5 }}
           >
             <div className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm">
@@ -84,7 +84,7 @@ const response = await model.call(
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="space-y-6"
           >

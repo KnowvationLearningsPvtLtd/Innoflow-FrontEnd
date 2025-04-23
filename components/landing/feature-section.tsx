@@ -23,13 +23,13 @@ export function FeatureSection() {
   }
 
   return (
-    <section className="py-20">
+    <section className="py-20 w-full h-full flex items-center">
       <div className="container mx-auto px-4">
         <motion.h2
           className="mb-16 text-center text-4xl font-bold text-white"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.5 }}
         >
           Ditch the Black Boxes
@@ -39,7 +39,7 @@ export function FeatureSection() {
           variants={container}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-100px" }}
         >
           <motion.div
             className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm card-hover"

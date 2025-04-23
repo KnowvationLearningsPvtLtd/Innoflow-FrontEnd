@@ -84,6 +84,11 @@ const config: Config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
       },
+      transitionDuration: {
+        '1100': '1100ms',
+        '1500': '1500ms',
+        '2000': '2000ms',
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

@@ -121,6 +121,48 @@
     }
   }
 
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes slow-gradient {
+    0% {
+      background-position: 0% 50%;
+      background-size: 200% 200%;
+    }
+    50% {
+      background-position: 100% 50%;
+      background-size: 220% 220%;
+    }
+    100% {
+      background-position: 0% 50%;
+      background-size: 200% 200%;
+    }
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+  }
+
+  .animate-slow-gradient {
+    background-size: 200% 200%;
+    animation: slow-gradient 60s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    transition: all 3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .animate-slow-gradient:hover {
+    background-size: 220% 220%;
+  }
+
   .glow-primary::after {
     @apply bg-primary;
   }
