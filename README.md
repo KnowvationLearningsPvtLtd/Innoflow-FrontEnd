@@ -22,8 +22,8 @@ InnoFlow's frontend provides an intuitive, drag-and-drop interface for designing
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-org/innoflow.git
-   cd innoflow/frontend
+   git clone https://github.com/your-org/Innoflow-FrontEnd.git
+   cd Innoflow-FrontEnd
    ```
 
 2. **Install dependencies**
