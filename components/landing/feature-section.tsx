@@ -42,9 +42,8 @@ export function FeatureSection() {
           viewport={{ once: false, margin: "-100px" }}
         >
           <motion.div
-            className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm card-hover"
-            variants={item}
-          >
+            className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm ring-1 ring-transparent hover:ring-emerald-500 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] transition"
+            variants={item}>
             <div className="mb-4 h-40 overflow-hidden rounded-md border border-emerald-500/20 bg-black/50">
               <div className="p-4 h-full flex flex-col">
                 <div className="text-white mb-2">Model</div>
@@ -88,9 +87,8 @@ export function FeatureSection() {
           </motion.div>
 
           <motion.div
-            className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm card-hover"
-            variants={item}
-          >
+            className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm ring-1 ring-transparent hover:ring-emerald-500 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] transition"
+            variants={item}>
             <div className="mb-4 h-40 overflow-hidden rounded-md border border-emerald-500/20 bg-black/50">
               <div className="p-4 h-full flex flex-col">
                 <div className="text-white mb-2 flex items-center">
@@ -112,41 +110,42 @@ export function FeatureSection() {
           </motion.div>
 
           <motion.div
-            className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm card-hover"
-            variants={item}
-          >
-            <div className="mb-4 h-40 overflow-hidden rounded-md border border-emerald-500/20 bg-black/50">
-              <div className="p-4 h-full flex flex-col">
+            className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm ring-1 ring-transparent hover:ring-emerald-500 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] transition"
+            variants={item}>
+            <div
+              className="mb-4 h-40 overflow-hidden rounded-md border border-emerald-500/20 bg-black/50 cursor-pointer group"
+              onClick={() => setShowOutput(!showOutput)}>
+              <div className="p-4 h-full flex flex-col relative">
                 {showOutput ? (
                   <div className="relative w-full h-full bg-black/50 rounded-md flex items-center justify-center">
-                    <div className="w-96 h-48 bg-black/90 rounded-lg border border-white/10 p-4 flex items-center justify-center">
+                    <div className="w-96 h-48 bg-black/90 rounded-lg border border-white/10 p-4 flex items-center justify-center relative overflow-hidden">
                       <img
                         src="/images/chat-input-output.png"
                         alt="Chat Input Output"
-                        className="max-w-full max-h-full object-contain rounded"
+                        className="max-w-full max-h-full object-contain rounded transition-opacity duration-300"
                       />
+                      <div className="absolute inset-0 bg-black/60 flex items-center justify-center text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
+                        Click to view code
+                      </div>
                     </div>
                   </div>
                 ) : (
-                  <pre className="text-xs text-green-400 font-mono">
-                    <code>
-                      {`class TextInputComponent(TextComponent):
-    display_name = "Text Input"
-    description = "Get text inputs from the Playground."
-    icon = "type"
-    name = "TextInput"`}
-                    </code>
-                  </pre>
+                  <div className="relative h-full w-full">
+                    <pre className="text-xs text-green-400 font-mono h-full">
+                      <code>
+                        {`class TextInputComponent(TextComponent):
+              display_name = "Text Input"
+              description = "Get text inputs from the Playground."
+              icon = "type"
+              name = "TextInput"`}
+                      </code>
+                    </pre>
+                    <div className="absolute inset-0 bg-black/60 flex items-center justify-center text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
+                      Click to show output
+                    </div>
+                  </div>
                 )}
               </div>
-            </div>
-            <div className="flex justify-center mt-4">
-              <button
-                onClick={() => setShowOutput(!showOutput)}
-                className="px-4 py-1 bg-white/10 text-white rounded text-sm hover:bg-white/20 transition-colors"
-              >
-                {showOutput ? "Show Code" : "Show Output"}
-              </button>
             </div>
             <h3 className="mb-2 text-xl font-semibold text-white">Python under the hood</h3>
             <p className="text-white/70">

@@ -50,10 +50,10 @@ export function NotebookSection() {
           viewport={{ once: true }}
         >
           <motion.div
-            className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm card-hover"
+            className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm ring-1 ring-transparent hover:ring-emerald-500 transition"
             variants={item}
           >
-            <div className="mb-6 aspect-video rounded-md border border-white/10 bg-black/50 p-4 hover:shadow-[0_0_20px_rgba(255,255,255,0.5)] transition-shadow">
+            <div className="mb-6 aspect-video rounded-md border border-white/10 bg-black/50 p-4 ">
               <Image
                 src="/images/one.jpg"
                 alt="Deploy yourself or sign up"
@@ -63,7 +63,7 @@ export function NotebookSection() {
               />
             </div>
             <h3 className="mb-2 text-center text-lg font-medium text-white">
-              Deploy yourself or sign up for a free cloud account
+            Host it yourself or create a free cloud account to start.
             </h3>
             <div className="mt-4 flex justify-center gap-2">
               <button className="rounded bg-white/10 px-3 py-1 text-xs text-white/70 hover:bg-white/20 transition-colors">
@@ -78,10 +78,9 @@ export function NotebookSection() {
           </motion.div>
 
           <motion.div
-            className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm card-hover"
-            variants={item}
+            className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm ring-1 ring-transparent hover:ring-emerald-500 transition"
           >
-            <div className="mb-6 aspect-video rounded-md border border-white/10 bg-black/50 p-4 hover:shadow-[0_0_20px_rgba(255,255,255,0.5)] transition-shadow">
+            <div className="mb-6 aspect-video rounded-md border border-white/10 bg-black/50 p-4">
               <Image
                 src="/images/two.jpg"
                 alt="Deploy and scale"
@@ -91,7 +90,7 @@ export function NotebookSection() {
               />
             </div>
             <h3 className="mb-2 text-center text-lg font-medium text-white">
-              Deploy and scale on a secure cloud platform ready for production
+            Use a secure cloud platform to deploy and scale your app.
             </h3>
             <div className="mt-4 flex justify-center gap-2">
               <button className="rounded bg-white/10 px-3 py-1 text-xs text-white/70 hover:bg-white/20 transition-colors">
@@ -101,10 +100,10 @@ export function NotebookSection() {
           </motion.div>
 
           <motion.div
-            className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm card-hover"
+            className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm ring-1 ring-transparent hover:ring-emerald-500 transition"
             variants={item}
           >
-            <div className="mb-6 aspect-video rounded-md border border-white/10 bg-black/50 p-4 hover:shadow-[0_0_20px_rgba(255,255,255,0.5)] transition-shadow">
+            <div className="mb-6 aspect-video rounded-md border border-white/10 bg-black/50 p-4">
               <Image
                 src="/images/three.jpg"
                 alt="Iterate and evaluate"
@@ -114,7 +113,7 @@ export function NotebookSection() {
               />
             </div>
             <h3 className="mb-2 text-center text-lg font-medium text-white">
-              Iterate and evaluate beyond the view test
+            Test and improve your app beyond development with insights.
             </h3>
             <div className="mt-4 flex justify-center gap-2">
               <button className="rounded bg-white/10 px-3 py-1 text-xs text-white/70 hover:bg-white/20 transition-colors">

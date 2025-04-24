@@ -36,8 +36,8 @@ export function HeroSection() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="rounded-lg border b
-order-white/10 bg-black/50 p-4 shadow-xl backdrop-blur-sm ring-1 ring-transparent hover:ring-emerald-500 transition">            <div className="space-y-4">
+            <div className="rounded-lg border border-white/10 bg-black/50 p-4 shadow-xl backdrop-blur-sm ring-1 ring-transparent hover:ring-emerald-500 transition">          
+              <div className="space-y-4">
                 <div className="space-y-2">
                   <div className="text-sm text-white/70">Input</div>
                   <div className="rounded-md border border-white/10 bg-black/30 p-3">
