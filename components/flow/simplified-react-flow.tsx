@@ -14,14 +14,15 @@ import ReactFlow, {
   useNodesState,
   useEdgesState,
   addEdge,
+  Controls,
 } from "reactflow";
 import "reactflow/dist/style.css";
 
-import ModelNode from "@/components/flow/nodes/model-node";
-import InputNode from "@/components/flow/nodes/input-node";
-import OutputNode from "@/components/flow/nodes/output-node";
-import AgentNode from "@/components/flow/nodes/agent-node";
-import PromptNode from "@/components/flow/nodes/prompt-node";
+import {ModelNode} from "@/components/flow/nodes/model-node";
+import {InputNode} from "@/components/flow/nodes/input-node";
+import {OutputNode} from "@/components/flow/nodes/output-node";
+import {AgentNode }from "@/components/flow/nodes/agent-node";
+import {PromptNode} from "@/components/flow/nodes/prompt-node";
 
 interface ReactFlowCanvasProps {
   flowId: string
@@ -120,7 +121,7 @@ export default function SimplifiedReactFlow({ flowId, onSelectNode, onOpenPlaygr
     setEdges((eds) => [
       ...eds,
       {
-        id: e${params.source}-${params.target},
+        id: `e${params.source}-${params.target}`,
         source: params.source || "",
         target: params.target || "",
         animated: true,
@@ -168,7 +169,7 @@ export default function SimplifiedReactFlow({ flowId, onSelectNode, onOpenPlaygr
         fitView
         className="bg-[#050505]"
       >
-        <Background color="rgba(255, 255, 255, 0.05)" gap={20} size={1} variant="dots" />
+        <Background color="rgba(255, 255, 255, 0.05)" gap={20} size={1}/>
         <Controls className="bg-black/50 border border-white/10 rounded-md p-1 shadow-lg" showInteractive={false} />
         <MiniMap
           nodeColor={(node) => {

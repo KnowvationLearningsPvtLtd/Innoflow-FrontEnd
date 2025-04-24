@@ -329,38 +329,19 @@ export default function ReactFlowCanvas({ flowId, onSelectNode, onOpenPlayground
           y: event.clientY - reactFlowBounds.top,
         })
 
-        let initialData = { label: name }
-
-       
-        if (type === "openai") {
-          initialData = {
-            ...initialData,
-            model: "gpt-4o-mini",
-            temperature: 0.7,
-          }
-        } else if (type === "text-input") {
-          initialData = {
-            ...initialData,
-            inputs: { text: "" },
-          }
-        } else if (type === "prompt-template") {
-          initialData = {
-            ...initialData,
-            template: "Write a response about {{topic}}",
-          }
-        } else if (type === "agent") {
-          initialData = {
-            ...initialData,
-            instructions: "You are a helpful assistant.",
-          }
-        }
-
         const newNode = {
-          id: `${type}-${Date.now()}`,
+          id: `${Date.now()}`,
           type,
           position,
-          data: initialData,
-        }
+          data: {
+            label: name,
+            model: type === "openai" ? "gpt-4o-mini" : undefined,
+            inputs: type === "text-input" ? { text: "" } : undefined,
+            template: type === "prompt-template" ? "Write a response about {{topic}}" : undefined,
+            instructions: type === "agent" ? "You are a helpful assistant." : undefined,
+          },
+        };
+        // Adjusted the `data` object to include only valid properties based on the node type.
 
         setNodes((nds) => nds.concat(newNode))
 
@@ -430,7 +411,7 @@ export default function ReactFlowCanvas({ flowId, onSelectNode, onOpenPlayground
         onNodeClick={handleNodeClick}
         deleteKeyCode={["Backspace", "Delete"]}
       >
-        <Background color="rgba(255, 255, 255, 0.05)" gap={20} size={1} variant="dots" />
+        <Background color="rgba(255, 255, 255, 0.05)" gap={20} size={1}  />
         <Controls className="bg-black/50 border border-white/10 rounded-md p-1 shadow-lg" showInteractive={false} />
         <MiniMap
           nodeColor={(node) => {
