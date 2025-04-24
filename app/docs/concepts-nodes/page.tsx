@@ -1,8 +1,19 @@
+import React from "react"
+import { DocsBreadcrumb } from "@/components/docs/docs-breadcrumb"
+
 export default function ConceptsNodesPage() {
   return (
     <div className="max-w-3xl mx-auto">
+      <DocsBreadcrumb
+            items={[
+              { label: "Home", href: "/docs" },
+              { label: "Concepts", href: "/docs/concepts-overview" },
+              { label: "Overview", href: "/docs/concepts-overview" },
+            ]}
+          />
+          <br />
       <h1 className="text-3xl font-bold mb-6">Nodes</h1>
-
+    
       <p className="mb-4">
         Nodes are the fundamental building blocks in Innoflow. Each node represents a specific function or operation in
         your workflow.

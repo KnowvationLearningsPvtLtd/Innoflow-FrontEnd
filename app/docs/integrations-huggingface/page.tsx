@@ -10,7 +10,7 @@ export default function HuggingFaceIntegrationPage() {
       <DocsBreadcrumb
         items={[
           { label: "Home", href: "/docs" },
-          { label: "Integrations", href: "/docs/integrations" },
+          { label: "Integrations", href: "/docs/integrations-openai" },
           { label: "Hugging Face", href: "/docs/integrations-huggingface" },
         ]}
       />

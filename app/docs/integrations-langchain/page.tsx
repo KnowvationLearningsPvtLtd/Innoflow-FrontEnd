@@ -10,7 +10,7 @@ export default function LangChainIntegrationPage() {
       <DocsBreadcrumb
         items={[
           { label: "Home", href: "/docs" },
-          { label: "Integrations", href: "/docs/integrations" },
+          { label: "Integrations", href: "/docs/integrations-openai" },
           { label: "LangChain", href: "/docs/integrations-langchain" },
         ]}
       />

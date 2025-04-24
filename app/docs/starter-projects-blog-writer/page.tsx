@@ -1,13 +1,13 @@
 import { DocsBreadcrumb } from "@/components/docs/docs-breadcrumb"
 
-export default function ComponentsDocumentLoadersPage() {
+export default function StarterBlogWriterPage() {
   return (
     <div className="max-w-3xl mx-auto">
       <DocsBreadcrumb
         items={[
           { label: "Home", href: "/docs" },
-          { label: "Components", href: "/docs/components" },
-          { label: "Document Loaders", href: "/docs/components-document-loaders" },
+          { label: "Starter Projects", href: "/docs/starter-projects-basic-prompting" },
+          { label: "Starter Blog Writer", href: "/docs/starter-projects-blog-writer" },
         ]}
       />
 

@@ -181,7 +181,7 @@ export default function BasicPromptingPage() {
             - Create an agent that can use tools and make decisions
           </li>
           <li>
-            <Link href="/docs/blog-writer" className="text-primary hover:underline">
+            <Link href="/docs/starter-projects-blog-writer" className="text-primary hover:underline">
               Blog Writer
             </Link>{" "}
             - Generate structured blog posts with customizable parameters

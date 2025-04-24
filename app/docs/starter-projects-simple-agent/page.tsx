@@ -8,7 +8,7 @@ export default function SimpleAgentPage() {
       <DocsBreadcrumb
         items={[
           { label: "Home", href: "/docs" },
-          { label: "Starter Projects", href: "/docs" },
+          { label: "Starter Projects", href: "/docs/starter-projects-basic-prompting" },
           { label: "Simple Agent", href: "/docs/starter-projects-simple-agent" },
         ]}
       />

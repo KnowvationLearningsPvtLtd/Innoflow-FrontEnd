@@ -27,7 +27,7 @@ export function DocsHeader() {
   return (
     <header className="sticky top-0 z-10 h-16 border-b border-gray-200 dark:border-gray-800 bg-white/90 dark:bg-black/90 backdrop-blur-md">
       <div className="flex h-full items-center justify-between px-4 md:px-6">
-        <div className="relative w-64 left-60">
+        <div className="relative w-64 left-80">
           <form onSubmit={handleSearch}>
             <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 dark:text-gray-500" />
             <Input

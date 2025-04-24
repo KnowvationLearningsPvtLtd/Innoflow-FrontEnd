@@ -1,6 +1,18 @@
+import React from "react";
+import { DocsBreadcrumb } from "@/components/docs/docs-breadcrumb"
+
 export default function ComponentsPromptsPage() {
   return (
     <div className="max-w-3xl mx-auto">
+      <DocsBreadcrumb
+        items={[
+          { label: "Home", href: "/docs" },
+          { label: "Components", href: "/docs/components-models" },
+          { label: "Prompts", href: "/docs/components-prompts" },
+        ]}
+      />
+
+<br />
       <h1 className="text-3xl font-bold mb-6">Prompt Components</h1>
 
       <p className="mb-4">

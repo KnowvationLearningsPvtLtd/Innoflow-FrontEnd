@@ -7,7 +7,7 @@ export default function OpenAIIntegrationPage() {
       <DocsBreadcrumb
         items={[
           { label: "Home", href: "/docs" },
-          { label: "Integrations", href: "/docs/integrations" },
+          { label: "Integrations", href: "/docs/integrations-openai" },
           { label: "OpenAI", href: "/docs/integrations-openai" },
         ]}
       />

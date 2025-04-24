@@ -1,6 +1,17 @@
+import React from "react"
+import { DocsBreadcrumb } from "@/components/docs/docs-breadcrumb"
+
 export default function ConceptsEdgesPage() {
   return (
     <div className="max-w-3xl mx-auto">
+      <DocsBreadcrumb
+                  items={[
+                    { label: "Home", href: "/docs" },
+                    { label: "Concepts", href: "/docs/concepts-overview" },
+                    { label: "Overview", href: "/docs/concepts-overview" },
+                  ]}
+                />
+                <br />
       <h1 className="text-3xl font-bold mb-6">Edges</h1>
 
       <p className="mb-4">

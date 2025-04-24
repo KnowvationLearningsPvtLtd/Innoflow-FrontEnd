@@ -8,7 +8,7 @@ export default function VectorStoreRAGPage() {
       <DocsBreadcrumb
         items={[
           { label: "Home", href: "/docs" },
-          { label: "Starter Projects", href: "/docs" },
+          { label: "Starter Projects", href: "/docs/starter-projects-basic-prompting" },
           { label: "Vector Store RAG", href: "/docs/starter-projects-vector-store-rag" },
         ]}
       />
