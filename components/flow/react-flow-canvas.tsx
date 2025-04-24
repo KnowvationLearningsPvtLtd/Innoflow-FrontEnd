@@ -7,30 +7,16 @@ import { useCallback, useRef, useState, useEffect } from "react"
 import dynamic from "next/dynamic"
 import type { Node, Edge, Connection, NodeTypes } from "reactflow"
 
-
-const ReactFlow = dynamic(() => import("reactflow").then((mod) => mod.default), { ssr: false })
-
-const { Background, Controls, MiniMap, Panel, MarkerType } = dynamic(
-  () =>
-    import("reactflow").then((mod) => ({
-      Background: mod.Background,
-      Controls: mod.Controls,
-      MiniMap: mod.MiniMap,
-      Panel: mod.Panel,
-      MarkerType: mod.MarkerType,
-    })),
-  { ssr: false },
-)
-
-const { useNodesState, useEdgesState, addEdge } = dynamic(
-  () =>
-    import("reactflow").then((mod) => ({
-      useNodesState: mod.useNodesState,
-      useEdgesState: mod.useEdgesState,
-      addEdge: mod.addEdge,
-    })),
-  { ssr: false },
-)
+import ReactFlow, {
+  Background,
+  MiniMap,
+  Panel,
+  MarkerType,
+  useNodesState,
+  useEdgesState,
+  addEdge,
+} from "reactflow";
+import "reactflow/dist/style.css";
 
 import { ModelNode } from "@/components/flow/nodes/model-node"
 import { InputNode } from "@/components/flow/nodes/input-node"

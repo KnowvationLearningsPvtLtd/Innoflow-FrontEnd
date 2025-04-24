@@ -1,30 +1,27 @@
 "use client"
 
 import { useCallback, useRef, useState, useEffect } from "react"
-import dynamic from "next/dynamic"
 import { Button } from "@/components/ui/button"
-import { Play, Save, Trash, ZoomIn, ZoomOut } from "lucide-react"
+import { Play, Save, Trash } from "lucide-react"
 import { useToast } from "@/components/ui/use-toast"
 import type { Node, Edge, Connection } from "reactflow"
 
+import ReactFlow, {
+  Background,
+  MiniMap,
+  Panel,
+  MarkerType,
+  useNodesState,
+  useEdgesState,
+  addEdge,
+} from "reactflow";
+import "reactflow/dist/style.css";
 
-const ReactFlow = dynamic(() => import("reactflow").then((mod) => mod.default), { ssr: false })
-
-
-const Background = dynamic(() => import("reactflow").then((mod) => mod.Background), { ssr: false })
-
-const Controls = dynamic(() => import("reactflow").then((mod) => mod.Controls), { ssr: false })
-
-const MiniMap = dynamic(() => import("reactflow").then((mod) => mod.MiniMap), { ssr: false })
-
-const Panel = dynamic(() => import("reactflow").then((mod) => mod.Panel), { ssr: false })
-
-
-const ModelNode = dynamic(() => import("@/components/flow/nodes/model-node"), { ssr: false })
-const InputNode = dynamic(() => import("@/components/flow/nodes/input-node"), { ssr: false })
-const OutputNode = dynamic(() => import("@/components/flow/nodes/output-node"), { ssr: false })
-const AgentNode = dynamic(() => import("@/components/flow/nodes/agent-node"), { ssr: false })
-const PromptNode = dynamic(() => import("@/components/flow/nodes/prompt-node"), { ssr: false })
+import ModelNode from "@/components/flow/nodes/model-node";
+import InputNode from "@/components/flow/nodes/input-node";
+import OutputNode from "@/components/flow/nodes/output-node";
+import AgentNode from "@/components/flow/nodes/agent-node";
+import PromptNode from "@/components/flow/nodes/prompt-node";
 
 interface ReactFlowCanvasProps {
   flowId: string
@@ -123,7 +120,7 @@ export default function SimplifiedReactFlow({ flowId, onSelectNode, onOpenPlaygr
     setEdges((eds) => [
       ...eds,
       {
-        id: `e${params.source}-${params.target}`,
+        id: e${params.source}-${params.target},
         source: params.source || "",
         target: params.target || "",
         animated: true,
@@ -217,24 +214,6 @@ export default function SimplifiedReactFlow({ flowId, onSelectNode, onOpenPlaygr
             onClick={handleDeleteSelected}
           >
             <Trash className="h-4 w-4" />
-          </Button>
-        </Panel>
-        <Panel position="bottom-left" className="flex gap-2 mb-16">
-          <Button
-            variant="outline"
-            size="icon"
-            className="bg-black/50 border-white/10 text-white hover:bg-white/10 shadow-lg"
-            onClick={() => reactFlowInstance?.zoomIn()}
-          >
-            <ZoomIn className="h-4 w-4" />
-          </Button>
-          <Button
-            variant="outline"
-            size="icon"
-            className="bg-black/50 border-white/10 text-white hover:bg-white/10 shadow-lg"
-            onClick={() => reactFlowInstance?.zoomOut()}
-          >
-            <ZoomOut className="h-4 w-4" />
           </Button>
         </Panel>
       </ReactFlow>

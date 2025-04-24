@@ -4,7 +4,7 @@ import type React from "react"
 import { useCallback, useRef, useState, useEffect } from "react"
 import dynamic from "next/dynamic"
 import { Button } from "@/components/ui/button"
-import { Code, Play, Save, Trash, ZoomIn, ZoomOut, Bug } from "lucide-react"
+import { Code, Play, Save, Trash, Bug } from "lucide-react"
 import { useToast } from "@/components/ui/use-toast"
 import { ModelNode } from "@/components/flow/nodes/model-node"
 import { InputNode } from "@/components/flow/nodes/input-node"
@@ -622,9 +622,9 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
     toast({
       title: "Flow Debugged",
       description: `${nodes.length} nodes, ${edges.length} edges
-    ${orphanedNodes.length > 0 ? `⚠ ${orphanedNodes.length} orphaned nodes` : "✅ No orphaned nodes"}
-    ${danglingEdges.length > 0 ? `⚠ ${danglingEdges.length} dangling edges` : "✅ No dangling edges"}
-    ${circularPaths.length > 0 ? `⚠ ${circularPaths.length} circular paths` : "✅ No circular paths"}`,
+        ${orphanedNodes.length > 0 ? `⚠ ${orphanedNodes.length} orphaned nodes` : "✅ No orphaned nodes"}
+        ${danglingEdges.length > 0 ? `⚠ ${danglingEdges.length} dangling edges` : "✅ No dangling edges"}
+        ${circularPaths.length > 0 ? `⚠ ${circularPaths.length} circular paths` : "✅ No circular paths"}`,
     })
   }, [nodes, edges, toast])
 
@@ -791,24 +791,6 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
           >
             <Bug className="mr-2 h-4 w-4" />
             Debug
-          </Button>
-        </Panel>
-        <Panel position="bottom-left" className="flex gap-2 mb-16">
-          <Button
-            variant="outline"
-            size="icon"
-            className="bg-black/50 border-white/10 text-white hover:bg-white/10 shadow-lg"
-            onClick={() => reactFlowInstance?.zoomIn()}
-          >
-            <ZoomIn className="h-4 w-4" />
-          </Button>
-          <Button
-            variant="outline"
-            size="icon"
-            className="bg-black/50 border-white/10 text-white hover:bg-white/10 shadow-lg"
-            onClick={() => reactFlowInstance?.zoomOut()}
-          >
-            <ZoomOut className="h-4 w-4" />
           </Button>
         </Panel>
       </ReactFlow>
