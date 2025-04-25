@@ -66,9 +66,6 @@ export function NotebookSection() {
             Host it yourself or create a free cloud account to start.
             </h3>
             <div className="mt-4 flex justify-center gap-2">
-              <button className="rounded bg-white/10 px-3 py-1 text-xs text-white/70 hover:bg-white/20 transition-colors">
-                Self-host
-              </button>
               <Link href="/signup">
                 <button className="rounded bg-white/10 px-3 py-1 text-xs text-white/70 hover:bg-white/20 transition-colors">
                   Sign up

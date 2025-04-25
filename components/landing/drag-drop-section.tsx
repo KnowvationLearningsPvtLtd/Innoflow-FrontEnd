@@ -88,27 +88,45 @@ const response = await model.call(
             transition={{ duration: 0.5, delay: 0.2 }}
             className="space-y-6"
           >
-            <div className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm">
-              <h3 className="text-xl font-semibold text-white mb-3">Visual Flow Builder</h3>
-              <p className="text-white/70">
-                Create complex AI workflows with an intuitive drag-and-drop interface. Connect components, visualize
-                data flow, and iterate rapidly.
-              </p>
-            </div>
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm relative group overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600/30 via-fuchsia-500/30 to-purple-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-1500 animate-slow-gradient" />
+              <div className="relative z-10">
+                <h3 className="text-xl font-semibold text-white mb-3">Visual Flow Builder</h3>
+                <p className="text-white/70">
+                  Create complex AI workflows with an intuitive drag-and-drop interface. Connect components, visualize
+                  data flow, and iterate rapidly.
+                </p>
+              </div>
+            </motion.div>
 
-            <div className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm">
-              <h3 className="text-xl font-semibold text-white mb-3">Reusable Components</h3>
-              <p className="text-white/70">
-                Build once, use everywhere. Create custom components that can be shared across projects and teams.
-              </p>
-            </div>
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm relative group overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600/30 via-fuchsia-500/30 to-purple-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-1500 animate-slow-gradient" />
+              <div className="relative z-10">
+                <h3 className="text-xl font-semibold text-white mb-3">Reusable Components</h3>
+                <p className="text-white/70">
+                  Build once, use everywhere. Create custom components that can be shared across projects and teams.
+                </p>
+              </div>
+            </motion.div>
 
-            <div className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm">
-              <h3 className="text-xl font-semibold text-white mb-3">Instant Deployment</h3>
-              <p className="text-white/70">
-                Deploy your AI workflows with a single click. No complex infrastructure setup required.
-              </p>
-            </div>
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="rounded-lg border border-white/10 bg-black/30 p-6 backdrop-blur-sm relative group overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600/30 via-fuchsia-500/30 to-purple-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-1500 animate-slow-gradient" />
+              <div className="relative z-10">
+                <h3 className="text-xl font-semibold text-white mb-3">Instant Deployment</h3>
+                <p className="text-white/70">
+                  Deploy your AI workflows with a single click. No complex infrastructure setup required.
+                </p>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
