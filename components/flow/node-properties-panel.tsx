@@ -115,7 +115,7 @@ export function NodePropertiesPanel({ nodeId, nodeData, onClose, onUpdate }: Nod
               placeholder="Write a {{style}} about {{topic}}..."
               className="h-24 resize-none border-white/10 bg-white/5"
             />
-            <p className="text-xs text-white/50">Use {{ variable }} syntax for dynamic variables</p>
+            <p className="text-xs text-white/50">Use {'{{ variable }}'} syntax for dynamic variables</p>
           </div>
         )
 
