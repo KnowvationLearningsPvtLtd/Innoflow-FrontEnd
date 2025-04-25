@@ -30,13 +30,30 @@ export default function FlowPage() {
     <div className="flex flex-col h-screen bg-black text-white">
       <DashboardHeader showAutoSave={true} />
       <div className="flex flex-1 overflow-hidden pt-16">
-        <FlowSidebar />
+        <FlowSidebar
+          onAddComponent={(componentId, componentName) => {
+            const flowEditor = document.getElementById("flow-editor")
+            if (flowEditor) {
+              const addNodeEvent = new CustomEvent("addNode", {
+                detail: { componentId, componentName },
+              })
+              flowEditor.dispatchEvent(addNodeEvent)
+            }
+          }}
+        />
         <div className="flex-1 flex">
           {activePanel === "editor" && (
             <FlowEditor
               flowId={normalizedFlowId}
               onOpenPlayground={() => setActivePanel("playground")}
               onOpenApiCodespace={() => setActivePanel("api")}
+              onAddNodeReady={(addNodeToFlow) => {
+                // Example: Add a node of type 'text-input' with name 'New Node'
+                const addButton = document.getElementById("add-node-button")
+                if (addButton) {
+                  addButton.onclick = () => addNodeToFlow("text-input", "New Node")
+                }
+              }}
             />
           )}
           {activePanel === "playground" && <PlaygroundPanel onClose={() => setActivePanel("editor")} />}

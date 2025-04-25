@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Search, Home } from "lucide-react"
+import { Search, Home, Plus, GripVertical } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { useToast } from "@/components/ui/use-toast"
@@ -20,7 +20,11 @@ interface ComponentCategory {
   }[]
 }
 
-export function FlowSidebar() {
+interface FlowSidebarProps {
+  onAddComponent: (componentId: string, componentName: string) => void
+}
+
+export function FlowSidebar({ onAddComponent }: FlowSidebarProps) {
   const { toast } = useToast()
   const [searchQuery, setSearchQuery] = useState("")
   const [expandedCategories, setExpandedCategories] = useState<string[]>(["inputs", "outputs"])
@@ -224,6 +228,14 @@ export function FlowSidebar() {
     e.dataTransfer.effectAllowed = "move"
   }
 
+  const handleAddComponent = (type: string, name: string) => {
+    console.log("FlowSidebar requesting to add:", type, name);
+    if (onAddComponent) {
+      console.log("Calling addNodeFunction");
+      onAddComponent(type, name);
+    }
+  };
+
   const getComponentColor = (categoryId: string) => {
     switch (categoryId) {
       case "inputs":
@@ -249,15 +261,14 @@ export function FlowSidebar() {
 
   return (
     <div className="w-64 border-r border-white/10 bg-black/90 flex flex-col">
-      {/* Dashboard Header with Logo */}
-      <div className="p-3 flex items-center justify-between border-b border-white/10 bg-black/95">
-      
+      {/* Dashboard Header */}
+      <div className="p-3 border-b border-white/10 bg-black/95">
         <Link 
           href="/dashboard" 
-          className="flex items-center w-96 h-11 gap-7 text-white/70 hover:text-white transition-colors text-lg bg-white/5 px-5 py-4 rounded-md "
+          className="flex items-center gap-2 text-white/70 hover:text-white transition-colors"
         >
-          <Home size={25} />
-          <span>Dashboard</span>
+          <Home size={18} />
+          <span className="text-sm">Dashboard</span>
         </Link>
       </div>
       
@@ -295,19 +306,39 @@ export function FlowSidebar() {
                     {category.components.map((component) => (
                       <div
                         key={component.id}
-                        className="flex cursor-grab items-center gap-2 rounded-md border border-white/10 bg-white/5 p-2 hover:border-primary/50 hover:bg-white/10 transition-all"
+                        className="group flex items-center rounded-md border border-white/10 bg-white/5 hover:border-primary/50 hover:bg-white/10 transition-all"
                         draggable
                         onDragStart={(e) => handleDragStart(e, component.id, component.name)}
                       >
-                        <div
-                          className={`flex h-6 w-6 items-center justify-center rounded ${getComponentColor(category.id)}`}
+                        {/* Drag handle with dots */}
+                        <div className="w-6 flex items-center justify-center cursor-grab active:cursor-grabbing">
+                          <GripVertical className="h-3 w-3 text-white/30 group-hover:text-white/50" />
+                        </div>
+                        
+                        {/* Component content */}
+                        <div className="flex-1 flex items-center gap-2 p-2 min-w-0">
+                          <div
+                            className={`flex h-6 w-6 items-center justify-center rounded flex-shrink-0 ${getComponentColor(category.id)}`}
+                          >
+                            <span className="text-xs font-medium">{component.icon}</span>
+                          </div>
+                          <div className="flex flex-col justify-center min-w-0">
+                            <span className="text-sm text-white font-medium truncate">{component.name}</span>
+                            <span className="text-xs text-white/50 truncate">{component.description}</span>
+                          </div>
+                        </div>
+                        
+                        {/* Add button */}
+                        <button
+                          className="w-8 flex items-center justify-center hover:bg-white/10 text-white/50 hover:text-white transition-all opacity-0 group-hover:opacity-100"
+                          onClick={() => {
+                            console.log("Plus button clicked for:", component.id, component.name)
+                            handleAddComponent(component.id, component.name)
+                          }}
+                          title="Add to flow"
                         >
-                          <span className="text-xs">{component.icon}</span>
-                        </div>
-                        <div className="flex flex-col">
-                          <span className="text-sm text-white">{component.name}</span>
-                          <span className="text-xs text-white/50">{component.description}</span>
-                        </div>
+                          <Plus className="h-14 w-4" />
+                        </button>
                       </div>
                     ))}
                   </div>

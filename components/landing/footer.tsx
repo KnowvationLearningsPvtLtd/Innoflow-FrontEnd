@@ -5,20 +5,8 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           <div>
             <a href="/" className="flex items-center gap-2">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="text-primary"
-              >
-                <path d="M8 4L4 8L8 12L12 8L8 4Z" fill="currentColor" fillOpacity="0.8" />
-                <path d="M20 4L16 8L20 12L24 8L20 4Z" fill="currentColor" fillOpacity="0.9" />
-                <path d="M8 16L4 20L8 24L12 20L8 16Z" fill="currentColor" fillOpacity="0.9" />
-                <path d="M20 16L16 20L20 24L24 20L20 16Z" fill="currentColor" fillOpacity="0.8" />
-                <path d="M14 10L10 14L14 18L18 14L14 10Z" fill="currentColor" fillOpacity="1" />
-              </svg>
+              
+               
               <span className="text-lg font-bold text-white">Innoflow</span>
             </a>
             <p className="mt-4 text-sm text-white/70">Where Ideas Stream and Innovation Flows.</p>

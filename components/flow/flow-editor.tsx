@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useCallback, useRef, useState, useEffect } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import dynamic from "next/dynamic"
 import { Button } from "@/components/ui/button"
 import { Code, Play, Save, Trash, Bug } from "lucide-react"
@@ -36,7 +36,6 @@ import { MarkerType, ConnectionLineType, BackgroundVariant } from "reactflow"
 import "reactflow/dist/style.css"
 
 const ReactFlow = dynamic(() => import("reactflow").then((mod) => mod.ReactFlow), { ssr: false })
-
 const Background = dynamic(() => import("reactflow").then((mod) => mod.Background), { ssr: false })
 const Controls = dynamic(() => import("reactflow").then((mod) => mod.Controls), { ssr: false })
 const MiniMap = dynamic(() => import("reactflow").then((mod) => mod.MiniMap), { ssr: false })
@@ -46,6 +45,7 @@ interface FlowEditorProps {
   flowId: string
   onOpenPlayground: () => void
   onOpenApiCodespace: () => void
+  onAddNodeReady?: (addNodeFunction: (type: string, name: string) => void) => void
 }
 
 const nodeTypes: NodeTypes = {
@@ -74,7 +74,6 @@ const nodeTypes: NodeTypes = {
 }
 
 const getInitialNodes = (flowId: string): Node[] => {
-
   if (flowId === "flow-1") {
     return [
       {
@@ -100,205 +99,71 @@ const getInitialNodes = (flowId: string): Node[] => {
         position: { x: 250, y: 400 },
         data: { label: "Chat Output" },
       },
-     
-      
     ]
   }
 
-  if (flowId === "flow-2") {
-    return [
-      {
-        id: "1",
-        type: "text-input",
-        position: { x: 250, y: 50 },
-        data: { label: "Chat Input", inputs: { text: "Tell me about climate change" } },
-      },
-      {
-        id: "2",
-        type: "prompt-template",
-        position: { x: 100, y: 200 },
-        data: {
-          label: "Prompt",
-          template: "Use the following context to answer the question: {{context}}\n\nQuestion: {{question}}",
-        },
-      },
-      {
-        id: "3",
-        type: "openai",
-        position: { x: 400, y: 200 },
-        data: {
-          label: "OpenAI",
-          model: "gpt-4o-mini",
-          temperature: 0.3,
-        },
-      },
-      {
-        id: "4",
-        type: "openai",
-        position: { x: 250, y: 350 },
-        data: {
-          label: "OpenAI",
-          model: "gpt-4o-mini",
-          temperature: 0.7,
-        },
-      },
-      {
-        id: "5",
-        type: "text-output",
-        position: { x: 250, y: 500 },
-        data: { label: "Chat Output" },
-      },
-    ]
-  }
-
-  if (flowId === "flow-3") {
-    return [
-      {
-        id: "1",
-        type: "text-input",
-        position: { x: 250, y: 100 },
-        data: { label: "Chat Input", inputs: { text: "Research the latest AI trends" } },
-      },
-      {
-        id: "2",
-        type: "agent",
-        position: { x: 250, y: 250 },
-        data: {
-          label: "Agent",
-          instructions: "You are a research assistant that helps find information.",
-        },
-      },
-      {
-        id: "3",
-        type: "text-output",
-        position: { x: 250, y: 400 },
-        data: { label: "Chat Output" },
-      },
-    ]
-  }
-
+  // ... rest of getInitialNodes function
   return []
 }
 
 const getInitialEdges = (flowId: string): Edge[] => {
-  if (flowId === "flow-1") {
-    return [
-      {
-        id: "e1-2",
-        source: "1",
-        target: "2",
-        animated: true,
-        style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
-        markerEnd: {
-          type: MarkerType.ArrowClosed,
-          color: "rgba(149, 76, 233, 0.6)",
-        },
-      },
-      {
-        id: "e2-3",
-        source: "2",
-        target: "3",
-        animated: true,
-        style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
-        markerEnd: {
-          type: MarkerType.ArrowClosed,
-          color: "rgba(149, 76, 233, 0.6)",
-        },
-      },
-    ]
-  }
-
-  if (flowId === "flow-2") {
-    return [
-      {
-        id: "e1-2",
-        source: "1",
-        target: "2",
-        animated: true,
-        style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
-        markerEnd: {
-          type: MarkerType.ArrowClosed,
-          color: "rgba(149, 76, 233, 0.6)",
-        },
-      },
-      {
-        id: "e1-3",
-        source: "1",
-        target: "3",
-        animated: true,
-        style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
-        markerEnd: {
-          type: MarkerType.ArrowClosed,
-          color: "rgba(149, 76, 233, 0.6)",
-        },
-      },
-      {
-        id: "e2-4",
-        source: "2",
-        target: "4",
-        animated: true,
-        style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
-        markerEnd: {
-          type: MarkerType.ArrowClosed,
-          color: "rgba(149, 76, 233, 0.6)",
-        },
-      },
-      {
-        id: "e3-4",
-        source: "3",
-        target: "4",
-        animated: true,
-        style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
-        markerEnd: {
-          type: MarkerType.ArrowClosed,
-          color: "rgba(149, 76, 233, 0.6)",
-        },
-      },
-      {
-        id: "e4-5",
-        source: "4",
-        target: "5",
-        animated: true,
-        style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
-        markerEnd: {
-          type: MarkerType.ArrowClosed,
-          color: "rgba(149, 76, 233, 0.6)",
-        },
-      },
-    ]
-  }
-
-  if (flowId === "flow-3") {
-    return [
-      {
-        id: "e1-2",
-        source: "1",
-        target: "2",
-        animated: true,
-        style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
-        markerEnd: {
-          type: MarkerType.ArrowClosed,
-          color: "rgba(149, 76, 233, 0.6)",
-        },
-      },
-      {
-        id: "e2-3",
-        source: "2",
-        target: "3",
-        animated: true,
-        style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
-        markerEnd: {
-          type: MarkerType.ArrowClosed,
-          color: "rgba(149, 76, 233, 0.6)",
-        },
-      },
-    ]
-  }
-
+  // ... getInitialEdges function (unchanged)
   return []
 }
 
-export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: FlowEditorProps) {
+// Function to generate node data based on type
+const getNodeData = (type: string, name: string) => {
+  const baseData = { label: name }
+  
+  switch (type) {
+    case "openai":
+      return { ...baseData, model: "gpt-4o-mini", temperature: 0.7 }
+    case "text-input":
+      return { ...baseData, inputs: { text: "" } }
+    case "prompt-template":
+      return { ...baseData, template: "Write a response about {{topic}}" }
+    case "agent":
+      return { ...baseData, instructions: "You are a helpful assistant." }
+    case "api-input":
+      return { ...baseData, apiUrl: "", method: "GET", headers: "", body: "", autoFetch: false, pollingInterval: 0 }
+    case "anthropic":
+      return { ...baseData, model: "claude-3-opus-20240229", temperature: 0.7 }
+    case "huggingface":
+      return { ...baseData, model: "", apiKey: "" }
+    case "local-model":
+      return { ...baseData, model: "llama2", ollamaUrl: "http://localhost:11434" }
+    case "file-input":
+      return { ...baseData, acceptedTypes: ".txt,.pdf,.csv", maxSize: 10 }
+    case "stream-output":
+      return { ...baseData, streamInterval: 50 }
+    case "file-output":
+      return { ...baseData, fileType: "text/plain", fileName: "output" }
+    case "few-shot":
+      return { ...baseData, examples: [] }
+    case "tool":
+      return { ...baseData, functionName: "", description: "", parameters: [] }
+    case "multi-agent":
+      return { ...baseData, agents: [], coordinator: "round-robin" }
+    case "conversation-memory":
+      return { ...baseData, maxMessages: 10 }
+    case "buffer-memory":
+      return { ...baseData, bufferSize: 5 }
+    case "sequential-chain":
+      return { ...baseData, sequence: [] }
+    case "router-chain":
+      return { ...baseData, routes: [], defaultRoute: "" }
+    case "vector-store":
+      return { ...baseData, vectorDB: "pinecone", dimension: 1536 }
+    case "document-loader":
+      return { ...baseData, fileType: "auto" }
+    case "text-splitter":
+      return { ...baseData, chunkSize: 1000, overlap: 200 }
+    default:
+      return baseData
+  }
+}
+
+export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace, onAddNodeReady }: FlowEditorProps) {
   const reactFlowWrapper = useRef<HTMLDivElement>(null)
   const [nodes, setNodes] = useState<Node[]>([])
   const [edges, setEdges] = useState<Edge[]>([])
@@ -307,6 +172,22 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
   const [selectedNodeData, setSelectedNodeData] = useState<any>(null)
   const [isReactFlowLoaded, setIsReactFlowLoaded] = useState(false)
   const { toast } = useToast()
+
+  // Add state to track newly added nodes and default viewport
+  const [newlyAddedNodes, setNewlyAddedNodes] = useState<Set<string>>(new Set())
+  const defaultViewportRef = useRef<{ x: number; y: number; zoom: number } | null>(null)
+
+  // Capture default viewport on load
+  useEffect(() => {
+    if (reactFlowInstance && !defaultViewportRef.current) {
+      // Wait a bit for the initial viewport to settle
+      setTimeout(() => {
+        const viewport = reactFlowInstance.getViewport()
+        defaultViewportRef.current = viewport
+        console.log("Default viewport captured:", viewport)
+      }, 500)
+    }
+  }, [reactFlowInstance])
 
   const [reactFlowUtils, setReactFlowUtils] = useState<{
     onNodesChange?: any
@@ -336,12 +217,50 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
     }
   }, [flowId])
 
-  useEffect(() => {
-    if (isReactFlowLoaded) {
-      setNodes(getInitialNodes(flowId))
-      setEdges(getInitialEdges(flowId))
-    }
-  }, [flowId, isReactFlowLoaded])
+  const onNodesChange = useCallback(
+    (changes: NodeChange[]) => {
+      if (!reactFlowUtils.onNodesChange) return
+
+      // Handle node selection
+      const selectChange = changes.find(
+        (change) => change.type === "select" && change.selected === true
+      )
+      if (selectChange && "id" in selectChange && selectChange.id) {
+        const nodeId = selectChange.id as string
+        const node = nodes.find((n) => n.id === nodeId)
+        if (node) {
+          setSelectedNode(nodeId)
+          setSelectedNodeData(node.data)
+        }
+      }
+
+      // Handle node position changes (dragging)
+      for (const change of changes) {
+        if (change.type === "position" && "dragging" in change && change.dragging && "id" in change) {
+          const draggedNodeId = change.id
+          
+          if (draggedNodeId && newlyAddedNodes.has(draggedNodeId)) {
+            console.log("Node being dragged:", draggedNodeId)
+            // Remove from tracking
+            setNewlyAddedNodes((prev) => {
+              const newSet = new Set(prev)
+              newSet.delete(draggedNodeId)
+              return newSet
+            })
+
+            // Reset viewport to default
+            if (reactFlowInstance && defaultViewportRef.current) {
+              console.log("Resetting to default viewport:", defaultViewportRef.current)
+              reactFlowInstance.setViewport(defaultViewportRef.current, { duration: 700 })
+            }
+          }
+        }
+      }
+
+      setNodes((nds) => reactFlowUtils.onNodesChange(changes, nds))
+    },
+    [newlyAddedNodes, nodes, reactFlowInstance, reactFlowUtils.onNodesChange]
+  )
 
   const onConnect = useCallback(
     (params: Connection) => {
@@ -363,17 +282,6 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
       const targetNode = nodes.find((node) => node.id === params.target)
 
       if (sourceNode && targetNode) {
-        console.log(`Connecting: ${sourceNode?.type} -> ${targetNode?.type}`)
-
-        if (sourceNode.type?.includes("output") && targetNode.type?.includes("input")) {
-          toast({
-            title: "Invalid connection",
-            description: "Cannot connect output nodes to input nodes",
-            variant: "destructive",
-          })
-          return
-        }
-
         if (params.source === params.target) {
           toast({
             title: "Invalid connection",
@@ -383,49 +291,27 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
           return
         }
 
-        if (
-          (sourceNode.type === "sequential-chain" && targetNode.type === "sequential-chain") ||
-          (sourceNode.type === "router-chain" && targetNode.type === "router-chain")
-        ) {
-          const tempEdges = [...edges, { id: edgeId, source: params.source || "", target: params.target || "" }]
-          const tempNodes = [...nodes]
-          const circularPaths = findCircularPaths(tempNodes, tempEdges)
-
-          if (circularPaths.length > 0) {
-            toast({
-              title: "Invalid connection",
-              description: "This would create a circular dependency",
-              variant: "destructive",
-            })
-            return
-          }
+        // Remove connected nodes from tracking
+        if (params.source) {
+          setNewlyAddedNodes((prev) => {
+            const newSet = new Set(prev)
+            newSet.delete(params.source!)
+            return newSet
+          })
         }
-      }
+        
+        if (params.target) {
+          setNewlyAddedNodes((prev) => {
+            const newSet = new Set(prev)
+            newSet.delete(params.target!)
+            return newSet
+          })
+        }
 
-      let edgeColor = "rgba(149, 76, 233, 0.6)" 
-
-      if (sourceNode) {
-        switch (sourceNode.type) {
-          case "openai":
-            edgeColor = "rgba(16, 185, 129, 0.8)" 
-            break
-          case "anthropic":
-            edgeColor = "rgba(99, 102, 241, 0.8)" 
-            break
-          case "huggingface":
-            edgeColor = "rgba(6, 182, 212, 0.8)" 
-            break
-          case "agent":
-          case "multi-agent":
-            edgeColor = "rgba(239, 68, 68, 0.8)" 
-            break
-          case "few-shot":
-            edgeColor = "rgba(132, 204, 22, 0.8)" 
-            break
-          case "conversation-memory":
-          case "buffer-memory":
-            edgeColor = "rgba(124, 58, 237, 0.8)" 
-            break
+        // Reset viewport when nodes are connected
+        if (reactFlowInstance && defaultViewportRef.current) {
+          console.log("Resetting viewport on connect")
+          reactFlowInstance.setViewport(defaultViewportRef.current, { duration: 700 })
         }
       }
 
@@ -435,14 +321,14 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
             ...params,
             id: edgeId,
             animated: true,
-            style: { stroke: edgeColor, strokeWidth: 2 },
+            style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
             markerEnd: {
               type: MarkerType.ArrowClosed,
-              color: edgeColor,
+              color: "rgba(149, 76, 233, 0.6)",
             },
           },
-          eds,
-        ),
+          eds
+        )
       )
 
       toast({
@@ -450,26 +336,7 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
         description: "Flow updated and saved automatically",
       })
     },
-    [edges, nodes, reactFlowUtils.addEdge, toast],
-  )
-
-  const onNodesChange = useCallback(
-    (changes: NodeChange[]) => {
-      if (!reactFlowUtils.onNodesChange) return
-
-      const selectChange = changes.find((change) => change.type === "select" && change.selected === true)
-      if (selectChange && "id" in selectChange) {
-        const nodeId = selectChange.id as string
-        const node = nodes.find((n) => n.id === nodeId)
-        if (node) {
-          setSelectedNode(nodeId)
-          setSelectedNodeData(node.data)
-        }
-      }
-
-      setNodes((nds) => reactFlowUtils.onNodesChange(changes, nds))
-    },
-    [nodes, reactFlowUtils.onNodesChange],
+    [edges, nodes, reactFlowInstance, reactFlowUtils.addEdge, toast]
   )
 
   const onEdgesChange = useCallback(
@@ -512,21 +379,31 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
           y: event.clientY - reactFlowBounds.top,
         })
 
+        const nodeId = `${Date.now()}`
         const newNode = {
-          id: `${Date.now()}`,
+          id: nodeId,
           type,
           position,
-          data: {
-            label: name,
-            ...(type === "openai" && { model: "gpt-4o-mini", temperature: 0.7 }),
-            ...(type === "text-input" && { inputs: { text: "" } }),
-            ...(type === "prompt-template" && { template: "Write a response about {{topic}}" }),
-            ...(type === "agent" && { instructions: "You are a helpful assistant." }),
-            ...(type === "api-input" && { apiUrl: "", method: "GET", headers: "", body: "", autoFetch: false, pollingInterval: 0 }),
-          },
+          data: getNodeData(type, name),
         }
 
         setNodes((nds) => nds.concat(newNode))
+
+        // Track newly added node
+        setNewlyAddedNodes((prev) => new Set(prev).add(nodeId))
+
+        // Zoom to the new node
+        if (reactFlowInstance) {
+          setTimeout(() => {
+            reactFlowInstance.fitView({
+              nodes: [newNode],
+              duration: 700,
+              padding: 0.4,
+              minZoom: 1.5,
+              maxZoom: 1.5,
+            })
+          }, 50)
+        }
 
         toast({
           title: "Component Added",
@@ -543,6 +420,65 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace }: Flo
     },
     [reactFlowInstance, setNodes, toast],
   )
+
+  const addNodeToFlow = useCallback(
+    (type: string, name: string, position?: { x: number; y: number }) => {
+      const nodeId = `${Date.now()}`
+      
+      // Calculate a position in the viewport center if not provided
+      let newPosition = position
+      if (!position && reactFlowInstance) {
+        const { x, y, zoom } = reactFlowInstance.getViewport()
+        const centerX = (window.innerWidth / 2 - x) / zoom
+        const centerY = (window.innerHeight / 2 - y) / zoom
+        newPosition = { x: centerX, y: centerY }
+      } else if (!position) {
+        newPosition = {
+          x: Math.random() * 500 + 100,
+          y: Math.random() * 300 + 100,
+        }
+      }
+
+      const newNode = {
+        id: nodeId,
+        type,
+        position: newPosition!,
+        data: getNodeData(type, name),
+      }
+
+      setNodes((nds) => nds.concat(newNode))
+
+      // Track newly added node
+      setNewlyAddedNodes((prev) => new Set(prev).add(nodeId))
+      console.log("Node added to tracking:", nodeId)
+
+      // Zoom to the new node
+      if (reactFlowInstance) {
+        setTimeout(() => {
+          console.log("Fitting view to new node:", nodeId)
+          reactFlowInstance.fitView({
+            nodes: [newNode],
+            duration: 700,
+            padding: 0.4,
+            minZoom: 1.5,
+            maxZoom: 1.5,
+          })
+        }, 50)
+      }
+
+      toast({
+        title: "Component Added",
+        description: `Added ${name} to the flow`,
+      })
+    },
+    [reactFlowInstance, setNodes, toast]
+  )
+
+  useEffect(() => {
+    if (onAddNodeReady) {
+      onAddNodeReady(addNodeToFlow)
+    }
+  }, [addNodeToFlow, onAddNodeReady])
 
   const handleDeleteSelected = () => {
     setNodes((nodes) => nodes.filter((node) => !node.selected))

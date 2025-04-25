@@ -9,6 +9,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Zap } from "lucide-react"
 import dynamic from "next/dynamic"
 
+// Define a type for node data
+type NodeData = Record<string, any>
 
 const ReactFlowCanvas = dynamic(() => import("@/components/flow/react-flow-canvas"), {
   ssr: false,
@@ -25,13 +27,11 @@ const ReactFlowCanvas = dynamic(() => import("@/components/flow/react-flow-canva
 export function FlowEditorWrapper({ flowId }: { flowId: string }) {
   const { toast } = useToast()
   const [selectedNode, setSelectedNode] = useState<string | null>(null)
-  const [selectedNodeData, setSelectedNodeData] = useState<any>(null)
+  const [selectedNodeData, setSelectedNodeData] = useState<NodeData | null>(null)
   const [isLoading, setIsLoading] = useState(true)
-  const [showPlayground, setShowPlayground] = useState(false)
   const [activeTab, setActiveTab] = useState("canvas")
-
+  
   useEffect(() => {
-    
     const timer = setTimeout(() => {
       setIsLoading(false)
       toast({
@@ -69,7 +69,6 @@ export function FlowEditorWrapper({ flowId }: { flowId: string }) {
             <TabsTrigger
               value="playground"
               className="data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none"
-              onClick={() => setShowPlayground(true)}
             >
               <Zap className="mr-1 h-4 w-4" />
               Playground
@@ -80,27 +79,35 @@ export function FlowEditorWrapper({ flowId }: { flowId: string }) {
             <div className="flex-1 flex">
               <ReactFlowCanvas
                 flowId={flowId}
-                onSelectNode={(nodeId: string | null, data: any) => {
+                onSelectNode={(nodeId: string | null, data: NodeData | null) => {
                   setSelectedNode(nodeId)
                   setSelectedNodeData(data)
                 }}
                 onOpenPlayground={() => {
-                  setShowPlayground(true)
                   setActiveTab("playground")
                 }}
               />
-              {selectedNode && (
+              {selectedNode && selectedNodeData && (
                 <NodePropertiesPanel
                   nodeId={selectedNode}
                   nodeData={selectedNodeData}
                   onClose={() => setSelectedNode(null)}
+                  onUpdate={(nodeId: string, newData: Partial<NodeData>) => {
+                    // Update the selectedNodeData state to keep it in sync
+                    setSelectedNodeData((prevData) => ({
+                      ...prevData,
+                      ...newData
+                    } as NodeData))
+                    // The actual node update should be handled by ReactFlowCanvas
+                    console.log("Node updated:", nodeId, newData);
+                  }}
                 />
               )}
             </div>
           </TabsContent>
 
           <TabsContent value="playground" className="flex-1 flex mt-0 p-0">
-            {showPlayground && <PlaygroundPanel />}
+            {activeTab === "playground" && <PlaygroundPanel />}
           </TabsContent>
         </Tabs>
       </div>

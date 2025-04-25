@@ -28,9 +28,8 @@ export function Navbar() {
 
   return (
     <nav
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled ? "border-b border-white/10 bg-black/80 backdrop-blur-md" : "bg-transparent"
-      }`}
+      className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "border-b border-white/10 bg-black/80 backdrop-blur-md" : "bg-transparent"
+        }`}
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-8">
@@ -49,7 +48,7 @@ export function Navbar() {
               Docs
             </Link>
             <a
-              href="https://github.com/KnowvationLearningsPvtLtd/InnoFlow"
+              href="https://github.com/KnowvationLearningsPvtLtd/Innoflow-FrontEnd"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-white/70 transition-colors hover:text-white"
@@ -62,19 +61,10 @@ export function Navbar() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-48">
                 <DropdownMenuGroup>
-                  <DropdownMenuItem asChild>
-                    <a href="https://twitter.com/innoflow_ai" target="_blank" rel="noopener noreferrer">
-                      Twitter
-                    </a>
-                  </DropdownMenuItem>
+                  
                   <DropdownMenuItem asChild>
                     <a href="https://discord.gg/innoflow" target="_blank" rel="noopener noreferrer">
                       Discord
-                    </a>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <a href="https://www.instagram.com/innoflow_ai" target="_blank" rel="noopener noreferrer">
-                      Instagram
                     </a>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
@@ -82,14 +72,10 @@ export function Navbar() {
                       LinkedIn
                     </a>
                   </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <a href="https://www.youtube.com/c/innoflow" target="_blank" rel="noopener noreferrer">
-                      YouTube
-                    </a>
-                  </DropdownMenuItem>
+
                   <DropdownMenuItem asChild>
                     <a
-                      href="https://github.com/KnowvationLearningsPvtLtd/InnoFlow"
+                      href="https://github.com/KnowvationLearningsPvtLtd/Innoflow-FrontEnd"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -108,7 +94,7 @@ export function Navbar() {
         </div>
         <div className="flex items-center gap-4">
           <div className="hidden md:flex md:items-center md:gap-4">
-            <Link href="https://github.com/KnowvationLearningsPvtLtd/InnoFlow" target="_blank">
+            <Link href="https://github.com/KnowvationLearningsPvtLtd/Innoflow-FrontEnd" target="_blank">
               <Button variant="ghost" size="icon" className="text-white/70 hover:text-white hover:bg-white/10">
                 <Github className="h-5 w-5" />
               </Button>
@@ -130,7 +116,7 @@ export function Navbar() {
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <a
-                    href="https://github.com/KnowvationLearningsPvtLtd/InnoFlow"
+                    href="https://github.com/KnowvationLearningsPvtLtd/Innoflow-FrontEnd"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -144,7 +130,7 @@ export function Navbar() {
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <a
-                    href="https://github.com/KnowvationLearningsPvtLtd/InnoFlow"
+                    href="https://github.com/KnowvationLearningsPvtLtd/Innoflow-FrontEnd"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -159,6 +145,6 @@ export function Navbar() {
           </div>
         </div>
       </div>
-    </nav>
-  )
+    </nav>
+  )
 }
