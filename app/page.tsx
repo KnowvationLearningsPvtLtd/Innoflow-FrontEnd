@@ -3,17 +3,17 @@
 import { useRef } from "react"
 import { HeroSection } from "@/components/landing/hero-section"
 import { IntegrationSection } from "@/components/landing/integration-section"
-import { TestimonialSection } from "@/components/landing/testimonial-section"
+//import { TestimonialSection } from "@/components/landing/testimonial-section"
 import { NotebookSection } from "@/components/landing/notebook-section"
 import { CTASection } from "@/components/landing/cta-section"
 import { Navbar } from "@/components/landing/navbar"
 import { Footer } from "@/components/landing/footer"
-import { AgentsSection } from "@/components/landing/agents-section"
+//import { AgentsSection } from "@/components/landing/agents-section"
 import { FlowApiSection } from "@/components/landing/flow-api-section"
 import { motion, useScroll, useTransform } from "framer-motion"
 
 // Import the updated versions of your components
-import { FeatureSection } from "@/components/landing/feature-section"
+//import { FeatureSection } from "@/components/landing/feature-section"
 import { DragDropSection } from "@/components/landing/drag-drop-section"
 
 export default function Home() {
@@ -26,14 +26,14 @@ export default function Home() {
       
       {/* Smooth scrolling section container */}
       <div ref={containerRef} className="relative">
-        <TransitionSection zIndex={10} component={<FeatureSection />} />
+        {/*<TransitionSection zIndex={10} component={<FeatureSection />} />*/}
         <TransitionSection zIndex={9} component={<DragDropSection />} />
       </div>
       
-      <AgentsSection />
+       {/* <AgentsSection />*/}
       <FlowApiSection />
       <IntegrationSection />
-      <TestimonialSection />
+       {/* <TestimonialSection />*/}
       <NotebookSection />
       <CTASection />
       <Footer />

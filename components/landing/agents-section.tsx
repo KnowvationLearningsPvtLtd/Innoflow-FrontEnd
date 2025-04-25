@@ -1,4 +1,4 @@
-"use client"
+/*"use client"
 
 import { motion } from "framer-motion"
 import { useState } from "react";
@@ -102,7 +102,7 @@ export function AgentsSection() {
                 <circle cx="280" cy="100" r="5" fill="#8b5cf6" filter="drop-shadow(0 0 6px #8b5cf6)" />
                 <circle cx="380" cy="140" r="5" fill="#8b5cf6" filter="drop-shadow(0 0 6px #8b5cf6)" />
 
-                {/* Model to Agent connection */}
+                
                 <path
                   d="M180,200 C220,200 240,160 280,160"
                   stroke="rgba(124, 58, 237, 0.8)"
@@ -112,7 +112,7 @@ export function AgentsSection() {
                 <circle cx="180" cy="200" r="5" fill="#8b5cf6" filter="drop-shadow(0 0 6px #8b5cf6)" />
                 <circle cx="280" cy="160" r="5" fill="#8b5cf6" filter="drop-shadow(0 0 6px #8b5cf6)" />
 
-                {/* Corrected Agent to Response connection */}
+                
                 <path
                   d="M280,160 C320,160 340,180 380,180"
                   stroke="rgba(59, 130, 246, 0.8)"
@@ -123,7 +123,7 @@ export function AgentsSection() {
                 <circle cx="380" cy="180" r="5" fill="#8b5cf6" filter="drop-shadow(0 0 6px #8b5cf6)" />
               </svg>
 
-              {/* Adjusted User Input Card */}
+              
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -138,7 +138,7 @@ export function AgentsSection() {
                 </div>
               </motion.div>
 
-              {/* Adjusted Model Card */}
+              
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -179,7 +179,7 @@ export function AgentsSection() {
                 </div>
               </motion.div>
 
-              {/* Adjusted Agent Card */}
+              
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -224,7 +224,7 @@ export function AgentsSection() {
                 </div>
               </motion.div>
 
-              {/* Adjusted Response Card */}
+              
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -244,4 +244,4 @@ export function AgentsSection() {
       </div>
     </section>
   );
-}
+}*/
