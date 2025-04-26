@@ -229,10 +229,12 @@ export function FlowSidebar({ onAddComponent }: FlowSidebarProps) {
   }
 
   const handleAddComponent = (type: string, name: string) => {
-    console.log("FlowSidebar requesting to add:", type, name);
+    console.log("🎯 FlowSidebar handleAddComponent called with:", { type, name });
     if (onAddComponent) {
-      console.log("Calling addNodeFunction");
+      console.log("📤 FlowSidebar calling onAddComponent with:", { type, name });
       onAddComponent(type, name);
+    } else {
+      console.warn("⚠️ FlowSidebar: onAddComponent prop is not defined");
     }
   };
 

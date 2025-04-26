@@ -25,6 +25,7 @@ export default function FlowPage() {
   const flowId = params.id as string
   const normalizedFlowId = flowId.startsWith("flow-") ? flowId : `flow-${flowId}`
   const [activePanel, setActivePanel] = useState<"editor" | "playground" | "api">("editor")
+  const [addNodeFunction, setAddNodeFunction] = useState<((type: string, name: string) => void) | null>(null)
 
   return (
     <div className="flex flex-col h-screen bg-black text-white">
@@ -32,12 +33,12 @@ export default function FlowPage() {
       <div className="flex flex-1 overflow-hidden pt-16">
         <FlowSidebar
           onAddComponent={(componentId, componentName) => {
-            const flowEditor = document.getElementById("flow-editor")
-            if (flowEditor) {
-              const addNodeEvent = new CustomEvent("addNode", {
-                detail: { componentId, componentName },
-              })
-              flowEditor.dispatchEvent(addNodeEvent)
+            console.log("📥 FlowPage received onAddComponent:", { componentId, componentName });
+            if (addNodeFunction) {
+              console.log("➡️ FlowPage calling addNodeFunction");
+              addNodeFunction(componentId, componentName);
+            } else {
+              console.warn("⚠️ FlowPage: addNodeFunction is not available");
             }
           }}
         />
@@ -48,11 +49,11 @@ export default function FlowPage() {
               onOpenPlayground={() => setActivePanel("playground")}
               onOpenApiCodespace={() => setActivePanel("api")}
               onAddNodeReady={(addNodeToFlow) => {
-                // Example: Add a node of type 'text-input' with name 'New Node'
-                const addButton = document.getElementById("add-node-button")
-                if (addButton) {
-                  addButton.onclick = () => addNodeToFlow("text-input", "New Node")
-                }
+                console.log("🔄 FlowPage: Received addNodeToFlow function");
+                setAddNodeFunction(() => {
+                  console.log("🔄 FlowPage: Created new addNodeFunction wrapper");
+                  return addNodeToFlow;
+                });
               }}
             />
           )}

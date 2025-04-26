@@ -398,8 +398,8 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace, onAdd
             reactFlowInstance.fitView({
               nodes: [newNode],
               duration: 700,
-              padding: 0.4,
-              minZoom: 1.5,
+              padding: 0.2,
+              minZoom: 1,
               maxZoom: 1.5,
             })
           }, 50)
@@ -423,53 +423,75 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace, onAdd
 
   const addNodeToFlow = useCallback(
     (type: string, name: string, position?: { x: number; y: number }) => {
-      const nodeId = `${Date.now()}`
+      console.log("🎯 addNodeToFlow called with:", { type, name, position });
       
-      // Calculate a position in the viewport center if not provided
-      let newPosition = position
-      if (!position && reactFlowInstance) {
-        const { x, y, zoom } = reactFlowInstance.getViewport()
-        const centerX = (window.innerWidth / 2 - x) / zoom
-        const centerY = (window.innerHeight / 2 - y) / zoom
-        newPosition = { x: centerX, y: centerY }
-      } else if (!position) {
-        newPosition = {
-          x: Math.random() * 500 + 100,
-          y: Math.random() * 300 + 100,
+      try {
+        const nodeId = `${Date.now()}`
+        
+        // Calculate a position in the viewport center if not provided
+        let newPosition = position
+        if (!position && reactFlowInstance) {
+          const { x, y, zoom } = reactFlowInstance.getViewport()
+          const centerX = (window.innerWidth / 2 - x) / zoom
+          const centerY = (window.innerHeight / 2 - y) / zoom
+          newPosition = { x: centerX, y: centerY }
+        } else if (!position) {
+          newPosition = {
+            x: Math.random() * 500 + 100,
+            y: Math.random() * 300 + 100,
+          }
         }
+
+        console.log("📍 Calculated position:", newPosition);
+
+        const newNode = {
+          id: nodeId,
+          type,
+          position: newPosition!,
+          data: getNodeData(type, name),
+        }
+
+        console.log("📦 Creating node:", newNode);
+
+        setNodes((nds) => {
+          console.log("Current nodes:", nds);
+          const updatedNodes = nds.concat(newNode);
+          console.log("Updated nodes:", updatedNodes);
+          return updatedNodes;
+        })
+
+        // Track newly added node
+        setNewlyAddedNodes((prev) => {
+          console.log("Adding to tracking:", nodeId);
+          return new Set(prev).add(nodeId);
+        })
+
+        // Zoom to the new node
+        if (reactFlowInstance) {
+          console.log("🔍 Zooming to new node");
+          setTimeout(() => {
+            reactFlowInstance.fitView({
+              nodes: [newNode],
+              duration: 700,
+              padding: 0.4,
+              minZoom: 1.5,
+              maxZoom: 1.5,
+            })
+          }, 50)
+        }
+
+        toast({
+          title: "Component Added",
+          description: `Added ${name} to the flow`,
+        })
+      } catch (error) {
+        console.error("❌ Error in addNodeToFlow:", error);
+        toast({
+          title: "Error",
+          description: "Failed to add component to the flow",
+          variant: "destructive",
+        })
       }
-
-      const newNode = {
-        id: nodeId,
-        type,
-        position: newPosition!,
-        data: getNodeData(type, name),
-      }
-
-      setNodes((nds) => nds.concat(newNode))
-
-      // Track newly added node
-      setNewlyAddedNodes((prev) => new Set(prev).add(nodeId))
-      console.log("Node added to tracking:", nodeId)
-
-      // Zoom to the new node
-      if (reactFlowInstance) {
-        setTimeout(() => {
-          console.log("Fitting view to new node:", nodeId)
-          reactFlowInstance.fitView({
-            nodes: [newNode],
-            duration: 700,
-            padding: 0.4,
-            minZoom: 1.5,
-            maxZoom: 1.5,
-          })
-        }, 50)
-      }
-
-      toast({
-        title: "Component Added",
-        description: `Added ${name} to the flow`,
-      })
     },
     [reactFlowInstance, setNodes, toast]
   )
