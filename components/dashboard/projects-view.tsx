@@ -25,12 +25,12 @@ type Project = {
   updatedAt: string;
   color: string;
   type: "flow" | "component";
+  folder: string;
 };
 
-export function ProjectsView() {
+export function ProjectsView({ selectedFolder, showTemplates, setShowTemplates }: { selectedFolder?: string, showTemplates: boolean, setShowTemplates: (show: boolean) => void }) {
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState("flows");
-  const [showTemplates, setShowTemplates] = useState(false);
 
   const [projects, setProjects] = useState<Project[]>([
     {
@@ -40,6 +40,7 @@ export function ProjectsView() {
       updatedAt: "2 days ago",
       color: "from-purple-500/20 to-blue-500/20",
       type: "flow",
+      folder: "AI Assistants",
     },
     {
       id: "flow-2",
@@ -48,6 +49,7 @@ export function ProjectsView() {
       updatedAt: "1 week ago",
       color: "from-blue-500/20 to-cyan-500/20",
       type: "flow",
+      folder: "RAG Applications",
     },
     {
       id: "flow-3",
@@ -56,6 +58,7 @@ export function ProjectsView() {
       updatedAt: "3 days ago",
       color: "from-emerald-500/20 to-teal-500/20",
       type: "flow",
+      folder: "AI Assistants",
     },
     {
       id: "component-1",
@@ -64,6 +67,7 @@ export function ProjectsView() {
       updatedAt: "5 days ago",
       color: "from-amber-500/20 to-yellow-500/20",
       type: "component",
+      folder: "Templates",
     },
     {
       id: "component-2",
@@ -72,11 +76,104 @@ export function ProjectsView() {
       updatedAt: "1 week ago",
       color: "from-rose-500/20 to-pink-500/20",
       type: "component",
+      folder: "Data Processing",
+    },
+    {
+      id: "flow-4",
+      name: "Data Cleaner",
+      description: "Clean and preprocess your datasets automatically.",
+      updatedAt: "4 days ago",
+      color: "from-green-500/20 to-lime-500/20",
+      type: "flow",
+      folder: "Data Processing",
+    },
+    {
+      id: "flow-5",
+      name: "PDF to Text Converter",
+      description: "Extract text from PDF documents for further analysis.",
+      updatedAt: "2 days ago",
+      color: "from-pink-500/20 to-purple-500/20",
+      type: "flow",
+      folder: "Document Processing",
+    },
+    {
+      id: "flow-6",
+      name: "Customer Support Chatbot",
+      description: "Automated chatbot for customer support.",
+      updatedAt: "1 day ago",
+      color: "from-blue-500/20 to-indigo-500/20",
+      type: "flow",
+      folder: "Chatbots",
+    },
+    {
+      id: "flow-7",
+      name: "Task Automation Bot",
+      description: "Automate repetitive tasks with this workflow.",
+      updatedAt: "6 hours ago",
+      color: "from-yellow-500/20 to-orange-500/20",
+      type: "flow",
+      folder: "Automation",
+    },
+    {
+      id: "template-1",
+      name: "Q&A Bot Template",
+      description: "A template for building question-answering bots.",
+      updatedAt: "3 days ago",
+      color: "from-cyan-500/20 to-blue-500/20",
+      type: "component",
+      folder: "Templates",
+    },
+    {
+      id: "template-2",
+      name: "Document Summarizer Template",
+      description: "A template for summarizing long documents.",
+      updatedAt: "5 days ago",
+      color: "from-purple-500/20 to-pink-500/20",
+      type: "component",
+      folder: "Templates",
+    },
+    {
+      id: "archived-1",
+      name: "Old Data Pipeline",
+      description: "An archived project for legacy data processing.",
+      updatedAt: "2 months ago",
+      color: "from-gray-500/20 to-gray-700/20",
+      type: "flow",
+      folder: "Archived",
+    },
+    {
+      id: "archived-2",
+      name: "Retired Chatbot",
+      description: "A chatbot project that is no longer in use.",
+      updatedAt: "1 month ago",
+      color: "from-gray-400/20 to-gray-600/20",
+      type: "flow",
+      folder: "Archived",
+    },
+    {
+      id: "shared-1",
+      name: "Team Knowledge Base",
+      description: "A shared RAG system for the whole team.",
+      updatedAt: "2 weeks ago",
+      color: "from-blue-400/20 to-blue-700/20",
+      type: "flow",
+      folder: "Team Projects",
+    },
+    {
+      id: "shared-2",
+      name: "Collaboration Dashboard",
+      description: "Collaborative workflow for document review and feedback.",
+      updatedAt: "5 days ago",
+      color: "from-green-400/20 to-green-700/20",
+      type: "flow",
+      folder: "Collaboration",
     },
   ]);
 
   const filteredProjects = projects.filter(
-    (project) => activeTab === "all" || project.type === activeTab.slice(0, -1)
+    (project) =>
+      (activeTab === "all" || project.type === activeTab.slice(0, -1)) &&
+      (!selectedFolder || selectedFolder === "My Flows" || project.folder === selectedFolder)
   );
 
   const handleSelectTemplate = (templateId: string, templateName: string) => {
@@ -94,14 +191,15 @@ export function ProjectsView() {
       updatedAt: "Just now",
       color: "from-purple-500/20 to-blue-500/20",
       type: "flow",
+      folder: "AI Assistants",
     };
 
     setProjects([newProject, ...projects]);
   };
 
   return (
-    <div className="flex flex-col h-screen max-w-full overflow-hidden mt-0 mb-32 py-12">
-      <div className="flex items-center justify-between "> 
+    <div className="flex flex-col h-screen max-w-full overflow-hidden pt-16">
+      <div className="flex items-center justify-between"> 
         <div>
           <h1 className="text-2xl font-bold text-white">My Projects</h1>
           <p className="text-white/70">Create and manage your AI workflows</p>
@@ -114,7 +212,7 @@ export function ProjectsView() {
               New Project
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-4xl">
+          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle>Choose a Template</DialogTitle>
               <DialogDescription>Start with a pre-built template or create from scratch</DialogDescription>
@@ -144,8 +242,8 @@ export function ProjectsView() {
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value={activeTab} className="flex-1 overflow-y-auto pt-0">
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 pb-4">
+        <TabsContent value={activeTab} className="flex-1 pt-0">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 pb-4 max-h-[70vh] overflow-y-auto pr-2 scrollbar-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             {filteredProjects.map((project) => (
               <Link key={project.id} href={`/dashboard/flow/${project.id}`}>
                 <Card className="h-52 border-white/10 bg-black/50 transition-colors hover:border-primary/50 hover:bg-white/5">
@@ -188,3 +286,11 @@ export function ProjectsView() {
     </div>
   );
 }
+
+/*
+<style jsx global>{`
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+`}</style>
+*/

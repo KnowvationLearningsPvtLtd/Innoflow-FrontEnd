@@ -102,12 +102,298 @@ const getInitialNodes = (flowId: string): Node[] => {
     ]
   }
 
-  // ... rest of getInitialNodes function
+  // Vector Store RAG
+  if (flowId === "flow-2") {
+    return [
+      {
+        id: "1",
+        type: "text-input",
+        position: { x: 100, y: 100 },
+        data: { label: "User Query", inputs: { text: "" } },
+      },
+      {
+        id: "2",
+        type: "vector-store",
+        position: { x: 300, y: 100 },
+        data: { label: "Vector Store", vectorDB: "pinecone", dimension: 1536 },
+      },
+      {
+        id: "3",
+        type: "openai",
+        position: { x: 500, y: 100 },
+        data: { label: "OpenAI", model: "gpt-4o-mini", temperature: 0.7 },
+      },
+      {
+        id: "4",
+        type: "text-output",
+        position: { x: 700, y: 100 },
+        data: { label: "Response" },
+      },
+    ];
+  }
+
+  // Simple Agent
+  if (flowId === "flow-3") {
+    return [
+      {
+        id: "1",
+        type: "text-input",
+        position: { x: 100, y: 100 },
+        data: { label: "User Query", inputs: { text: "" } },
+      },
+      {
+        id: "2",
+        type: "agent",
+        position: { x: 300, y: 100 },
+        data: { label: "Agent", instructions: "You are a helpful agent." },
+      },
+      {
+        id: "3",
+        type: "text-output",
+        position: { x: 500, y: 100 },
+        data: { label: "Agent Output" },
+      },
+    ];
+  }
+
+  // Data Cleaner
+  if (flowId === "flow-4") {
+    return [
+      {
+        id: "1",
+        type: "file-input",
+        position: { x: 100, y: 100 },
+        data: { label: "Upload Data", acceptedTypes: ".csv,.xlsx" },
+      },
+      {
+        id: "2",
+        type: "text-splitter",
+        position: { x: 300, y: 100 },
+        data: { label: "Data Splitter" },
+      },
+      {
+        id: "3",
+        type: "text-output",
+        position: { x: 500, y: 100 },
+        data: { label: "Cleaned Data" },
+      },
+    ];
+  }
+
+  // PDF to Text Converter
+  if (flowId === "flow-5") {
+    return [
+      {
+        id: "1",
+        type: "file-input",
+        position: { x: 100, y: 100 },
+        data: { label: "PDF Upload", acceptedTypes: ".pdf" },
+      },
+      {
+        id: "2",
+        type: "document-loader",
+        position: { x: 300, y: 100 },
+        data: { label: "Document Loader" },
+      },
+      {
+        id: "3",
+        type: "text-output",
+        position: { x: 500, y: 100 },
+        data: { label: "Extracted Text" },
+      },
+    ];
+  }
+
+  // Customer Support Chatbot
+  if (flowId === "flow-6") {
+    return [
+      {
+        id: "1",
+        type: "text-input",
+        position: { x: 100, y: 100 },
+        data: { label: "Customer Message", inputs: { text: "" } },
+      },
+      {
+        id: "2",
+        type: "openai",
+        position: { x: 300, y: 100 },
+        data: { label: "Chatbot (OpenAI)", model: "gpt-4o-mini", temperature: 0.5 },
+      },
+      {
+        id: "3",
+        type: "text-output",
+        position: { x: 500, y: 100 },
+        data: { label: "Bot Reply" },
+      },
+    ];
+  }
+
+  // Task Automation Bot
+  if (flowId === "flow-7") {
+    return [
+      {
+        id: "1",
+        type: "api-input",
+        position: { x: 100, y: 100 },
+        data: { label: "API Trigger", apiUrl: "", method: "POST" },
+      },
+      {
+        id: "2",
+        type: "tool",
+        position: { x: 300, y: 100 },
+        data: { label: "Automation Tool", functionName: "runTask" },
+      },
+      {
+        id: "3",
+        type: "text-output",
+        position: { x: 500, y: 100 },
+        data: { label: "Task Result" },
+      },
+    ];
+  }
+
+  // Team Knowledge Base
+  if (flowId === "shared-1") {
+    return [
+      {
+        id: "1",
+        type: "text-input",
+        position: { x: 100, y: 100 },
+        data: { label: "Team Question", inputs: { text: "" } },
+      },
+      {
+        id: "2",
+        type: "vector-store",
+        position: { x: 300, y: 100 },
+        data: { label: "Team Vector Store", vectorDB: "pinecone" },
+      },
+      {
+        id: "3",
+        type: "openai",
+        position: { x: 500, y: 100 },
+        data: { label: "Team LLM", model: "gpt-4o-mini" },
+      },
+      {
+        id: "4",
+        type: "text-output",
+        position: { x: 700, y: 100 },
+        data: { label: "Team Answer" },
+      },
+    ];
+  }
+
+  // Collaboration Dashboard
+  if (flowId === "shared-2") {
+    return [
+      {
+        id: "1",
+        type: "file-input",
+        position: { x: 100, y: 100 },
+        data: { label: "Upload Document", acceptedTypes: ".docx,.pdf" },
+      },
+      {
+        id: "2",
+        type: "document-loader",
+        position: { x: 300, y: 100 },
+        data: { label: "Document Loader" },
+      },
+      {
+        id: "3",
+        type: "agent",
+        position: { x: 500, y: 100 },
+        data: { label: "Reviewer Agent", instructions: "Review and comment on the document." },
+      },
+      {
+        id: "4",
+        type: "text-output",
+        position: { x: 700, y: 100 },
+        data: { label: "Review Output" },
+      },
+    ];
+  }
+
   return []
 }
 
 const getInitialEdges = (flowId: string): Edge[] => {
-  // ... getInitialEdges function (unchanged)
+  if (flowId === "flow-1") {
+    return [
+      {
+        id: "e1-2",
+        source: "1",
+        target: "2",
+        animated: true,
+        style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
+        markerEnd: {
+          type: MarkerType.ArrowClosed,
+          color: "rgba(149, 76, 233, 0.6)",
+        },
+      },
+      {
+        id: "e2-3",
+        source: "2",
+        target: "3",
+        animated: true,
+        style: { stroke: "rgba(149, 76, 233, 0.6)", strokeWidth: 2 },
+        markerEnd: {
+          type: MarkerType.ArrowClosed,
+          color: "rgba(149, 76, 233, 0.6)",
+        },
+      },
+    ]
+  }
+
+  if (flowId === "flow-2") {
+    return [
+      { id: "e1-2", source: "1", target: "2", animated: true },
+      { id: "e2-3", source: "2", target: "3", animated: true },
+      { id: "e3-4", source: "3", target: "4", animated: true },
+    ];
+  }
+  if (flowId === "flow-3") {
+    return [
+      { id: "e1-2", source: "1", target: "2", animated: true },
+      { id: "e2-3", source: "2", target: "3", animated: true },
+    ];
+  }
+  if (flowId === "flow-4") {
+    return [
+      { id: "e1-2", source: "1", target: "2", animated: true },
+      { id: "e2-3", source: "2", target: "3", animated: true },
+    ];
+  }
+  if (flowId === "flow-5") {
+    return [
+      { id: "e1-2", source: "1", target: "2", animated: true },
+      { id: "e2-3", source: "2", target: "3", animated: true },
+    ];
+  }
+  if (flowId === "flow-6") {
+    return [
+      { id: "e1-2", source: "1", target: "2", animated: true },
+      { id: "e2-3", source: "2", target: "3", animated: true },
+    ];
+  }
+  if (flowId === "flow-7") {
+    return [
+      { id: "e1-2", source: "1", target: "2", animated: true },
+      { id: "e2-3", source: "2", target: "3", animated: true },
+    ];
+  }
+  if (flowId === "shared-1") {
+    return [
+      { id: "e1-2", source: "1", target: "2", animated: true },
+      { id: "e2-3", source: "2", target: "3", animated: true },
+      { id: "e3-4", source: "3", target: "4", animated: true },
+    ];
+  }
+  if (flowId === "shared-2") {
+    return [
+      { id: "e1-2", source: "1", target: "2", animated: true },
+      { id: "e2-3", source: "2", target: "3", animated: true },
+      { id: "e3-4", source: "3", target: "4", animated: true },
+    ];
+  }
   return []
 }
 

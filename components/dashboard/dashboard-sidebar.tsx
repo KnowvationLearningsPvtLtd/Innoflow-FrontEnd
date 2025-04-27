@@ -37,7 +37,7 @@ interface Folder {
   subfolders?: Folder[]
 }
 
-export function DashboardSidebar() {
+export function DashboardSidebar({ setSelectedFolder, setShowTemplates }: { setSelectedFolder: (folder: string) => void, setShowTemplates: (show: boolean) => void }) {
   const pathname = usePathname()
   const { toast } = useToast()
   const [folders, setFolders] = useState<Folder[]>([
@@ -49,13 +49,19 @@ export function DashboardSidebar() {
         { id: "1-1", name: "AI Assistants" },
         { id: "1-2", name: "RAG Applications" },
         { id: "1-3", name: "Data Processing" },
+        { id: "1-4", name: "Document Processing" },
+        { id: "1-5", name: "Chatbots" },
+        { id: "1-6", name: "Automation" },
       ],
     },
     {
       id: "2",
       name: "Shared Flows",
       isExpanded: false,
-      subfolders: [{ id: "2-1", name: "Team Projects" }],
+      subfolders: [
+        { id: "2-1", name: "Team Projects" },
+        { id: "2-2", name: "Collaboration" },
+      ],
     },
     { id: "3", name: "Templates" },
     { id: "4", name: "Archived" },
@@ -90,16 +96,15 @@ export function DashboardSidebar() {
 
     toast({
       title: "Success",
-      description: `Folder "${newFolderName}" created successfully`,
+      description: `Folder \"${newFolderName}\" created successfully`,
     })
   }
 
   return (
     <SidebarProvider defaultOpen>
-      
       <Sidebar className="fixed inset-y-0 left-0 z-20 w-60 bg-black border-r border-white/10 ">
         <SidebarHeader className="flex items-center p-4">
-        <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <Image
               src="/images/logo.jpg"
               alt="Innoflow Logo"
@@ -138,6 +143,11 @@ export function DashboardSidebar() {
                         value={newFolderName}
                         onChange={(e) => setNewFolderName(e.target.value)}
                         placeholder="My New Folder"
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            handleCreateFolder()
+                          }
+                        }}
                       />
                     </div>
                   </div>
@@ -167,7 +177,14 @@ export function DashboardSidebar() {
               <div key={folder.id}>
                 <button
                   className="flex w-full items-center justify-between rounded-md px-2 py-1.5 text-sm text-white/70 hover:bg-white/10 hover:text-white"
-                  onClick={() => toggleFolder(folder.id)}
+                  onClick={() => {
+                    toggleFolder(folder.id)
+                    if(folder.name === "Templates") {
+                      setShowTemplates(true)
+                    } else {
+                      setSelectedFolder(folder.name)
+                    }
+                  }}
                 >
                   <div className="flex items-center gap-2">
                     <Folders className="h-4 w-4" />
@@ -184,6 +201,7 @@ export function DashboardSidebar() {
                       <button
                         key={subfolder.id}
                         className="flex w-full items-center gap-2 rounded-md px-2 py-1 text-sm text-white/70 hover:bg-white/10 hover:text-white"
+                        onClick={() => setSelectedFolder(subfolder.name)}
                       >
                         <Folders className="h-3 w-3" />
                         <span>{subfolder.name}</span>
