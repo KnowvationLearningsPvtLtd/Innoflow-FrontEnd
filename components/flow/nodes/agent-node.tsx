@@ -2,14 +2,29 @@
 
 import { useState, useEffect } from "react"
 import { Handle, Position } from "reactflow"
+import { Play } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
-export function AgentNode({ data, isConnectable }: { data: any; isConnectable?: boolean }) {
+interface NodeData {
+  label?: string;
+  instructions?: string;
+  tools?: string[];
+  onInstructionsChange?: (instructions: string) => void;
+  onToolsChange?: (tools: string[]) => void;
+}
+
+interface AgentNodeProps {
+  data: NodeData;
+  isConnectable?: boolean;
+}
+
+export function AgentNode({ data, isConnectable }: AgentNodeProps) {
   const [instructions, setInstructions] = useState(data.instructions || "You are a helpful assistant...")
   const [isEditingInstructions, setIsEditingInstructions] = useState(false)
-  const [tools, setTools] = useState(data.tools || ["Calculator"])
+  const [tools, setTools] = useState<string[]>(data.tools || ["Calculator"])
   const [newTool, setNewTool] = useState("")
   const [showAddToolInput, setShowAddToolInput] = useState(false)
-  const [activeTool, setActiveTool] = useState(null)
+  const [activeTool, setActiveTool] = useState<string | null>(null)
   
   // Calculator state
   const [calculatorInput, setCalculatorInput] = useState("")
@@ -22,7 +37,7 @@ export function AgentNode({ data, isConnectable }: { data: any; isConnectable?: 
     }
   }, [data])
 
-  const handleInstructionsChange = (e) => {
+  const handleInstructionsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInstructions(e.target.value)
     if (data.onInstructionsChange) {
       data.onInstructionsChange(e.target.value)
@@ -48,21 +63,21 @@ export function AgentNode({ data, isConnectable }: { data: any; isConnectable?: 
     }
   }
 
-  const handleRemoveTool = (indexToRemove) => {
-    const updatedTools = tools.filter((_, index) => index !== indexToRemove)
+  const handleRemoveTool = (indexToRemove: number) => {
+    const updatedTools = tools.filter((_: string, index: number) => index !== indexToRemove)
     setTools(updatedTools)
     if (data.onToolsChange) {
       data.onToolsChange(updatedTools)
     }
   }
 
-  const handleKeyPress = (e) => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       handleAddTool()
     }
   }
 
-  const handleToolClick = (tool) => {
+  const handleToolClick = (tool: string) => {
     if (activeTool === tool) {
       setActiveTool(null)
     } else {
@@ -75,7 +90,7 @@ export function AgentNode({ data, isConnectable }: { data: any; isConnectable?: 
   }
 
   // Calculator functions
-  const appendToCalculator = (value) => {
+  const appendToCalculator = (value: string) => {
     setCalculatorInput(prev => prev + value)
   }
 
@@ -95,11 +110,19 @@ export function AgentNode({ data, isConnectable }: { data: any; isConnectable?: 
   }
 
   return (
-    <div className="min-w-[240px] rounded-md border border-red-500/40 bg-black/80 shadow-lg backdrop-blur-sm">
+    <div className="min-w-[240px] rounded-md border border-red-500/40 bg-black/80 shadow-lg backdrop-blur-sm relative">
       <div className="border-b border-rose-500/30 bg-rose-500/10 px-4 py-2 text-sm font-medium text-rose-500 flex items-center gap-2">
         <div className="flex h-5 w-5 items-center justify-center rounded bg-rose-500/20 text-xs text-rose-500">🤖</div>
-        
         <span>{data.label || "Agent"}</span>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="ml-auto p-1 w-7 h-7 text-rose-400 hover:bg-rose-500/10"
+          onClick={() => {}}
+          aria-label="Run Agent"
+        >
+          <Play className="w-4 h-4" />
+        </Button>
       </div>
       <div className="p-4">
         <div className="space-y-3">
@@ -140,7 +163,7 @@ export function AgentNode({ data, isConnectable }: { data: any; isConnectable?: 
           <div className="space-y-1">
             <label className="text-xs text-white/70">Tools</label>
             <div className="flex flex-wrap gap-2">
-              {tools.map((tool, index) => (
+              {tools.map((tool: string, index: number) => (
                 <div 
                   key={index} 
                   className={`rounded-full px-2 py-1 text-xs flex items-center gap-1 group cursor-pointer ${

@@ -2,6 +2,8 @@
 
 import { useState } from "react"
 import { Handle, Position } from "reactflow"
+import { Play } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export function DocumentLoaderNode({ data, isConnectable }: { data: any; isConnectable?: boolean }) {
   const [loaderType, setLoaderType] = useState(data.loaderType || "file")
@@ -13,12 +15,21 @@ export function DocumentLoaderNode({ data, isConnectable }: { data: any; isConne
   }
   
   return (
-    <div className="w-64 rounded-md border border-indigo-500/40 bg-black/80 shadow-lg backdrop-blur-sm">
+    <div className="w-64 rounded-md border border-indigo-500/40 bg-black/80 shadow-lg backdrop-blur-sm relative">
       <div className="border-b border-indigo-500/30 bg-indigo-500/10 px-3 py-1 text-sm font-medium text-indigo-500 flex items-center gap-2">
         <div className="flex h-4 w-4 items-center justify-center rounded bg-indigo-500/20 text-xs text-indigo-500">
-        📥
+          📥
         </div>
         <span>Document Loader</span>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="ml-auto p-1 w-7 h-7 text-indigo-400 hover:bg-indigo-500/10"
+          onClick={() => { data.onRun ? data.onRun() : alert('Run Document Loader!') }}
+          aria-label="Run Document Loader"
+        >
+          <Play className="w-4 h-4" />
+        </Button>
       </div>
 
       <div className="space-y-2 p-3">

@@ -3,10 +3,11 @@
 import { useState, useRef, useCallback } from "react"
 import { Handle, Position } from "reactflow"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { FileIcon, UploadIcon, XIcon } from "lucide-react"
+import { FileIcon, UploadIcon, XIcon, Play } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export function FileInputNode({ data, isConnectable }: { data: any; isConnectable?: boolean }) {
-  const [fileType, setFileType] = useState(data.fileType || "pdf")
+  const [fileType, setFileType] = useState<keyof typeof fileTypes>(data.fileType || "pdf")
   const [isDragging, setIsDragging] = useState(false)
   const [fileName, setFileName] = useState("")
   const [fileSize, setFileSize] = useState("")
@@ -95,13 +96,22 @@ export function FileInputNode({ data, isConnectable }: { data: any; isConnectabl
           <FileIcon size={16} className="text-blue-500" />
           <span>{data.label || "File Input"}</span>
         </div>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="ml-auto p-1 w-7 h-7 text-blue-400 hover:bg-blue-500/10"
+          onClick={() => { data.onRun ? data.onRun() : alert('Run File Input!') }}
+          aria-label="Run File Input"
+        >
+          <Play className="w-4 h-4" />
+        </Button>
       </div>
 
       <div className="p-3 space-y-3">
         <div>
           <label className="text-xs text-white/70 block mb-1">File Type</label>
           <Select value={fileType} onValueChange={(value) => {
-            setFileType(value)
+            setFileType(value as keyof typeof fileTypes)
             setFileName("")
             setFileSize("")
             setError("")

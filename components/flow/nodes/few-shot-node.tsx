@@ -6,7 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
-import { Plus, Trash } from "lucide-react"
+import { Plus, Trash, Play } from "lucide-react"
 
 export function FewShotNode({ data, isConnectable }: { data: any; isConnectable?: boolean }) {
   const [examples, setExamples] = useState(
@@ -23,14 +23,23 @@ export function FewShotNode({ data, isConnectable }: { data: any; isConnectable?
   }
 
   const removeExample = (index: number) => {
-    setExamples(examples.filter((_, i) => i !== index))
+    setExamples(examples.filter((_: any, i: number) => i !== index))
   }
 
   return (
-    <div className="min-w-[240px] max-w-[320px] rounded-md border border-emerald-500/30 bg-black/80 shadow-lg backdrop-blur-sm">
+    <div className="min-w-[240px] max-w-[320px] rounded-md border border-emerald-500/30 bg-black/80 shadow-lg backdrop-blur-sm relative">
       <div className="border-b border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm font-medium text-emerald-500 flex items-center gap-2">
         <div className="flex h-5 w-5 items-center justify-center rounded bg-emerald-500/20 text-xs text-emerald-500">📋</div>
         <span>{data.label || "Few-Shot Examples"}</span>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="ml-auto p-1 w-7 h-7 text-emerald-400 hover:bg-emerald-500/10"
+          onClick={() => { data.onRun ? data.onRun() : alert('Run Few-Shot!') }}
+          aria-label="Run Few-Shot"
+        >
+          <Play className="w-4 h-4" />
+        </Button>
       </div>
 
       <div className="space-y-3 p-4">
@@ -41,7 +50,7 @@ export function FewShotNode({ data, isConnectable }: { data: any; isConnectable?
               <SelectValue placeholder="Select example" />
             </SelectTrigger>
             <SelectContent className="bg-black/90 border-white/10 text-white">
-              {examples.map((_, index) => (
+              {examples.map((_: any, index: number) => (
                 <SelectItem key={index} value={`example-${index + 1}`}>Example {index + 1}</SelectItem>
               ))}
             </SelectContent>
@@ -65,7 +74,7 @@ export function FewShotNode({ data, isConnectable }: { data: any; isConnectable?
         <div className="space-y-1">
           <Label className="text-xs text-white/70">Preview</Label>
           <div className="rounded border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/50 min-h-[60px] max-h-[80px] overflow-auto">
-            {examples.map((example, index) => (
+            {examples.map((example: any, index: number) => (
               selectedExample === `example-${index + 1}` && (
                 <div key={index} className="text-xs">
                   <div className="text-white/90 truncate">{example.input || "Input example..."}</div>

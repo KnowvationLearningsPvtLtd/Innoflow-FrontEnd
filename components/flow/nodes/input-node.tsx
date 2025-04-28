@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react"
 import { Handle, Position } from "reactflow"
+import { Play } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export function InputNode({ data, isConnectable }: { data: any; isConnectable?: boolean }) {
   const [inputText, setInputText] = useState("")
@@ -34,7 +36,7 @@ export function InputNode({ data, isConnectable }: { data: any; isConnectable?: 
     }
   }, [data])
 
-  const handleTextChange = (e) => {
+  const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newText = e.target.value
     setInputText(newText)
     
@@ -44,7 +46,7 @@ export function InputNode({ data, isConnectable }: { data: any; isConnectable?: 
     }
   }
 
-  const selectMessageType = (type) => {
+  const selectMessageType = (type: { id: string; name: string }) => {
     setSelectedMessageType(type.name)
     setShowDropdown(false)
     
@@ -60,8 +62,8 @@ export function InputNode({ data, isConnectable }: { data: any; isConnectable?: 
     }
   }
 
-  const handleClickOutside = (e) => {
-    if (showDropdown && !e.target.closest('.message-type-dropdown')) {
+  const handleClickOutside = (e: MouseEvent) => {
+    if (showDropdown && !(e.target as HTMLElement).closest('.message-type-dropdown')) {
       setShowDropdown(false)
     }
   }
@@ -87,6 +89,15 @@ export function InputNode({ data, isConnectable }: { data: any; isConnectable?: 
           📝
         </div>
         <span>{data?.label || "Chat Input"}</span>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="ml-auto p-1 w-7 h-7 text-blue-400 hover:bg-blue-500/10"
+          onClick={() => { data.onRun ? data.onRun() : alert('Run Input!') }}
+          aria-label="Run Input"
+        >
+          <Play className="w-4 h-4" />
+        </Button>
       </div>
       
       <div className="p-3 space-y-3">

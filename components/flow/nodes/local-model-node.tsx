@@ -6,7 +6,8 @@ import { Slider } from "@/components/ui/slider"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Toggle } from "@/components/ui/toggle"
-import { Server, Settings } from "lucide-react"
+import { Server, Settings, Play } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export function LocalModelNode({ data, isConnectable }: { data: any; isConnectable?: boolean }) {
   const [expanded, setExpanded] = useState(false)
@@ -41,16 +42,26 @@ export function LocalModelNode({ data, isConnectable }: { data: any; isConnectab
     <div className="w-64 rounded-md border border-teal-500/40 bg-black/80 shadow-md backdrop-blur-sm">
       <div className="border-b border-teal-500/30 bg-teal-500/10 px-3 py-2 text-sm font-medium text-teal-400 flex items-center justify-between">
         <div className="flex items-center gap-2">
-        🗄️
-         {/*  <Server size={16} className="text-teal-400" /> */}
-       <span>{data.label || "Local Model"}</span>
+          🗄️
+          <span>{data.label || "Local Model"}</span>
         </div>
-        <button 
-          onClick={() => setExpanded(!expanded)} 
-          className="text-teal-400 hover:text-teal-300"
-        >
-          <Settings size={14} />
-        </button>
+        <div className="flex items-center gap-1">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="ml-auto p-1 w-7 h-7 text-teal-400 hover:bg-teal-500/10"
+            onClick={() => { data.onRun ? data.onRun() : alert('Run Local Model!') }}
+            aria-label="Run Local Model"
+          >
+            <Play className="w-4 h-4" />
+          </Button>
+          <button 
+            onClick={() => setExpanded(!expanded)} 
+            className="text-teal-400 hover:text-teal-300"
+          >
+            <Settings size={14} />
+          </button>
+        </div>
       </div>
 
       <div className="p-3 space-y-2">

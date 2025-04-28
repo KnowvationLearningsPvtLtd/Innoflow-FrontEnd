@@ -3,8 +3,9 @@
 import { useState } from "react"
 import { Handle, Position } from "reactflow"
 import { Slider } from "@/components/ui/slider"
-import { ChevronDown } from "lucide-react"
+import { ChevronDown, Play } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Button } from "@/components/ui/button"
 
 export function ModelNode({ data, isConnectable }: { data: any; isConnectable?: boolean }) {
   const [settings, setSettings] = useState({
@@ -26,6 +27,15 @@ export function ModelNode({ data, isConnectable }: { data: any; isConnectable?: 
       <div className="border-b border-teal-500/30 bg-teal-500/10 px-3 py-2 text-sm font-medium text-teal-500 flex items-center gap-2">
         🗄️
         <span>{data.label || "OpenAI"}</span>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="ml-auto p-1 w-7 h-7 text-teal-400 hover:bg-teal-500/10"
+          onClick={() => { data.onRun ? data.onRun() : alert('Run Model!') }}
+          aria-label="Run Model"
+        >
+          <Play className="w-4 h-4" />
+        </Button>
       </div>
 
       <div className="p-3 space-y-2">

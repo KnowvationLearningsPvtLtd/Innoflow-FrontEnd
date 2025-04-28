@@ -3,16 +3,31 @@
 import { useState, useEffect } from "react"
 import { Handle, Position } from "reactflow"
 import { Button } from "@/components/ui/button"
-import { Plus, Trash, Settings } from "lucide-react"
+import { Plus, Trash, Settings, Play } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-export function MultiAgentNode({ data, isConnectable, updateNodeData }: { 
-  data: any; 
+interface Agent {
+  name: string;
+  role: string;
+}
+
+interface NodeData {
+  id?: string;
+  label?: string;
+  agents?: Agent[];
+  onRun?: () => void;
+  onStepsChange?: (steps: Agent[]) => void;
+}
+
+interface MultiAgentNodeProps {
+  data: NodeData;
   isConnectable?: boolean;
-  updateNodeData?: (id: string, data: any) => void;
-}) {
-  const [agents, setAgents] = useState(
+  updateNodeData?: (id: string, data: NodeData) => void;
+}
+
+export function MultiAgentNode({ data, isConnectable, updateNodeData }: MultiAgentNodeProps) {
+  const [agents, setAgents] = useState<Agent[]>(
     data.agents || [
       { name: "Researcher", role: "Finds information" },
       { name: "Writer", role: "Creates content" },
@@ -24,17 +39,17 @@ export function MultiAgentNode({ data, isConnectable, updateNodeData }: {
     if (updateNodeData && data.id) {
       updateNodeData(data.id, { ...data, agents })
     }
-  }, [agents])
+  }, [agents, data, updateNodeData])
 
   const addAgent = () => {
     setAgents([...agents, { name: "", role: "" }])
   }
 
   const removeAgent = (index: number) => {
-    setAgents(agents.filter((_, i) => i !== index))
+    setAgents(agents.filter((_: Agent, i: number) => i !== index))
   }
 
-  const updateAgent = (index: number, field: string, value: string) => {
+  const updateAgent = (index: number, field: keyof Agent, value: string) => {
     const newAgents = [...agents]
     newAgents[index] = { ...newAgents[index], [field]: value }
     setAgents(newAgents)
@@ -47,6 +62,15 @@ export function MultiAgentNode({ data, isConnectable, updateNodeData }: {
           🤖
         </div>
         <span>{data.label || "Multi-Agent System"}</span>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="ml-auto p-1 w-7 h-7 text-red-500 hover:bg-red-500/10"
+          onClick={() => { data.onRun ? data.onRun() : alert('Run Multi-Agent!') }}
+          aria-label="Run Multi-Agent"
+        >
+          <Play className="w-4 h-4" />
+        </Button>
       </div>
       <div className="space-y-3 p-4">
         <div className="space-y-1">
@@ -63,7 +87,7 @@ export function MultiAgentNode({ data, isConnectable, updateNodeData }: {
           </div>
         </div>
         
-        {agents.map((agent, index) => (
+        {agents.map((agent: Agent, index: number) => (
           <div key={index} className="space-y-1 bg-black/30 rounded border border-red-500/10 p-2 mb-2">
             <div className="flex items-center justify-between">
               <Input

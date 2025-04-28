@@ -6,7 +6,8 @@ import { Slider } from "@/components/ui/slider"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
-import { ChevronDown, ChevronUp } from "lucide-react"
+import { ChevronDown, ChevronUp, Play } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export function HuggingFaceNode({ data, isConnectable }: { data: any; isConnectable?: boolean }) {
   const [expanded, setExpanded] = useState(false)
@@ -35,18 +36,29 @@ export function HuggingFaceNode({ data, isConnectable }: { data: any; isConnecta
   }
 
   return (
-    <div className="w-64 rounded-md border border-teal-500/40 bg-black/80 shadow-md backdrop-blur-sm">
+    <div className="w-64 rounded-md border border-teal-500/40 bg-black/80 shadow-md backdrop-blur-sm relative">
       <div className="border-b border-teal-500/30 bg-teal-500/10 px-3 py-2 text-sm font-medium text-teal-400 flex items-center justify-between">
         <div className="flex items-center gap-2">
           🗄️
           <span>{data.label || "HuggingFace"}</span>
         </div>
-        <button 
-          onClick={() => setExpanded(!expanded)} 
-          className="text-teal-400 hover:text-teal-300"
-        >
-          {expanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-        </button>
+        <div className="flex items-center gap-1">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="ml-auto p-1 w-7 h-7 text-teal-400 hover:bg-teal-500/10"
+            onClick={() => { data.onRun ? data.onRun() : alert('Run HuggingFace Model!') }}
+            aria-label="Run HuggingFace Model"
+          >
+            <Play className="w-4 h-4" />
+          </Button>
+          <button 
+            onClick={() => setExpanded(!expanded)} 
+            className="text-teal-400 hover:text-teal-300"
+          >
+            {expanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+          </button>
+        </div>
       </div>
 
       <div className="p-3 space-y-2">

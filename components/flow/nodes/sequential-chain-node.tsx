@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Handle, Position } from "reactflow"
 import { Button } from "@/components/ui/button"
-import { Plus, Trash, Check, X, Edit2 } from "lucide-react"
+import { Plus, Trash, Check, X, Edit2, Play } from "lucide-react"
 
 export function SequentialChainNode({ data, isConnectable }: { data: any; isConnectable?: boolean }) {
   const [steps, setSteps] = useState(data.steps || ["Process input", "Generate response", "Format output"])
@@ -34,7 +34,7 @@ export function SequentialChainNode({ data, isConnectable }: { data: any; isConn
   }
 
   const removeStep = (index: number) => {
-    const updatedSteps = steps.filter((_, i) => i !== index)
+    const updatedSteps = steps.filter((_: any, i: number) => i !== index)
     setSteps(updatedSteps)
     
     if (data.onStepsChange) {
@@ -73,10 +73,19 @@ export function SequentialChainNode({ data, isConnectable }: { data: any; isConn
   }
 
   return (
-    <div className="w-[240px] rounded-md border border-pink-500/40 bg-black/80 shadow-lg backdrop-blur-sm">
+    <div className="w-[240px] rounded-md border border-pink-500/40 bg-black/80 shadow-lg backdrop-blur-sm relative">
       <div className="border-b border-pink-500/30 bg-pink-500/10 px-4 py-2 text-sm font-medium text-pink-400 flex items-center gap-2">
         <div className="flex h-5 w-5 items-center justify-center rounded bg-pink-500/20 text-xs text-pink-400">🔄</div>
         <span>{data.label || "Sequential Chain"}</span>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="ml-auto p-1 w-7 h-7 text-pink-400 hover:bg-pink-500/10"
+          onClick={() => { data.onRun ? data.onRun() : alert('Run Sequential Chain!') }}
+          aria-label="Run Sequential Chain"
+        >
+          <Play className="w-4 h-4" />
+        </Button>
       </div>
 
       <div className="space-y-3 p-3">
@@ -96,7 +105,7 @@ export function SequentialChainNode({ data, isConnectable }: { data: any; isConn
           </div>
 
           <div className="space-y-2 max-h-[150px] overflow-y-auto pr-1">
-            {steps.map((step, index) => (
+            {steps.map((step: any, index: number) => (
               <div
                 key={index}
                 className="rounded border border-white/10 bg-white/5 p-2 text-xs flex items-center justify-between transition-colors"

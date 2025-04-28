@@ -2,6 +2,8 @@
 
 import { useEffect, useState, useRef } from "react"
 import { Handle, Position } from "reactflow"
+import { Play } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export function OutputNode({ data, isConnectable }: { data: any; isConnectable?: boolean }) {
   const [isClient, setIsClient] = useState(false)
@@ -74,6 +76,15 @@ export function OutputNode({ data, isConnectable }: { data: any; isConnectable?:
           📤
         </div>
         <span>{data?.label || "Output"}</span>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="ml-auto p-1 w-7 h-7 text-purple-400 hover:bg-purple-500/10"
+          onClick={() => { data.onRun ? data.onRun() : alert('Run Output!') }}
+          aria-label="Run Output"
+        >
+          <Play className="w-4 h-4" />
+        </Button>
       </div>
       <div className="p-3 space-y-3">
         <div className="space-y-1">

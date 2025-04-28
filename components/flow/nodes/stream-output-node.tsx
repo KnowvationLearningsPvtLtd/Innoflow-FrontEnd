@@ -6,6 +6,8 @@ import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Play } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export function StreamOutputNode({ data, isConnectable }: { data: any; isConnectable?: boolean }) {
   const [isStreaming, setIsStreaming] = useState(data.streaming !== false)
@@ -13,7 +15,7 @@ export function StreamOutputNode({ data, isConnectable }: { data: any; isConnect
   const [format, setFormat] = useState(data.format || "text")
   
   return (
-    <div className="min-w-[240px] max-w-[320px] rounded-md border border-purple-500/30 bg-black/80 shadow-lg backdrop-blur-sm">
+    <div className="min-w-[240px] max-w-[320px] rounded-md border border-purple-500/30 bg-black/80 shadow-lg backdrop-blur-sm relative">
       <div className="border-b border-purple-500/30 bg-purple-500/10 px-4 py-2 text-sm font-medium text-purple-500 flex items-center gap-2">
         <div className="flex h-5 w-5 items-center justify-center rounded bg-purple-500/20 text-xs text-purple-500">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -23,6 +25,15 @@ export function StreamOutputNode({ data, isConnectable }: { data: any; isConnect
           </svg>
         </div>
         <span>{data.label || "Stream Output"}</span>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="ml-auto p-1 w-7 h-7 text-purple-400 hover:bg-purple-500/10"
+          onClick={() => {}}
+          aria-label="Run Stream Output"
+        >
+          <Play className="w-4 h-4" />
+        </Button>
       </div>
 
       <div className="space-y-3 p-4">
