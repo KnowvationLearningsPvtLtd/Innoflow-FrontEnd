@@ -30,6 +30,14 @@ const ProfilePage = () => {
     setUser(form);
   };
 
+  const getAvatarLetter = () => {
+    const name = form.name?.trim();
+    const username = form.username?.trim();
+    if (name && name[0] && /[a-zA-Z0-9]/.test(name[0])) return name[0].toUpperCase();
+    if (username && username[0] && /[a-zA-Z0-9]/.test(username[0])) return username[0].toUpperCase();
+    return "J";
+  };
+
   return (
     <div className="min-h-screen bg-black">
       <DashboardSidebar 
@@ -43,7 +51,9 @@ const ProfilePage = () => {
             <div className="flex flex-col md:flex-row items-start md:items-center gap-4 mb-8">
               <Avatar className="h-20 w-20 border-2 border-white/10">
                 <AvatarImage src="/placeholder.svg" alt="Profile Picture" />
-                <AvatarFallback className="bg-primary/20 text-primary text-xl">{form.name.split(' ').map(n => n[0]).join('').toUpperCase()}</AvatarFallback>
+                <AvatarFallback className="bg-black/30 text-white text-xl">
+                  {getAvatarLetter()}
+                </AvatarFallback>
               </Avatar>
               <div>
                 <h1 className="text-2xl font-bold text-white">{form.name}</h1>

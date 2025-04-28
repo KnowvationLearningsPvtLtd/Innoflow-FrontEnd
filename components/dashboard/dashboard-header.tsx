@@ -102,6 +102,14 @@ export function DashboardHeader({ showAutoSave = false }: { showAutoSave?: boole
     }
   }, [showSearchResults])
 
+  const getAvatarLetter = () => {
+    const name = user?.name?.trim();
+    const username = user?.username?.trim();
+    if (name && name[0] && /[a-zA-Z0-9]/.test(name[0])) return name[0].toUpperCase();
+    if (username && username[0] && /[a-zA-Z0-9]/.test(username[0])) return username[0].toUpperCase();
+    return "J";
+  };
+
   return (
     <header
       className={`fixed top-0 right-0 z-10 h-16 border-b border-white/10 bg-black/90 backdrop-blur-md ${
@@ -291,8 +299,9 @@ export function DashboardHeader({ showAutoSave = false }: { showAutoSave?: boole
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="flex items-center gap-2 text-white hover:bg-white/10">
                 <Avatar className="h-8 w-8">
-                  <AvatarImage src="/placeholder.svg" />
-                  <AvatarFallback className="bg-primary/20 text-primary">JD</AvatarFallback>
+                  <AvatarFallback className="bg-green-600/60 text-white">
+                    {getAvatarLetter()}
+                  </AvatarFallback>
                 </Avatar>
                 <span className="hidden md:inline">{user?.username || "John Doe"}</span>
               </Button>
