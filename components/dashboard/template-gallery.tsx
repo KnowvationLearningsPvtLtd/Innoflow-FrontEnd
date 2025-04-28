@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 
 interface Template {
   id: string
@@ -135,26 +136,32 @@ export function TemplateGallery({ onSelectTemplate }: TemplateGalleryProps) {
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {filteredTemplates.map((template) => (
-          <div
+          <Card
             key={template.id}
-            className="flex flex-col justify-between p-2 border rounded-md shadow-sm bg-gray-800 text-white hover:shadow-md hover:border-primary cursor-pointer"
-            style={{ maxWidth: '200px', height: '150px', margin: '0 auto' }}
+            className="h-52 border-white/10 bg-black/50 transition-colors hover:border-primary/50 hover:bg-white/5 cursor-pointer flex flex-col justify-between"
             onClick={() => onSelectTemplate(template.id, template.name)}
           >
-            <h3 className="text-lg font-bold">{template.name}</h3>
-            <p className="text-sm text-gray-400">{template.description}</p>
-            <span
-              className={`mt-2 inline-block px-2 py-1 text-xs font-semibold rounded ${
-                template.difficulty === "beginner"
-                  ? "bg-green-500 text-green-800"
-                  : template.difficulty === "intermediate"
-                  ? "bg-yellow-500 text-yellow-800"
-                  : "bg-red-500 text-red-800"
-              }`}
-            >
-              {template.difficulty}
-            </span>
-          </div>
+            <CardHeader className="py-3">
+              <CardTitle className="text-white text-lg">{template.name}</CardTitle>
+              <CardDescription className="text-white/70 text-sm">{template.description}</CardDescription>
+            </CardHeader>
+            <CardContent className="py-2 flex-1 flex items-center justify-center">
+              {/* Optionally add an image or icon here if desired */}
+            </CardContent>
+            <CardFooter className="py-2">
+              <span
+                className={`inline-block px-2 py-1 text-xs font-semibold rounded ${
+                  template.difficulty === "beginner"
+                    ? "bg-green-500 text-green-900"
+                    : template.difficulty === "intermediate"
+                    ? "bg-yellow-500 text-yellow-900"
+                    : "bg-red-500 text-red-900"
+                }`}
+              >
+                {template.difficulty}
+              </span>
+            </CardFooter>
+          </Card>
         ))}
       </div>
     </div>
