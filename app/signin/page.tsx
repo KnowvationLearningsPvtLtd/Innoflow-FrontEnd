@@ -1,8 +1,8 @@
-import { SignupForm } from "@/components/auth/signup-form"
+import { SigninForm } from "@/components/auth/signin-form"
 import Link from "next/link"
 import Image from "next/image"
 
-export default function SignupPage() {
+export default function SigninPage() {
   return (
     <div className="min-h-screen gradient-bg">
       <div className="container mx-auto flex min-h-screen items-center justify-center px-4 py-12">
@@ -20,14 +20,8 @@ export default function SignupPage() {
                 <span className="text-2xl font-bold text-white">Innoflow</span>
               </Link>
             </div>
-            <h1 className="mb-6 text-3xl font-bold text-white">Sign Up for Free</h1>
-            <SignupForm />
-            <div className="text-center text-sm text-white/70 mt-4">
-              Already have an account?{' '}
-              <a href="/signin" className="text-primary hover:underline">
-                Click here to sign in
-              </a>
-            </div>
+            <h1 className="mb-6 text-3xl font-bold text-white">Sign In to Your Account</h1>
+            <SigninForm />
           </div>
           <div className="flex flex-col justify-center">
             <h2 className="mb-8 text-3xl font-bold text-white">Building AI Apps Just got 100x Easier</h2>
@@ -80,4 +74,4 @@ export default function SignupPage() {
       </div>
     </div>
   )
-}
+} 
