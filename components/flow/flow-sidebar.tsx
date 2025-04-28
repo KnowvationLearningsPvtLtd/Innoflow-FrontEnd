@@ -263,17 +263,11 @@ export function FlowSidebar({ onAddComponent }: FlowSidebarProps) {
 
   return (
     <div className="w-64 border-r border-white/10 bg-black/90 flex flex-col">
-      {/* Dashboard Header */}
-      <div className="p-3 border-b border-white/10 bg-black/95">
-        <Link 
-          href="/dashboard" 
-          className="flex items-center gap-2 text-white/70 hover:text-white transition-colors"
-        >
-          <Home size={18} />
-          <span className="text-sm">Dashboard</span>
-        </Link>
-      </div>
-      
+      {/* Dashboard link at the top */}
+      <Link href="/dashboard" className="flex items-center gap-2 p-4 hover:bg-white/10 transition-colors">
+        <Home className="h-5 w-5 text-white" />
+        <span className="text-white font-semibold text-lg">Dashboard</span>
+      </Link>
       <div className="p-3 border-b border-white/10">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/50" />

@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { useRouter } from "next/navigation"
 import { useIsMobile } from "@/hooks/use-mobile"
+import { useUser } from "@/components/context/user-context"
 
 const mockProjects = [
   {
@@ -54,6 +55,7 @@ export function DashboardHeader({ showAutoSave = false }: { showAutoSave?: boole
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [searchResults, setSearchResults] = useState<typeof mockProjects>([])
   const [showSearchResults, setShowSearchResults] = useState(false)
+  const { user } = useUser();
 
   
   useEffect(() => {
@@ -292,7 +294,7 @@ export function DashboardHeader({ showAutoSave = false }: { showAutoSave?: boole
                   <AvatarImage src="/placeholder.svg" />
                   <AvatarFallback className="bg-primary/20 text-primary">JD</AvatarFallback>
                 </Avatar>
-                <span className="hidden md:inline">John Doe</span>
+                <span className="hidden md:inline">{user?.username || "John Doe"}</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56 bg-black/90 border-white/10">

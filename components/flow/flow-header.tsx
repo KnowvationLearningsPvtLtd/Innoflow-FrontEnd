@@ -15,6 +15,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { useUser } from "@/components/context/user-context"
 
 
 export function FlowHeader({ flowId }: { flowId: string }) {
@@ -22,6 +23,7 @@ export function FlowHeader({ flowId }: { flowId: string }) {
   const [flowName, setFlowName] = useState("")
   const [isSaving, setIsSaving] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
+  const { user } = useUser();
 
   useEffect(() => {
     const flowNames: Record<string, string> = {
@@ -128,7 +130,7 @@ export function FlowHeader({ flowId }: { flowId: string }) {
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/20 text-primary">
                   <User className="h-4 w-4" />
                 </div>
-                <span>John Doe</span>
+                <span>{user?.username || "John Doe"}</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">

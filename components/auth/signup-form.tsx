@@ -10,6 +10,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Github } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useToast } from "@/components/ui/use-toast"
+import { useUser } from "@/components/context/user-context"
 
 export function SignupForm() {
   const [isLoading, setIsLoading] = useState(false)
@@ -21,6 +22,7 @@ export function SignupForm() {
   })
   const router = useRouter()
   const { toast } = useToast()
+  const { setUser } = useUser()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -55,6 +57,15 @@ export function SignupForm() {
     setIsLoading(true)
 
     try {
+      // Update user context with signup data
+      setUser({
+        name: `${formData.firstName} ${formData.lastName}`,
+        email: formData.email,
+        username: formData.email.split('@')[0], // Use email prefix as username
+        company: "Knowvation Learning Pvt Ltd", // Set default company name
+        bio: "New Innoflow user" // Default bio
+      })
+
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
       toast({

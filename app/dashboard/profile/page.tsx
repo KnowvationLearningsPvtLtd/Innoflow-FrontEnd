@@ -1,3 +1,5 @@
+"use client"
+
 import { DashboardHeader } from "@/components/dashboard/dashboard-header"
 import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -7,23 +9,45 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useUser } from "@/components/context/user-context"
+import { useState } from "react"
 
 const ProfilePage = () => {
+  const { user, setUser } = useUser();
+  const [form, setForm] = useState({
+    name: user?.name || "John Doe",
+    email: user?.email || "john.doe@example.com",
+    username: user?.username || "johndoe",
+    company: user?.company || "Acme Inc.",
+    bio: user?.bio || "AI developer and workflow automation specialist."
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm({ ...form, [e.target.id]: e.target.value });
+  };
+
+  const handleSave = () => {
+    setUser(form);
+  };
+
   return (
     <div className="min-h-screen bg-black">
-      <DashboardSidebar />
+      <DashboardSidebar 
+        setSelectedFolder={() => {}} 
+        setShowTemplates={() => {}} 
+      />
       <div className="md:pl-64 transition-all duration-300">
         <DashboardHeader />
-        <main className="pt-16 p-4 md:p-6">
+        <main className="pt-24 p-4 md:p-6">
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col md:flex-row items-start md:items-center gap-4 mb-8">
               <Avatar className="h-20 w-20 border-2 border-white/10">
                 <AvatarImage src="/placeholder.svg" alt="Profile Picture" />
-                <AvatarFallback className="bg-primary/20 text-primary text-xl">JD</AvatarFallback>
+                <AvatarFallback className="bg-primary/20 text-primary text-xl">{form.name.split(' ').map(n => n[0]).join('').toUpperCase()}</AvatarFallback>
               </Avatar>
               <div>
-                <h1 className="text-2xl font-bold text-white">John Doe</h1>
-                <p className="text-white/60">john.doe@example.com</p>
+                <h1 className="text-2xl font-bold text-white">{form.name}</h1>
+                <p className="text-white/60">{form.email}</p>
               </div>
             </div>
 
@@ -48,37 +72,25 @@ const ProfilePage = () => {
                         <Label htmlFor="name" className="text-white">
                           Full Name
                         </Label>
-                        <Input id="name" defaultValue="John Doe" className="bg-black/30 border-white/10 text-white" />
+                        <Input id="name" value={form.name} onChange={handleChange} className="bg-black/30 border-white/10 text-white" />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="email" className="text-white">
                           Email
                         </Label>
-                        <Input
-                          id="email"
-                          defaultValue="john.doe@example.com"
-                          className="bg-black/30 border-white/10 text-white"
-                        />
+                        <Input id="email" value={form.email} onChange={handleChange} className="bg-black/30 border-white/10 text-white" />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="username" className="text-white">
                           Username
                         </Label>
-                        <Input
-                          id="username"
-                          defaultValue="johndoe"
-                          className="bg-black/30 border-white/10 text-white"
-                        />
+                        <Input id="username" value={form.username} onChange={handleChange} className="bg-black/30 border-white/10 text-white" />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="company" className="text-white">
                           Company
                         </Label>
-                        <Input
-                          id="company"
-                          defaultValue="Acme Inc."
-                          className="bg-black/30 border-white/10 text-white"
-                        />
+                        <Input id="company" value={form.company} onChange={handleChange} className="bg-black/30 border-white/10 text-white" />
                       </div>
                     </div>
 
@@ -92,12 +104,13 @@ const ProfilePage = () => {
                         id="bio"
                         rows={4}
                         className="w-full rounded-md border border-white/10 bg-black/30 p-3 text-white"
-                        defaultValue="AI developer and workflow automation specialist."
+                        value={form.bio}
+                        onChange={handleChange}
                       />
                     </div>
 
                     <div className="flex justify-end">
-                      <Button className="bg-primary text-primary-foreground hover:bg-primary/90">Save Changes</Button>
+                      <Button className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={handleSave}>Save Changes</Button>
                     </div>
                   </CardContent>
                 </Card>
