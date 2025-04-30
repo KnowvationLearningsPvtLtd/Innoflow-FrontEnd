@@ -206,3 +206,25 @@
   animation: gradientGlowPurple 8s ease infinite;
   filter: drop-shadow(0 0 10px rgba(192, 132, 252, 0.3));
 }
+
+.dragdrop-bg {
+  position: relative;
+  background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(30, 30, 50, 0.8) 100%);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: all 0.5s ease;
+}
+
+/* Enhance the scrolling experience */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure the sticky container has proper z-indexing */
+.sticky {
+  z-index: 10;
+}
+
+.sticky > div > div {
+  animation: cardGlow 4s infinite;
+}
