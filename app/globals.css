@@ -69,84 +69,6 @@
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-
-@layer components {
-  .gradient-bg {
-    @apply bg-gradient-to-br from-black via-purple-950 to-blue-950;
-  }
-
-  .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400;
-  }
-
-  .card-hover {
-    @apply transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 hover:border-primary/50;
-  }
-
-  .node-handle {
-    @apply h-3 w-3 rounded-full border-2 bg-black;
-  }
-
-  .glow {
-    @apply relative;
-  }
-
-  .glow::after {
-    @apply absolute inset-0 rounded-md blur-md opacity-40;
-    content: "";
-    z-index: -1;
-    animation: pulse 3s infinite;
-  }
-
-  @keyframes pulse {
-    0% {
-      opacity: 0.3;
-      filter: blur(8px);
-    }
-    50% {
-      opacity: 0.5;
-      filter: blur(12px);
-    }
-    100% {
-      opacity: 0.3;
-      filter: blur(8px);
-    }
-  }
-
-  @keyframes gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-
-  @keyframes slow-gradient {
-    0% {
-      background-position: 0% 50%;
-      background-size: 200% 200%;
-    }
-    50% {
-      background-position: 100% 50%;
-      background-size: 220% 220%;
-    }
-    100% {
-      background-position: 0% 50%;
-      background-size: 200% 200%;
-    }
-  }
 
   .animate-gradient {
     background-size: 200% 200%;
@@ -162,92 +84,6 @@
   .animate-slow-gradient:hover {
     background-size: 220% 220%;
   }
-
-  .glow-primary::after {
-    @apply bg-primary;
-  }
-
-  .glow-purple::after {
-    @apply bg-purple-500;
-  }
-
-  .glow-blue::after {
-    @apply bg-blue-500;
-  }
-
-  .glow-teal::after {
-    @apply bg-teal-500;
-  }
-
-  .glow-yellow::after {
-    @apply bg-yellow-500;
-  }
-
-  .glow-rose::after {
-    @apply bg-rose-500;
-  }
-
-  .glow-indigo::after {
-    @apply bg-indigo-500;
-  }
-
-  .glow-cyan::after {
-    @apply bg-cyan-500;
-  }
-
-  .glow-emerald::after {
-    @apply bg-emerald-500;
-  }
-
-  .glow-amber::after {
-    @apply bg-amber-500;
-  }
-
-  .glow-orange::after {
-    @apply bg-orange-500;
-  }
-
-  .glow-pink::after {
-    @apply bg-pink-500;
-  }
-
-  .glow-lime::after {
-    @apply bg-lime-500;
-  }
-
-  .glow-red::after {
-    @apply bg-red-500;
-  }
-
-  .glow-fuchsia::after {
-    @apply bg-fuchsia-500;
-  }
-
-  .glow-sky::after {
-    @apply bg-sky-500;
-  }
-
-  .glow-violet::after {
-    @apply bg-violet-500;
-  }
-}
-
-.react-flow__node {
-  @apply shadow-lg transition-all duration-300;
-}
-
-.react-flow__node:hover {
-  @apply shadow-xl transform scale-105 z-10;
-}
-
-.react-flow__handle {
-  @apply h-3 w-3 rounded-full border-2 bg-black;
-}
-
-.react-flow__edge-path {
-  @apply stroke-2;
-  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.3));
-}
 
  react-flow__controls {
   filter: none !important;
@@ -276,6 +112,48 @@
   animation: flowPulse 2s infinite;
 }
 
+@keyframes pulse {
+  0% {
+    opacity: 0.3;
+    filter: blur(8px);
+  }
+  50% {
+    opacity: 0.5;
+    filter: blur(12px);
+  }
+  100% {
+    opacity: 0.3;
+    filter: blur(8px);
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes slow-gradient {
+  0% {
+    background-position: 0% 50%;
+    background-size: 200% 200%;
+  }
+  50% {
+    background-position: 100% 50%;
+    background-size: 220% 220%;
+  }
+  100% {
+    background-position: 0% 50%;
+    background-size: 200% 200%;
+  }
+}
+
 @keyframes flowPulse {
   0% {
     stroke-opacity: 0.6;
@@ -291,16 +169,40 @@
   }
 }
 
-.react-flow__edge.selected path {
-  @apply stroke-primary stroke-[3px];
-  filter: drop-shadow(0 0 5px rgba(34, 197, 94, 0.5));
+@keyframes gradientGlowPurple {
+  0% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 20px rgba(192, 132, 252, 0.15));
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 40px rgba(192, 132, 252, 0.3));
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 20px rgba(192, 132, 252, 0.15));
+  }
 }
 
-.react-flow__node.selected {
-  @apply ring-2 ring-primary ring-offset-2 ring-offset-black shadow-xl transform scale-105 z-10;
-  box-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
+/* Background for DragDrop Section */
+.dragdrop-bg {
+  background: linear-gradient(130deg, #4c1d95, #6b21a8, #7c3aed);
+  background-size: 300% 300%;
+  animation: gradientGlowPurple 8s ease infinite;
 }
 
-.react-flow__attribution {
-  @apply hidden;
+/* Background for FlowAPI Section */
+.flowapi-bg {
+  background: linear-gradient(130deg, #6b21a8, #7c3aed, #a78bfa);
+  background-size: 300% 300%;
+  animation: gradientGlowPurple 8s ease infinite;
+}
+
+.glow-gradient-text {
+  background: linear-gradient(130deg, #a855f7, #9333ea, #7c3aed);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradientGlowPurple 8s ease infinite;
+  filter: drop-shadow(0 0 10px rgba(192, 132, 252, 0.3));
 }

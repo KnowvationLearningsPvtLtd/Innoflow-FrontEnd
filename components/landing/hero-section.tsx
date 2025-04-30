@@ -23,7 +23,7 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="mb-6 text-4xl font-bold leading-tight text-white md:text-6xl">Supercharge your ideas with low code AI automation.</h1>
+            <h1 className="mb-6 text-4xl font-bold leading-tight md:text-6xl glow-gradient-text">Supercharge your ideas with low code AI automation.</h1>
             <p className="mb-8 text-xl text-white/80">
             Low-code platform for developers to create AI agents using any API, model, or database.
             </p>

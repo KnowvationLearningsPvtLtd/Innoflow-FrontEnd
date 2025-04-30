@@ -3,37 +3,24 @@
 import { useRef } from "react"
 import { HeroSection } from "@/components/landing/hero-section"
 import { IntegrationSection } from "@/components/landing/integration-section"
-//import { TestimonialSection } from "@/components/landing/testimonial-section"
 import { NotebookSection } from "@/components/landing/notebook-section"
 import { CTASection } from "@/components/landing/cta-section"
 import { Navbar } from "@/components/landing/navbar"
 import { Footer } from "@/components/landing/footer"
-//import { AgentsSection } from "@/components/landing/agents-section"
 import { FlowApiSection } from "@/components/landing/flow-api-section"
+import { DragDropSection } from "@/components/landing/drag-drop-section"
 import { motion, useScroll, useTransform } from "framer-motion"
 
-// Import the updated versions of your components
-//import { FeatureSection } from "@/components/landing/feature-section"
-import { DragDropSection } from "@/components/landing/drag-drop-section"
-
 export default function Home() {
-  const containerRef = useRef(null)
-  
   return (
-    <main className="min-h-screen gradient-bg">
-      <Navbar />
+    <main className="min-h-screen bg-black">
+      <Navbar /> 
       <HeroSection />
-      
-      {/* Smooth scrolling section container */}
-      <div ref={containerRef} className="relative">
-        {/*<TransitionSection zIndex={10} component={<FeatureSection />} />*/}
-        <TransitionSection zIndex={9} component={<DragDropSection />} />
-      </div>
-      
-       {/* <AgentsSection />*/}
-      <FlowApiSection />
+
+      {/* Pinned and animated sections */}
+      <PinnedSections />
+
       <IntegrationSection />
-       {/* <TestimonialSection />*/}
       <NotebookSection />
       <CTASection />
       <Footer />
@@ -41,44 +28,46 @@ export default function Home() {
   )
 }
 
-function TransitionSection({ component, zIndex }: { component: React.ReactNode; zIndex: number }) {
-  const sectionRef = useRef(null)
+function PinnedSections() {
+  const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  })
-  
-  const opacity = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.8, 1],
-    [0, 1, 1, 0]
-  )
-  
-  const y = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.8, 1],
-    ["20vh", "0vh", "0vh", "-20vh"]
-  )
-  
+    target: containerRef,
+    offset: ["start start", "end 80%"], // Reduce scroll range
+  });
+
+  // Adjust animation ranges for a smaller scroll effect
+  const firstSectionOpacity = useTransform(scrollYProgress, [0, 0.2, 0.4], [1, 1, 0]);
+  const secondSectionOpacity = useTransform(scrollYProgress, [0.4, 0.6, 1], [0, 1, 1]);
+
+  const firstSectionY = useTransform(scrollYProgress, [0, 0.4], ["0vh", "-5vh"]); // Reduced movement
+  const secondSectionY = useTransform(scrollYProgress, [0.4, 1], ["5vh", "0vh"]);
+
+  const firstSectionScale = useTransform(scrollYProgress, [0, 0.4], [1, 0.98]); // Subtle scaling
+  const secondSectionScale = useTransform(scrollYProgress, [0.4, 1], [0.98, 1]);
+
   return (
-    <div 
-      ref={sectionRef} 
-      className="min-h-screen relative" 
-      style={{ zIndex }}
-    >
-      <motion.div 
-        style={{ 
-          opacity, 
-          y,
-          position: "sticky",
-          top: 0,
-          height: "100vh",
-          width: "100%"
-        }}
-        className="flex items-center justify-center overflow-hidden"
-      >
-        {component}
-      </motion.div>
+    <div ref={containerRef} className="relative h-[200vh]"> {/* Reduced height */}
+      <div className="sticky top-0 h-screen flex flex-col items-center justify-center">
+        {/* First Section */}
+        <motion.div
+          style={{ opacity: firstSectionOpacity, y: firstSectionY, scale: firstSectionScale }}
+          className="absolute top-0 left-0 w-full h-full flex items-center justify-center dragdrop-bg transition-colors duration-1000 ease-in-out"
+        >
+          <div className="text-white w-full h-full flex items-center justify-center rounded-lg ">
+            <DragDropSection />
+          </div>
+        </motion.div>
+
+        {/* Second Section */}
+        <motion.div
+          style={{ opacity: secondSectionOpacity, y: secondSectionY, scale: secondSectionScale }}
+          className="absolute top-0 left-0 w-full h-full flex items-center justify-center flowapi-bg transition-colors duration-1000 ease-in-out"
+        >
+          <div className="text-white w-full h-full flex items-center justify-center rounded-lg ">
+            <FlowApiSection />
+          </div>
+        </motion.div>
+      </div>
     </div>
-  )
+  );
 }

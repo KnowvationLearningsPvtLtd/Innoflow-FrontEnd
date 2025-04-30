@@ -100,7 +100,10 @@ export function Navbar() {
               </Button>
             </Link>
             <Link href="/signup">
-              <Button className="bg-primary text-white hover:bg-primary/90">Get Started</Button>
+            <Button className="relative rounded-md px-3.5 py-2 m-1 overflow-hidden group cursor-pointer border-2 font-medium border-black text-white bg-primary hover:bg-primary/90">
+              <span className="absolute w-64 h-0 transition-all duration-300 origin-center rotate-45 -translate-x-20 bg-black top-1/2 group-hover:h-64 group-hover:-translate-y-32 ease"></span>
+              <span className="relative text-white transition duration-300 group-hover:text-white ease">Get Started</span>
+            </Button>
             </Link>
           </div>
           <div className="md:hidden">

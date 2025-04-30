@@ -9,7 +9,7 @@ export function CTASection() {
     <section className="py-20">
       <div className="container mx-auto px-4">
         <motion.div
-          className="mx-auto max-w-4xl text-center"
+          className="mx-auto max-w-4xl text-center p-10 rounded-2xl bg-black/20 backdrop-blur-md border border-white/10"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -22,18 +22,11 @@ export function CTASection() {
             Start your first Innoflow project now.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/signup">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white hover:from-emerald-600 hover:to-teal-600"
-              >
-                Get Started For Free
-              </Button>
-            </Link>
             <Link href="/docs">
-              <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10">
-                Explore Innoflow
-              </Button>
+            <Button className="relative rounded-md px-3.5 py-2 m-1 overflow-hidden group cursor-pointer border-2 font-medium border-black text-white bg-black hover:bg-black">
+              <span className="absolute w-64 h-0 transition-all duration-300 origin-center rotate-45 -translate-x-20 bg-gradient-to-r from-black to-white top-1/2 group-hover:h-64 group-hover:-translate-y-32 ease"></span>
+              <span className="relative text-white transition duration-300 group-hover:text-black ease">Explore</span>
+            </Button>
             </Link>
           </div>
         </motion.div>
