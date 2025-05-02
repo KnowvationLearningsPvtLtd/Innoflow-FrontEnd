@@ -28,7 +28,7 @@ export function Navbar() {
 
   return (
     <nav
-      className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "border-b border-white/10 bg-black/80 backdrop-blur-md" : "bg-transparent"
+      className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "border-0.2px border-white/10 bg-black/80 backdrop-blur-md" : "bg-transparent"
         }`}
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
