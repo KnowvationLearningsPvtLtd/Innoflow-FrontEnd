@@ -228,3 +228,9 @@ html {
 .sticky > div > div {
   animation: cardGlow 4s infinite;
 }
+
+.integration-hover-glow:hover {
+  background: linear-gradient(130deg, #6b21a8, #7c3aed, #a78bfa);
+  background-size: 300% 300%;
+  animation: gradientGlowPurple 8s ease infinite;
+}
