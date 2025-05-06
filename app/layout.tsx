@@ -22,6 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/images/logo.jpg" type="image/jpeg" />
+      </head>
       <body className={inter.className}>
         <AuthProvider>
           <UserProvider>
@@ -35,6 +38,5 @@ export default function RootLayout({
     </html>
   )
 }
-
 
 import './globals.css'
