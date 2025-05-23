@@ -678,17 +678,9 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace, onAdd
         // Track newly added node
         setNewlyAddedNodes((prev) => new Set(prev).add(nodeId))
 
-        // Zoom to the new node
+        // Removed viewport adjustments to keep the screen static
         if (reactFlowInstance) {
-          setTimeout(() => {
-            reactFlowInstance.fitView({
-              nodes: [newNode],
-              duration: 700,
-              padding: 0.2,
-              minZoom: 1,
-              maxZoom: 1.5,
-            })
-          }, 50)
+          console.log("Node added without viewport adjustment");
         }
 
         toast({
@@ -752,18 +744,9 @@ export function FlowEditor({ flowId, onOpenPlayground, onOpenApiCodespace, onAdd
           return new Set(prev).add(nodeId);
         })
 
-        // Zoom to the new node
+        // Removed viewport adjustments to keep the screen static
         if (reactFlowInstance) {
-          console.log("🔍 Zooming to new node");
-          setTimeout(() => {
-            reactFlowInstance.fitView({
-              nodes: [newNode],
-              duration: 700,
-              padding: 0.4,
-              minZoom: 1.5,
-              maxZoom: 1.5,
-            })
-          }, 50)
+          console.log("Node added without viewport adjustment");
         }
 
         toast({
