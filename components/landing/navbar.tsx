@@ -44,7 +44,7 @@ export function Navbar() {
             <span className="text-xl font-bold text-white">Innoflow</span>
           </Link>
           <div className="hidden md:flex md:gap-6">
-            <Link href="/docs" className="text-sm text-white/70 transition-colors hover:text-white">
+            <Link href="/docs" target="_blank" className="text-sm text-white/70 transition-colors hover:text-white">
               Docs
             </Link>
             <a
