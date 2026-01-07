@@ -46,7 +46,7 @@ const ProfilePage = () => {
       />
       <div className="md:pl-64 transition-all duration-300">
         <DashboardHeader />
-        <main className="pt-24 p-4 md:p-6">
+        <main className="pt-24 p-4 md:p-6 mt-12">
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col md:flex-row items-start md:items-center gap-4 mb-8">
               <Avatar className="h-20 w-20 border-2 border-white/10">
