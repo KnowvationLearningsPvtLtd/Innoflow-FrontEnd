@@ -116,6 +116,17 @@ export function DashboardSidebar({ setSelectedFolder, setShowTemplates }: { setS
           </Link>
         </SidebarHeader>
 
+         <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild isActive={pathname === "/dashboard"}>
+                <Link href="/dashboard" className="flex items-center gap-2 py-2">
+                  <Home className="h-4 w-4" />
+                  <span>Dashboard</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+
         <SidebarContent className="px-2">
           <div className="flex items-center justify-between px-2 py-2">
             <h3 className="text-sm font-medium text-white/70">Folders</h3>
@@ -159,16 +170,7 @@ export function DashboardSidebar({ setSelectedFolder, setShowTemplates }: { setS
             </div>
           </div>
 
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild isActive={pathname === "/dashboard"}>
-                <Link href="/dashboard" className="flex items-center gap-2 py-2">
-                  <Home className="h-4 w-4" />
-                  <span>Dashboard</span>
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
+         
 
           <SidebarSeparator className="my-1" />
 
@@ -215,10 +217,12 @@ export function DashboardSidebar({ setSelectedFolder, setShowTemplates }: { setS
         </SidebarContent>
 
         <SidebarFooter className="p-4">
+          <Link href="/app/dashboard/workspace-settings/page.tsx">
           <Button variant="outline" className="w-full border-white/10 text-white bg-black hover:bg-white/10">
             <Settings className="mr-2 h-4 w-4" />
             Workspace Settings
           </Button>
+          </Link>
         </SidebarFooter>
       </Sidebar>
     </SidebarProvider>

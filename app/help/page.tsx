@@ -1,12 +1,14 @@
 "use client"
 
 import { DashboardHeader } from "@/components/dashboard/dashboard-header"
-import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar"
+import DashboardIcon from '@/components/dashboard/dashboardIcon'
 
 export default function HelpPage() {
   return (
     <div className="min-h-screen bg-black">
-      <DashboardSidebar />
+
+       <DashboardIcon />
+      
       <div className="md:pl-64 transition-all duration-300">
         <DashboardHeader />
         <main className="pt-24 p-4 md:p-6 mt-12">
