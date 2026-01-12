@@ -103,14 +103,14 @@ export function FewShotNode({ data, isConnectable }: { data: any; isConnectable?
 
       <Handle
         type="target"
-        position={Position.Top}
+        position={Position.Left}
         id="in"
         isConnectable={isConnectable}
         className="w-3 h-3 bg-emerald-500 border-2 border-black node-handle"
       />
       <Handle
         type="source"
-        position={Position.Bottom}
+        position={Position.Right}
         id="out"
         isConnectable={isConnectable}
         className="w-3 h-3 bg-emerald-500 border-2 border-black node-handle"

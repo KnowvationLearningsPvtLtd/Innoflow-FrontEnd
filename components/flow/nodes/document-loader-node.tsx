@@ -123,7 +123,7 @@ export function DocumentLoaderNode({ data, isConnectable }: { data: any; isConne
 
       <Handle
         type="source"
-        position={Position.Bottom}
+        position={Position.Right}
         id="out"
         isConnectable={isConnectable}
         className="w-2 h-2 bg-indigo-500 border-2 border-black"

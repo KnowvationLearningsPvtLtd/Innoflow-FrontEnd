@@ -266,7 +266,7 @@ function APIInputNode({ data, isConnectable }: { data: any; isConnectable?: bool
         {isClient && (
           <Handle
             type="source"
-            position={Position.Bottom}
+            position={Position.Right}
             id="out"
             isConnectable={isConnectable}
             className="w-3 h-3 bg-blue-500 border-2 border-black node-handle"
