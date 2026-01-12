@@ -119,14 +119,14 @@ export function BufferMemoryNode({ data, isConnectable }: { data: any; isConnect
 
       <Handle
         type="target"
-        position={Position.Top}
+        position={Position.Left}
         id="in"
         isConnectable={isConnectable}
         className="w-2 h-2 bg-sky-500 border border-black"
       />
       <Handle
         type="source"
-        position={Position.Bottom}
+        position={Position.Right}
         id="out"
         isConnectable={isConnectable}
         className="w-2 h-2 bg-sky-500 border border-black"

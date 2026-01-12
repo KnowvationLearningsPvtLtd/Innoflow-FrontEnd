@@ -180,7 +180,7 @@ export function InputNode({ data, isConnectable }: { data: any; isConnectable?: 
       
       <Handle
         type="source"
-        position={Position.Bottom}
+        position={Position.Right}
         id="out"
         isConnectable={isConnectable !== false}
         className="w-3 h-3 bg-blue-500 border-2 border-black"

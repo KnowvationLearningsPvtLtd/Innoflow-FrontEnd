@@ -106,7 +106,7 @@ export function FileOutputNode({ data, isConnectable }: { data: any; isConnectab
 
       <Handle
         type="target"
-        position={Position.Top}
+        position={Position.Left}
         id="in"
         isConnectable={isConnectable}
         className="w-3 h-3 bg-purple-500 border-2 border-black node-handle"

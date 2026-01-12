@@ -144,7 +144,7 @@ export function OutputNode({ data, isConnectable }: { data: any; isConnectable?:
       {isClient && (
         <Handle
           type="target"
-          position={Position.Top}
+          position={Position.Left}
           id="in"
           isConnectable={isConnectable}
           className="w-3 h-3 bg-purple-500 border-2 border-black transition-all duration-200 hover:scale-110"

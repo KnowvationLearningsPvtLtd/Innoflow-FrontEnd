@@ -1,7 +1,6 @@
 "use client"
 
 import { DashboardHeader } from "@/components/dashboard/dashboard-header"
-import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -11,6 +10,7 @@ import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useUser } from "@/components/context/user-context"
 import { useState } from "react"
+import DashboardIcon from '@/components/dashboard/dashboardIcon'
 
 const ProfilePage = () => {
   const { user, setUser } = useUser();
@@ -40,10 +40,9 @@ const ProfilePage = () => {
 
   return (
     <div className="min-h-screen bg-black">
-      <DashboardSidebar 
-        setSelectedFolder={() => {}} 
-        setShowTemplates={() => {}} 
-      />
+
+      <DashboardIcon />
+      
       <div className="md:pl-64 transition-all duration-300">
         <DashboardHeader />
         <main className="pt-24 p-4 md:p-6 mt-12">

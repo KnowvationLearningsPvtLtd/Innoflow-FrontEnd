@@ -164,14 +164,14 @@ export function HuggingFaceNode({ data, isConnectable }: { data: any; isConnecta
 
       <Handle
         type="target"
-        position={Position.Top}
+        position={Position.Left}
         id="in"
         isConnectable={isConnectable}
         className="w-2 h-2 bg-teal-500 border border-black"
       />
       <Handle
         type="source"
-        position={Position.Bottom}
+        position={Position.Right}
         id="out"
         isConnectable={isConnectable}
         className="w-2 h-2 bg-teal-500 border border-black"
