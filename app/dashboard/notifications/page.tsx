@@ -1,14 +1,18 @@
+"use client"
+
 import { DashboardHeader } from "@/components/dashboard/dashboard-header"
-import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Bell, Check, Clock, Info, X } from "lucide-react"
+import DashboardIcon from '@/components/dashboard/dashboardIcon'
 
 const NotificationsPage = () => {
   return (
     <div className="min-h-screen bg-black">
-      <DashboardSidebar />
+
+      <DashboardIcon />
+      
       <div className="md:pl-64 transition-all duration-300">
         <DashboardHeader />
         <main className="pt-16 p-4 md:p-6">
