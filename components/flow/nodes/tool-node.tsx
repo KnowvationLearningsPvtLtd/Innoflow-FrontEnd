@@ -66,7 +66,7 @@ export function ToolNode({ data, isConnectable }: { data: any; isConnectable?: b
       />
       <Handle
         type="source"
-        position={Position.Bottom}
+        position={Position.Right}
         id="out"
         isConnectable={isConnectable}
         className="w-3 h-3 bg-red-500 border-2 border-black node-handle"
